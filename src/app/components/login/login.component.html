@@ -6,19 +6,20 @@
         <label for="name">Usuario:</label>
         <input type="name" formControlName='usuario'[class.is-invalid]="UsuarioNoValido">
         <small *ngIf="UsuarioNoValido" class="text-danger">
-            Ingrese su usuario
+            Ingrese su usuario <br>
         </small>
         <!-- Password -->
         <label for="username">Password:</label>
-        <p><a href="#">Forgot your password?</a>    
+       
         <input type="password"  formControlName='password'[class.is-invalid]="PasswordNoValido">
         <small *ngIf="PasswordNoValido" class="text-danger">
-            Ingrese su contraseña
+            Ingrese una contraseña válida <br>
         </small>
 
 
         <button type="submit">Login</button>
         <div class="register">
+            <br>
             <p>Todavía no tienes una cuenta? <a routerLink="/register">Regístrate</a> </p>
             
         </div> 
