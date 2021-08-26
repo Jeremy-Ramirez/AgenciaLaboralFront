@@ -1,5 +1,13 @@
+
 <div id="container">
-    
-        <button routerLink="/registroEmpresa">Empresa</button>
-        <button routerLink="/registroAspirante">Aspirante</button>
+       
+                <button type="button" routerLink="/main" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <div id="lower">
+                        <!-- Seleccione un perfil -->
+                        <label for="name">Seleccione un perfil</label>
+                        <button class="registro" routerLink="/registroEmpresa">Empresa</button>
+                        <button class="registro" routerLink="/registroAspirante">Aspirante</button>
+                </div>
 </div>
