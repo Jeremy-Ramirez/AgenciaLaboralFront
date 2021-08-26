@@ -12,6 +12,11 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RegistroAspiranteComponent } from './components/registro-aspirante/registro-aspirante.component';
+import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
+import { RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
+import { RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { MainComponent } from './components/main/main.component';
     FeedbackComponent,
     FooterComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    RegisterComponent,
+    RegistroAspiranteComponent,
+    RegistroEmpresaComponent,
+    RegistroFullAspiranteComponent,
+    RegistroFullEmpresaComponent
   ],
   imports: [
     BrowserModule,
