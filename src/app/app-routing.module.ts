@@ -16,7 +16,12 @@ const routes: Routes = [
   { path: 'registroFullEmpresa', component: RegistroFullEmpresaComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'main', component: MainComponent },
-  { path: 'login', component: LoginComponent }];
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+
+
+];
   
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
