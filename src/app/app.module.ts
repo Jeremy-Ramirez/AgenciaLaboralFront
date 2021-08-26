@@ -18,6 +18,8 @@ import { RegistroEmpresaComponent } from './components/registro-empresa/registro
 import { RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
 import { RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegistroAspiranteComponent,
     RegistroEmpresaComponent,
     RegistroFullAspiranteComponent,
-    RegistroFullEmpresaComponent
+    RegistroFullEmpresaComponent,
+    SesionEmpresaComponent,
+    SolicitudesComponent
   ],
   imports: [
     BrowserModule,

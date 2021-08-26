@@ -7,6 +7,8 @@ import {RegistroAspiranteComponent } from './components/registro-aspirante/regis
 import {RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
 import {RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
+import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 
 const routes: Routes = [  
   { path: '', pathMatch: 'full', redirectTo: 'main' },
@@ -18,9 +20,8 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-
-
-
+  { path: 'sesionEmpresa', component: SesionEmpresaComponent },
+  { path: 'solicitudes', component: SolicitudesComponent },
 ];
   
 @NgModule({
