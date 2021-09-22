@@ -4,43 +4,32 @@
 
     <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
            
-        <!-- Campo de producto -->
+    
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Tipo de Documento</label>
             <div class="col-sm-9">
-                
-                <select  formControlName="tipoDocumento">
+                <select  formControlName="tipoDocumento"  [class.is-invalid]="tipoDocumentoNoValido">
                     <option *ngFor="let d of tipodocumentos">
                         {{d.idtipodocumento}}-{{d.descripcion}}
                     </option>
-                    
                 </select>
-<!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('tipoDocumento')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                <small *ngIf="tipoDocumentoNoValido" class="text-danger">
+                    Seleccione un tipo de documento
+                </small>
             </div>
         </div>
 
-        <!-- Campo de producto -->
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">No de Documento</label>
             <div class="col-sm-9">
                 <input type="text"
                        class="form-control"
                        formControlName ="numDocumento" 
-                       placeholder="Numero">
+                       placeholder="Numero" [class.is-invalid]="numDocumentoNoValido" >
 
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('numDocumento')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                       <small *ngIf="numDocumentoNoValido" class="text-danger">
+                        Escriba un número de documento válido
+                    </small>
             </div>
         </div>
 
@@ -51,14 +40,11 @@
                 <input type="text"
                        class="form-control"
                        formControlName="nombres"
-                       placeholder="Nombres Completos">
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('nombres')">
+                       placeholder="Nombres Completos" [class.is-invalid]="nombresNoValido">
                     
-                    Campo Requerido
-                </span>
-                -->
+                       <small *ngIf="nombresNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
             </div>
         </div>
 
@@ -68,14 +54,11 @@
                 <input type="text"
                        class="form-control"
                        formControlName="apellidos"
-                       placeholder="Apellidos">
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('apellidos')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                       placeholder="Apellidos" [class.is-invalid]="apellidosNoValido">
+                       
+                       <small *ngIf="apellidosNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
             </div>
         </div>
 
@@ -83,38 +66,32 @@
             <label class="col-sm-3 col-form-label">Povincia</label>
             <div class="col-sm-9">
 
-                <select  formControlName="provincia">
+                <select  formControlName="provincia" [class.is-invalid]="provinciaNoValido">
                     <option *ngFor="let p of provincias">
                         {{p.idprovincia}}-{{p.nombreprovincia}}
                         
                     </option>
                 </select>
-<!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('provincia')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                <small *ngIf="provinciaNoValido" class="text-danger">
+                    Seleccione una provincia
+                </small>
+
             </div>
         </div>
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Ciudad </label>
             <div class="col-sm-9">
-                <select   formControlName="ciudad" >
+                <select   formControlName="ciudad" [class.is-invalid]="ciudadNoValido">
                     <option *ngFor="let c of ciudades">
 
                         {{c.nombreciudad}}
                     </option>
                 </select>
-                <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('ciudad')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                <small *ngIf="ciudadNoValido" class="text-danger">
+                    Seleccione una ciudad
+                </small>
+               
             </div>
         </div>
 
@@ -124,14 +101,11 @@
                 <input type="text"
                        class="form-control"
                        formControlName="correo"
-                       placeholder="correo">
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('correo')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                       placeholder="correo" [class.is-invalid]="correoNoValido">
+                     
+                       <small *ngIf="correoNoValido" class="text-danger">
+                        Escriba un correo válido
+                    </small>
             </div>
         </div>
 
@@ -142,64 +116,42 @@
                        class="form-control"
                        formControlName="contraseña"
                        placeholder="contraseña">
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('contraseña')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                       
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Confirmacion de Contraseña  </label>
+            <label class="col-sm-3 col-form-label">Confirmación de Contraseña  </label>
             <div class="col-sm-9">
                 <input type="text"
                        class="form-control"
                        formControlName="confirmacion"
                        placeholder="confirmacion">
-                       <!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('confirmacion')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+                      
             </div>
         </div>
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Género  </label>
             <div class="col-sm-9">
-                <!--select name="gender" id="gender" formArrayName="genero">
-                    <option value="m">Masculino</option>
-                    <option value="f">Femenino</option>
-                    <option value="o">Otro</option>
-                </select-->
+             
                 <select formControlName="genero">
                     <option *ngFor="let g of generos">
                         {{g.idgenero}}-{{g.genero}}
                     </option>
                 </select>
-<!--
-                <span class="form-text text-danger"
-                    *ngIf="campoEsValido('genero')">
-                    
-                    Campo Requerido
-                </span>
-                -->
+
             </div>
         </div>
         
 
+        <div id="lower">
+            <button type="submit" class="btn btn-primary float-end">
+                Registrarse
+            </button>
 
-        <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary float-end">
-                    Guardar
-                </button>
-            </div>
         </div>
+
+        
 
 
 
