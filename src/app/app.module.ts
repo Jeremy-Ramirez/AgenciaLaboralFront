@@ -20,6 +20,7 @@ import { RegistroFullEmpresaComponent } from './components/registro-full-empresa
 import { ReactiveFormsModule } from '@angular/forms';
 import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { SolicitudesComponent } from './components/solicitudes/solicitudes.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
