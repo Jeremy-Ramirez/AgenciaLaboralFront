@@ -18,22 +18,31 @@ export class RegistroFullAspiranteComponent implements OnInit {
   seleccionuser:string;
 
   miFormulario: FormGroup = this.fb.group({
-    tipoDocumento: ["", Validators.required],
+    //tipoDocumento: ["", Validators.required],
+    usuario: ["", [Validators.required]],
+    contraseña:["", [Validators.required]],
+    //confirmacion:["", [Validators.required]],
     numDocumento:["",[Validators.required, Validators.minLength(10)]],
     nombres: ["", [Validators.required]],
     apellidos: ["", [Validators.required]],
+    correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
+   
+    telefono:["",[Validators.required,Validators.minLength(10)]],
+    direccion:["",[Validators.required,Validators.minLength(10)]],
+    estadoCuenta:1,
+    genero:["", [Validators.required]],
+
     provincia:["", [Validators.required]],
     ciudad:["", [Validators.required]],
-    correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    contraseña:["", [Validators.required]],
-    confirmacion:["", [Validators.required]],
-    genero:["", [Validators.required]],
+    
+    
+    
   })
 
   constructor(private http:HttpClient,private fb: FormBuilder) { 
 
     this.getGenero();
-    this.getTipodocumento();
+    //this.getTipodocumento();
     this.getProvincias();
     this.getCiudades();
   }
@@ -44,6 +53,23 @@ export class RegistroFullAspiranteComponent implements OnInit {
 get tipoDocumentoNoValido(){
   return this.miFormulario.get('tipoDocumento').invalid && this.miFormulario.get('tipoDocumento').touched
 }
+get usuarioNoValido(){
+  return this.miFormulario.get('usuario').invalid && this.miFormulario.get('usuario').touched
+}
+
+get telefonoNoValido(){
+  return this.miFormulario.get('telefono').invalid && this.miFormulario.get('telefono').touched
+}
+
+get direccionNoValido(){
+  return this.miFormulario.get('direccion').invalid && this.miFormulario.get('direccion').touched
+}
+
+
+
+
+
+
 get numDocumentoNoValido(){
   return this.miFormulario.get('numDocumento').invalid && this.miFormulario.get('numDocumento').touched
 }
@@ -95,7 +121,7 @@ get generoNoValido(){
   getGenero(){
     this.http.get('http://127.0.0.1:8000/api/genero/').subscribe((resp:any)=>{
       this.generos=resp
-      //console.log(resp)
+     
      console.log(this.generos)
 
     })

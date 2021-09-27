@@ -13,13 +13,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RegistroAspiranteComponent } from './components/registro-aspirante/registro-aspirante.component';
+import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
 import { RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
 import { RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,11 +34,12 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
     LoginComponent,
     MainComponent,
     RegisterComponent,
+    RegistroAspiranteComponent,
+    RegistroEmpresaComponent,
     RegistroFullAspiranteComponent,
     RegistroFullEmpresaComponent,
     SesionEmpresaComponent,
-    SolicitudesComponent,
-    RegistroUsuarioComponent
+    SolicitudesComponent
   ],
   imports: [
     BrowserModule,

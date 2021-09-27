@@ -5,7 +5,7 @@
     <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
            
     
-        <div class="mb-3 row">
+        <!--div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Tipo de Documento</label>
             <div class="col-sm-9">
                 <select  formControlName="tipoDocumento"  [class.is-invalid]="tipoDocumentoNoValido">
@@ -16,6 +16,21 @@
                 <small *ngIf="tipoDocumentoNoValido" class="text-danger">
                     Seleccione un tipo de documento
                 </small>
+            </div>
+        </div-->
+
+        
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Usuario</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="usuario" 
+                       placeholder="Numero" [class.is-invalid]="usuarioNoValido" >
+
+                       <small *ngIf="usuarioNoValido" class="text-danger">
+                        Campo Requerido
+                    </small>
             </div>
         </div>
 
@@ -63,6 +78,40 @@
         </div>
 
         <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="telefono"
+                       placeholder="Teléfono" [class.is-invalid]="telefonoNoValido">
+                       
+                       <small *ngIf="telefonoNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Dirección</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="direccion"
+                       placeholder="Dirección" [class.is-invalid]="direccionNoValido">
+                       
+                       <small *ngIf="direccionNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Povincia</label>
             <div class="col-sm-9">
 
@@ -85,7 +134,7 @@
                 <select   formControlName="ciudad" [class.is-invalid]="ciudadNoValido">
                     <option *ngFor="let c of ciudades">
 
-                        {{c.nombreciudad}}
+                        {{c.nombreciudad}}-{{c.idciudad}}
                     </option>
                 </select>
                 <small *ngIf="ciudadNoValido" class="text-danger">
@@ -119,7 +168,7 @@
                        
             </div>
         </div>
-        <div class="mb-3 row">
+        <!--div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Confirmación de Contraseña  </label>
             <div class="col-sm-9">
                 <input type="text"
@@ -128,7 +177,7 @@
                        placeholder="confirmacion">
                       
             </div>
-        </div>
+        </div-->
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Género  </label>
@@ -136,8 +185,9 @@
              
                 <select formControlName="genero">
                     <option *ngFor="let g of generos">
-                        {{g.idgenero}}-{{g.genero}}
+                        {{g.idgenero}}
                     </option>
+                    
                 </select>
 
             </div>
