@@ -15,6 +15,8 @@ import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegistroAspiranteComponent } from './components/registro-aspirante/registro-aspirante.component';
 import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
+import { RegistroRepresentanteComponent } from './components/registro-representante/registro-representante.component';
+import { RegistroFullRepresentanteComponent } from './components/registro-full-representante/registro-full-representante.component';
 import { RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
 import { RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +35,8 @@ import {CiudadService} from './servicios/ciudad.service';
 import {SectorService} from './servicios/sector.service';
 import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-aspirante.component';
 import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.component';
+import { SugerenciasComentariosComponent } from './components/sugerencias-comentarios/sugerencias-comentarios.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,10 +52,13 @@ import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.
     RegisterComponent,
     RegistroAspiranteComponent,
     RegistroEmpresaComponent,
+    RegistroRepresentanteComponent,
     RegistroFullAspiranteComponent,
     RegistroFullEmpresaComponent,
+    RegistroFullRepresentanteComponent,
     SesionEmpresaComponent,
     SolicitudesComponent,
+    SugerenciasComentariosComponent,
     SesionAspiranteComponent,
     OfertaEmpleoComponent
   ],
