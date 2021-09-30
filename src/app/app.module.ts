@@ -21,6 +21,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { HttpClientModule } from '@angular/common/http';
+import {TipodocumentoService} from './servicios/tipodocumento.service';
+import {TipoempresaService} from './servicios/tipoempresa.service';
+import {TipopersonaService} from './servicios/tipopersona.service';
+import {GeneroService} from './servicios/genero.service';
+import {RamaactividadService} from './servicios/ramaactividad.service';
+import {ProvinciaService} from './servicios/provincia.service';
+import {EmpresaService} from './servicios/empresa.service';
+import {ActividadeconomicaService} from './servicios/actividadeconomica.service';
+import {CiudadService} from './servicios/ciudad.service';
+import {SectorService} from './servicios/sector.service';
+import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-aspirante.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroFullAspiranteComponent,
     RegistroFullEmpresaComponent,
     SesionEmpresaComponent,
-    SolicitudesComponent
+    SolicitudesComponent,
+    SesionAspiranteComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +59,17 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [TipodocumentoService,
+    TipopersonaService,
+    GeneroService,
+    TipoempresaService,
+    RamaactividadService,
+    ProvinciaService,
+    ActividadeconomicaService,
+    CiudadService,
+    EmpresaService,
+    SectorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
