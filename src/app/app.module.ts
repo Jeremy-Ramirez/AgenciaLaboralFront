@@ -32,6 +32,7 @@ import {ActividadeconomicaService} from './servicios/actividadeconomica.service'
 import {CiudadService} from './servicios/ciudad.service';
 import {SectorService} from './servicios/sector.service';
 import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-aspirante.component';
+import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-a
     RegistroFullEmpresaComponent,
     SesionEmpresaComponent,
     SolicitudesComponent,
-    SesionAspiranteComponent
+    SesionAspiranteComponent,
+    OfertaEmpleoComponent
   ],
   imports: [
     BrowserModule,
