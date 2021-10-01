@@ -10,30 +10,33 @@ export class RegistroFullAspiranteComponent implements OnInit {
 
   
   generos:any[]=[];
-  tipodocumentos:any[]=[];
+  
   provincias:any[]=[];
   ciudades:any[]=[];
+  tipoDocumento:any[]=[];
 
   seleccionado:string;
   seleccionuser:string;
 
   miFormulario: FormGroup = this.fb.group({
-    //tipoDocumento: ["", Validators.required],
-    usuario: ["", [Validators.required]],
-    contraseña:["", [Validators.required]],
-    //confirmacion:["", [Validators.required]],
-    numDocumento:["",[Validators.required, Validators.minLength(10)]],
-    nombres: ["", [Validators.required]],
-    apellidos: ["", [Validators.required]],
+    
+    nombreusuario: ["", [Validators.required]],
+    contrasenia:["", [Validators.required]],
+    tipodocumento_idtipodocumento: ["", Validators.required],
+    nodocumento:["",[Validators.required, Validators.minLength(10)]],
+    nombre: ["", [Validators.required]],
+    apellido: ["", [Validators.required]],
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-   
     telefono:["",[Validators.required,Validators.minLength(10)]],
     direccion:["",[Validators.required,Validators.minLength(10)]],
-    estadoCuenta:1,
-    genero:["", [Validators.required]],
-
-    provincia:["", [Validators.required]],
-    ciudad:["", [Validators.required]],
+    estadoCuenta:null,
+    ciudad_idciudad:["", [Validators.required]],
+    estadocivil_idestadocivil: 1,
+    genero_idgenero:["", [Validators.required]],
+    provincia_idprovincia:["", [Validators.required]],
+    rol_idrol: 2,
+   
+    
     
     
     
@@ -45,6 +48,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
     //this.getTipodocumento();
     this.getProvincias();
     this.getCiudades();
+    this.getTipodocumento();
   }
 
   ngOnInit(): void {
@@ -54,7 +58,7 @@ get tipoDocumentoNoValido(){
   return this.miFormulario.get('tipoDocumento').invalid && this.miFormulario.get('tipoDocumento').touched
 }
 get usuarioNoValido(){
-  return this.miFormulario.get('usuario').invalid && this.miFormulario.get('usuario').touched
+  return this.miFormulario.get('nombreusuario').invalid && this.miFormulario.get('nombreusuario').touched
 }
 
 get telefonoNoValido(){
@@ -71,23 +75,23 @@ get direccionNoValido(){
 
 
 get numDocumentoNoValido(){
-  return this.miFormulario.get('numDocumento').invalid && this.miFormulario.get('numDocumento').touched
+  return this.miFormulario.get('nodocumento').invalid && this.miFormulario.get('nodocumento').touched
 }
 
 get nombresNoValido(){
-  return this.miFormulario.get('nombres').invalid && this.miFormulario.get('nombres').touched
+  return this.miFormulario.get('nombre').invalid && this.miFormulario.get('nombre').touched
 }
 
 get apellidosNoValido(){
-  return this.miFormulario.get('apellidos').invalid && this.miFormulario.get('apellidos').touched
+  return this.miFormulario.get('apellido').invalid && this.miFormulario.get('apellido').touched
 }
 
 get provinciaNoValido(){
-  return this.miFormulario.get('provincia').invalid && this.miFormulario.get('provincia').touched
+  return this.miFormulario.get('provincia_idprovincia').invalid && this.miFormulario.get('provincia_idprovincia').touched
 }
 
 get ciudadNoValido(){
-  return this.miFormulario.get('ciudad').invalid && this.miFormulario.get('ciudad').touched
+  return this.miFormulario.get('ciudad_idciudad').invalid && this.miFormulario.get('ciudad_idciudad').touched
 }
 
 get correoNoValido(){
@@ -96,7 +100,7 @@ get correoNoValido(){
 
 
 get contraseñaNoValido(){
-  return this.miFormulario.get('contraseña').invalid && this.miFormulario.get('contraseña').touched
+  return this.miFormulario.get('contrasenia').invalid && this.miFormulario.get('contrasenia').touched
 }
 
 get confirmacionNoValido(){
@@ -104,19 +108,20 @@ get confirmacionNoValido(){
 }
 
 get generoNoValido(){
-  return this.miFormulario.get('genero').invalid && this.miFormulario.get('genero').touched
+  return this.miFormulario.get('genero_idgenero').invalid && this.miFormulario.get('genero_idgenero').touched
 }
-
-
-
 
 
   getTipodocumento(){
     this.http.get('http://127.0.0.1:8000/api/tipodocumento/').subscribe((doc:any)=>{
-      this.tipodocumentos=doc;
-    console.log(doc)
+      this.tipoDocumento=doc;
+    console.log(this.tipoDocumento)
     })
   }
+
+
+
+
 
   getGenero(){
     this.http.get('http://127.0.0.1:8000/api/genero/').subscribe((resp:any)=>{
@@ -150,9 +155,27 @@ get generoNoValido(){
         control.markAsTouched();
       })
     }
-
-    console.log(this.miFormulario.value)
+  
+      console.log(this.miFormulario.value);
+      this.http.post('http://127.0.0.1:8000/api/usuarios/', this.miFormulario.value).subscribe(
+        resp => console.log(resp),
+        err => console.log(err)
+  
+      )
+    
+    
+    alert('USUARIO CREADO')
 
   }
+
+
+
+
+
+
+
+
+
+
 
 }
