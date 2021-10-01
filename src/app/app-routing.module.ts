@@ -14,6 +14,8 @@ import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empre
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-aspirante.component';
 import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.component';
+import { SesionAdministradorComponent } from './components/sesion-administrador/sesion-administrador.component';
+
 
 const routes: Routes = [  
   { path: '', pathMatch: 'full', redirectTo: 'main' },
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: 'sesionAspirante', component: SesionAspiranteComponent },
   { path: 'sugerencias', component: SugerenciasComentariosComponent},
   { path: 'ofertaEmpleo', component: OfertaEmpleoComponent },
+  { path: 'sesionAdministrador', component: SesionAdministradorComponent},
 ];
   
 @NgModule({
