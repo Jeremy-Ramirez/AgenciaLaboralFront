@@ -5,19 +5,6 @@
     <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
            
     
-        <!--div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Tipo de Documento</label>
-            <div class="col-sm-9">
-                <select  formControlName="tipoDocumento"  [class.is-invalid]="tipoDocumentoNoValido">
-                    <option *ngFor="let d of tipodocumentos">
-                        {{d.idtipodocumento}}-{{d.descripcion}}
-                    </option>
-                </select>
-                <small *ngIf="tipoDocumentoNoValido" class="text-danger">
-                    Seleccione un tipo de documento
-                </small>
-            </div>
-        </div-->
 
         
         <div class="mb-3 row">
@@ -183,24 +170,15 @@
                        
             </div>
         </div>
-        <!--div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Confirmación de Contraseña  </label>
-            <div class="col-sm-9">
-                <input type="text"
-                       class="form-control"
-                       formControlName="confirmacion"
-                       placeholder="confirmacion">
-                      
-            </div>
-        </div-->
+        
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Género  </label>
             <div class="col-sm-9">
              
                 <select formControlName="genero_idgenero">
-                    <option *ngFor="let g of generos">
-                        {{g.idgenero}}
+                    <option *ngFor="let g of generos" value=" {{g.idgenero}}">
+                        {{g.genero}}
                     </option>
                     
                 </select>
@@ -228,11 +206,3 @@
 
     
 </div>
-
-<!--form>
-      
-    <div id="lower">
-      
-        <input type="submit" value="Register">
-    </div>
-</form-->      
