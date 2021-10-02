@@ -37,6 +37,7 @@ import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-a
 import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.component';
 import { SugerenciasComentariosComponent } from './components/sugerencias-comentarios/sugerencias-comentarios.component';
 import { SesionAdministradorComponent } from './components/sesion-administrador/sesion-administrador.component';
+import { AspiranteProfesionalComponent } from './components/aspirante-profesional/aspirante-profesional.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SesionAdministradorComponent } from './components/sesion-administrador/
     SesionAspiranteComponent,
     OfertaEmpleoComponent,
     SesionAdministradorComponent,
+    AspiranteProfesionalComponent,
   ],
   imports: [
     BrowserModule,
