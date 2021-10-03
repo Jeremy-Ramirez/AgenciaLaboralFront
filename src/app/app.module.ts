@@ -40,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { MatListModule } from '@angular/material/list';
     SolicitudesComponent,
     SugerenciasComentariosComponent,
     AspiranteProfesionalComponent,
+
 
 
 

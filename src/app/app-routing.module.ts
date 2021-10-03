@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'administrador',
     loadChildren: () => import('./components/administrador/administrador.module').then( m => m.AdministradorModule )
   },
+  { 
+    path: 'representante',
+    loadChildren: () => import('./components/representante/representante.module').then( m => m.RepresentanteModule )
+  },
   {
     path: '**',
     redirectTo: 'main'

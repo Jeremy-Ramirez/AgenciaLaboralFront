@@ -7,7 +7,7 @@ import { RegistroEmpresaComponent } from './registro-empresa/registro-empresa.co
 import { SesionEmpresaComponent } from './sesion-empresa/sesion-empresa.component';
 import { RegistroRepresentanteComponent } from './registro-representante/registro-representante.component';
 import { RegistroFullEmpresaComponent } from './registro-full-empresa/registro-full-empresa.component';
-import { RegistroFullRepresentanteComponent } from './registro-full-representante/registro-full-representante.component';
+import { RegistroFullRepresentanteComponent } from '../representante/registro-full-representante/registro-full-representante.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 
   
