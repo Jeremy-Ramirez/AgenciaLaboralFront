@@ -1,5 +1,5 @@
-<p>aspirante-profesional works!</p>
-<div id="container">
+
+<div id="container" style="max-width: 500px; margin-left: 600px;">
      
 
 
@@ -82,7 +82,7 @@
 
 
         <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Fecha</label>
+            <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
             <div class="col-sm-9">
                 <input type="date"
                    
@@ -114,7 +114,7 @@
             <label class="col-sm-3 col-form-label">Profesiones</label>
             <div class="col-sm-9">
                 
-                <select name="doc" id="doc" formControlName="Profesiones_idProfesiones">
+                <select name="doc" id="doc" formControlName="profesiones_idprofesiones">
                     <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
                         {{p.profesion}}
                     </option>
