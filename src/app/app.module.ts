@@ -3,24 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { MainComponent } from './components/main/main.component';
+import { MainComponent } from './components/shared/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
-import { RegistroAspiranteComponent } from './components/registro-aspirante/registro-aspirante.component';
-import { RegistroEmpresaComponent } from './components/registro-empresa/registro-empresa.component';
-import { RegistroRepresentanteComponent } from './components/registro-representante/registro-representante.component';
-import { RegistroFullRepresentanteComponent } from './components/registro-full-representante/registro-full-representante.component';
-import { RegistroFullAspiranteComponent } from './components/registro-full-aspirante/registro-full-aspirante.component';
-import { RegistroFullEmpresaComponent } from './components/registro-full-empresa/registro-full-empresa.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SesionEmpresaComponent } from './components/sesion-empresa/sesion-empresa.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TipodocumentoService} from './servicios/tipodocumento.service';
@@ -33,11 +28,17 @@ import {EmpresaService} from './servicios/empresa.service';
 import {ActividadeconomicaService} from './servicios/actividadeconomica.service';
 import {CiudadService} from './servicios/ciudad.service';
 import {SectorService} from './servicios/sector.service';
-import { SesionAspiranteComponent } from './components/sesion-aspirante/sesion-aspirante.component';
-import { OfertaEmpleoComponent } from './components/oferta-empleo/oferta-empleo.component';
 import { SugerenciasComentariosComponent } from './components/sugerencias-comentarios/sugerencias-comentarios.component';
-import { SesionAdministradorComponent } from './components/sesion-administrador/sesion-administrador.component';
-import { AspiranteProfesionalComponent } from './components/aspirante-profesional/aspirante-profesional.component';
+import { AspiranteProfesionalComponent } from './components/aspirante/aspirante-profesional/aspirante-profesional.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+
+
 
 @NgModule({
   declarations: [
@@ -52,25 +53,27 @@ import { AspiranteProfesionalComponent } from './components/aspirante-profesiona
     LoginComponent,
     MainComponent,
     RegisterComponent,
-    RegistroAspiranteComponent,
-    RegistroEmpresaComponent,
-    RegistroRepresentanteComponent,
-    RegistroFullAspiranteComponent,
-    RegistroFullEmpresaComponent,
-    RegistroFullRepresentanteComponent,
-    SesionEmpresaComponent,
     SolicitudesComponent,
     SugerenciasComentariosComponent,
-    SesionAspiranteComponent,
-    OfertaEmpleoComponent,
-    SesionAdministradorComponent,
     AspiranteProfesionalComponent,
+
+
+
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [TipodocumentoService,
     TipopersonaService,
