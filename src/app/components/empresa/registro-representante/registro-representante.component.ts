@@ -17,7 +17,7 @@ export class RegistroRepresentanteComponent implements OnInit {
   id:'';
   seleccionado:string;
   seleccionuser:string;
-
+  numUsuario: number=0;
   
 
   miFormulario: FormGroup = this.fb.group({
@@ -60,9 +60,18 @@ export class RegistroRepresentanteComponent implements OnInit {
   
 
   createUsuario(){
+    this.numUsuario= this.numUsuario+1;
 
     console.log(this.miFormulario.value);
     this.http.post('http://127.0.0.1:8000/api/usuarios/', this.miFormulario.value).subscribe(
+      resp => console.log(resp),
+      err => console.log(err)
+
+    )
+    let formData = new FormData();
+    formData.append("empresa_idempresa", "2");
+    formData.append("usuario_idusuario",this.numUsuario.toString() )
+    this.http.post('http://127.0.0.1:8000/api/representantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

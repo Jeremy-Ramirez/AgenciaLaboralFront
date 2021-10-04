@@ -19,6 +19,7 @@ import { PerfilRepresentanteComponent } from './perfil-representante/perfil-repr
 import { SesionRepresentanteComponent } from './sesion-representante/sesion-representante.component';
 import { RepresentanteRoutingModule } from './representante-routing.module';
 import { RegistroFullRepresentanteComponent } from './registro-full-representante/registro-full-representante.component';
+import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RegistroFullRepresentanteComponent } from './registro-full-representant
     PerfilRepresentanteComponent,
     SesionRepresentanteComponent,
     RegistroFullRepresentanteComponent,
+    SugerenciasComentariosComponent,
 
 
   ],

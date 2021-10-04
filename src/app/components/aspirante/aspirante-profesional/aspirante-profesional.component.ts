@@ -21,14 +21,14 @@ export class AspiranteProfesionalComponent implements OnInit {
  
   miFormulario: FormGroup= this.fb.group({
     
-    numeroHijos: ["", [Validators.required]],
-    experienciaLaboral: ["", [Validators.required]],
-    campoLaboral:["",[Validators.required]],
+    numerohijos: ["", [Validators.required]],
+    experiencialaboral: ["", [Validators.required]],
+    campolaboral:["",[Validators.required]],
     experticia:["",[Validators.required]],
-    videoPresentacion:["",[Validators.required]],
-    aniosExperiencia:["",[Validators.required]],
-    fechaNacimiento:["",[Validators.required]],
-    posibilidadViajar:["",[Validators.required]],
+    videopresentacion:["",[Validators.required]],
+    aniosexperiencia:["",[Validators.required]],
+    fechanacimiento:["",[Validators.required]],
+    posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
     usuario_idusuario:8,
   })
@@ -44,13 +44,30 @@ export class AspiranteProfesionalComponent implements OnInit {
     })
 
   }
+  handleFileInput(event: Event){
+
+    this.file=(<HTMLInputElement>event.target).files[0];
+    console.log("archivo", this.file)
+
+  
+ }
 
   guardar(){
 
-   
-  
+    let formData= new FormData();
+    formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
+    formData.append('experiencialaboral',this.miFormulario.controls['experiencialaboral'].value)
+    formData.append('campolaboral',this.miFormulario.controls['campolaboral'].value)
+    formData.append('experticia',this.miFormulario.controls['experticia'].value)
+    formData.append('aniosexperiencia',this.miFormulario.controls['aniosexperiencia'].value)
+    formData.append('fechanacimiento',this.miFormulario.controls['fechanacimiento'].value)
+    formData.append('videopresentacion',this.file)
+    formData.append('posibilidadviajar',this.miFormulario.controls['posibilidadviajar'].value)
+    formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
+    formData.append('usuario_idusuario',this.miFormulario.controls['usuario_idusuario'].value)
+
     console.log(this.miFormulario.value);
-    this.http.post('http://127.0.0.1:8000/api/aspirantes/', this.miFormulario.value).subscribe(
+    this.http.post('http://127.0.0.1:8000/api/aspirantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

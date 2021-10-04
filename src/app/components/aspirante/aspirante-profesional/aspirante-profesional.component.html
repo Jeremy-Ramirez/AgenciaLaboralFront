@@ -1,5 +1,5 @@
 
-<div id="container" style="max-width: 500px; margin-left: 600px;">
+<div id="container">
      
 
 
@@ -10,7 +10,7 @@
             <div class="col-sm-9">
                 <input type="number"
                        class="form-control"
-                       formControlName ="numeroHijos" 
+                       formControlName ="numerohijos" 
                        placeholder="Numero" >
 
                        
@@ -22,7 +22,7 @@
             <div class="col-sm-9">
                 <input type="text"
                        class="form-control"
-                       formControlName ="experienciaLaboral" 
+                       formControlName ="experiencialaboral" 
                        placeholder="" >
 
                        
@@ -35,7 +35,7 @@
             <div class="col-sm-9">
                 <input type="text"
                        class="form-control"
-                       formControlName ="campoLaboral" 
+                       formControlName ="campolaboral" 
                        placeholder="" >
 
                        
@@ -54,15 +54,18 @@
             </div>
         </div>
 
+       
+
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Video</label>
             <div class="col-sm-9">
-                <input type="text"
+                <input type="file"
+                       id="videoPresentacion"
                        class="form-control"
-                       formControlName ="videoPresentacion" 
-                       placeholder="" >
-
-                       
+                       formControlName="videopresentacion"
+                       placeholder=""
+                       (change)="handleFileInput($event)"
+                       >
             </div>
         </div>
 
@@ -73,7 +76,7 @@
             <div class="col-sm-9">
                 <input type="number"
                        class="form-control"
-                       formControlName ="aniosExperiencia" 
+                       formControlName ="aniosexperiencia" 
                        placeholder="Numero" >
 
                        
@@ -87,7 +90,7 @@
                 <input type="date"
                    
                        class="form-control"
-                       formControlName ="fechaNacimiento" 
+                       formControlName ="fechanacimiento" 
                        
                        placeholder="Numero" 
                        >
@@ -102,7 +105,7 @@
             <div class="col-sm-9">
                 <input type="number"
                        class="form-control"
-                       formControlName ="posibilidadViajar" 
+                       formControlName ="posibilidadviajar" 
                        placeholder="Numero" >
 
                        
@@ -125,7 +128,8 @@
         </div>
 
         <div id="lower">
-            <button type="submit" class="btn btn-primary float-end" >
+            <button type="submit" class="btn btn-primary float-end"
+            >
                 Registrarse
             </button>
 

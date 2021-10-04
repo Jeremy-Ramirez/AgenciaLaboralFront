@@ -28,7 +28,7 @@ import {EmpresaService} from './servicios/empresa.service';
 import {ActividadeconomicaService} from './servicios/actividadeconomica.service';
 import {CiudadService} from './servicios/ciudad.service';
 import {SectorService} from './servicios/sector.service';
-import { SugerenciasComentariosComponent } from './components/sugerencias-comentarios/sugerencias-comentarios.component';
+import { SugerenciasComentariosComponent } from './components/representante/sugerencias-comentarios/sugerencias-comentarios.component';
 import { AspiranteProfesionalComponent } from './components/aspirante/aspirante-profesional/aspirante-profesional.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -55,7 +55,6 @@ import { MatListModule } from '@angular/material/list';
     MainComponent,
     RegisterComponent,
     SolicitudesComponent,
-    SugerenciasComentariosComponent,
     AspiranteProfesionalComponent,
 
 

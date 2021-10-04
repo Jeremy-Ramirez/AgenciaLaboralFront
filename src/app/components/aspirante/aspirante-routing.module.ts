@@ -8,6 +8,7 @@ import { OfertaEmpleoComponent } from './oferta-empleo/oferta-empleo.component';
 import { RegistroAspiranteComponent } from './registro-aspirante/registro-aspirante.component';
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
+import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
             { path: 'ofertaEmpleo', component: OfertaEmpleoComponent },
             { path: 'registroFullAspirante', component: RegistroFullAspiranteComponent },
             { path: 'perfilAspirante', component: PerfilAspiranteComponent },
+            { path: 'sugerencias', component: SugerenciasComentariosComponent },
           ]
         },
         { path: 'registroAspirante', component: RegistroAspiranteComponent },

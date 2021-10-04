@@ -21,6 +21,7 @@ import { RegistroAspiranteComponent } from './registro-aspirante/registro-aspira
 import { RouterModule } from '@angular/router';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
+import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.co
     RegistroFullAspiranteComponent,
     MenuLateralComponent,
     PerfilAspiranteComponent,
+    SugerenciasComentariosComponent,
 
   ],
   imports: [
