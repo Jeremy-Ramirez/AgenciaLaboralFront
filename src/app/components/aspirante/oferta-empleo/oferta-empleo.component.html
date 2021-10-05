@@ -5,17 +5,9 @@
         <input type="text" class="form-control" placeholder="Search" />
     </div>
     <div class= "contenedor-empleo" >
-        <div class="empleo"  #empleos>
-            <h2 *ngFor="let s of solicitudes"><a >{{s.cargo}}</a></h2>                
-            <p>Descripcion, Ciudad, Provincia</p>
-            <div class="card" style="width:400px">
-            <img class="card-img-top" src="empresa.png" alt="Empresa image" style="width:100%">
-            <div class="card-body">
-                <p class="card-text" *ngFor="let s of solicitudes">{{s.descripcioncargo}}</p>
-                <button type="button">Aceptar</button>            
-                <button type="button">Eliminar</button>
-            </div>
-            </div>
+        
+        <div class="empleo"  #empleos >
+           
         </div>
        
     </div>
