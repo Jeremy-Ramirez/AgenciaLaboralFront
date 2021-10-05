@@ -30,7 +30,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechanacimiento:["",[Validators.required]],
     posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:8,
+    usuario_idusuario:1,
   })
 
 
