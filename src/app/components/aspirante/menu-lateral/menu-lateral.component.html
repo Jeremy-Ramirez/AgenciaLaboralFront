@@ -5,9 +5,10 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/aspirante/sesionAspirante/perfilAspirante">Perfil</a>
+      
       <ul class="nav nav-pills nav-stacked">
-        <li ><a mat-list-item href="#section1">Datos Personales</a></li>
+        <li><a mat-list-item routerLink="/aspirante/sesionAspirante/perfilAspirante">Perfil</a></li>
+        <li><a mat-list-item routerLink="/aspirante/sesionAspirante/perfilAspirante">Datos Personales</a></li>
         <li><a mat-list-item routerLink="/aspirante/sesionAspirante/aspiranteProfesional">Datos Profesionales</a></li>
         <li><a mat-list-item routerLink="/aspirante/sesionAspirante/sugerencias">Enviar Sugerencias</a></li>
         <li class="active"><a mat-list-item routerLink="/aspirante/sesionAspirante/ofertaEmpleo">Ofertas de empleo</a></li>

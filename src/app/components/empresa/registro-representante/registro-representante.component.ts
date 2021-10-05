@@ -13,8 +13,10 @@ export class RegistroRepresentanteComponent implements OnInit {
 
 
   tipoDocumento:any[]=[];
+  usuarios:any[]=[];
   correo:any='';
   id:'';
+  idFinal1:any;
   seleccionado:string;
   seleccionuser:string;
   numUsuario: number=0;
@@ -42,6 +44,7 @@ export class RegistroRepresentanteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute) {
     this.getTipodocumento();
+    
   }
   
   campoEsValido( campo: string){
@@ -57,25 +60,45 @@ export class RegistroRepresentanteComponent implements OnInit {
     })
   }
 
-  
+  getUsuarios(){
+    this.http.get('http://127.0.0.1:8000/api/usuarios/').subscribe((doc:any)=>{
+      this.usuarios=doc;
+    console.log("getusuarios",this.usuarios)
+    })
+  }
 
   createUsuario(){
     this.numUsuario= this.numUsuario+1;
 
     console.log(this.miFormulario.value);
     this.http.post('http://127.0.0.1:8000/api/usuarios/', this.miFormulario.value).subscribe(
-      resp => console.log(resp),
-      err => console.log(err)
+      resp => {
+        this.correo=Object.values(resp)[6]},
+      err => console.log(err),
+      
+
 
     )
+    setTimeout(()=>{ 
+      this.getUsuarios();
+      setTimeout(()=>{
+        let idFinal=this.usuarios.pop().idusuario;
+    console.log(idFinal)
+    
+    console.log(idFinal)
     let formData = new FormData();
-    formData.append("empresa_idempresa", "2");
-    formData.append("usuario_idusuario",this.numUsuario.toString() )
+    formData.append("empresa_idempresa", "1");
+    formData.append("usuario_idusuario",idFinal)
     this.http.post('http://127.0.0.1:8000/api/representantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
     )
+      },3000)
+
+    
+    }, 3000);
+    
     alert('USUARIO CREADO')
     
   }

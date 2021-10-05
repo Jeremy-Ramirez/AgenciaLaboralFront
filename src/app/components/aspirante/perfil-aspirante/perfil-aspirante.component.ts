@@ -7,12 +7,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./perfil-aspirante.component.css']
 })
 export class PerfilAspiranteComponent implements OnInit {
-
+  //aspirantes:any[]=[];
+  file:any;
   constructor(private http:HttpClient,private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getAspirantes();
     this.getUsuarios();
+    this.getAspirantes()
   }
 
   aspirantes:any[]=[];
@@ -45,6 +47,19 @@ export class PerfilAspiranteComponent implements OnInit {
       console.log(this.usuarios)
     })
   }
+
+  /*getAspirantes(){
+    this.http.get('http://127.0.0.1:8000/api/aspirantes/').subscribe((doc:any)=>{
+      this.aspirantes=doc
+        console.log(this.aspirantes)
+        this.aspirantes.forEach(element => {
+          if(element.idaspirante=='16'){
+            this.file=element.videopresentacion;
+          }
+        });
+
+    })
+  }*/
 
   
 
