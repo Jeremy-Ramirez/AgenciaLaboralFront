@@ -32,10 +32,9 @@ export class OfertaEmpleoComponent implements OnInit {
       <h2 ><a >${this.solicitudes[i].cargo}</a></h2>                
       <p>Descripcion, Ciudad, Provincia</p>
       <div class="card" style="width:400px">
-      <img class="card-img-top" src="empresa.png" alt="Empresa image" style="width:100%">
       <div class="card-body">
           <p class="card-text">${this.solicitudes[i].descripcioncargo}</p>
-          <button type="button">Responder</button>            
+          <button type="button">Aceptar</button>            
           <button type="button">Eliminar</button>
       </div>
       </div>

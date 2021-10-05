@@ -38,7 +38,8 @@ export class RegistroFullEmpresaComponent implements OnInit {
     private _provinciaService: ProvinciaService,
     private _sectorService: SectorService,
     private _empresaService: EmpresaService,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private httpClient:HttpClient
     ) { 
       
   }
@@ -88,10 +89,15 @@ export class RegistroFullEmpresaComponent implements OnInit {
   }
 
   formEmpresa: FormGroup = this.form.group({
-    
-    idEmpresa: ["", [Validators.required]],
+    tipodocumentos: ["", Validators.required],
+    actividadeconomicas: ["", Validators.required],
+    ramaactividads: ["", Validators.required],
+    sectores: ["", Validators.required],
+    provincias: ["", Validators.required],
+    tipoempresas: ["", Validators.required],
+    tipopersonas: ["", Validators.required],
     ruc_cedula:["", [Validators.required, Validators.minLength(10)]],
-    razonsocial:["",[Validators.required, Validators.minLength(13)]],
+    razonsocial:["",[Validators.required]],
     nombrecomercial: ["", [Validators.required]],
     calleprincipal: ["", [Validators.required]],
     callesecundaria: ["", [Validators.required]],
@@ -99,69 +105,34 @@ export class RegistroFullEmpresaComponent implements OnInit {
     villa: ["", [Validators.required]],
     referencia: ["", [Validators.required]],
     paginaweb: ["", [Validators.required]],
+    ciudades: ["", Validators.required],
     correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-   
     celular:["",[Validators.required,Validators.minLength(10)]],
     telefonooficina:["",[Validators.required,Validators.minLength(10)]],
     contrasenia:["", [Validators.required]],
-    //validators select
   })
 
   crear(){
-    this._empresaService.create(this.new_empresa).subscribe(
-      data => {
-        this._empresaService.getEmpresas();
-        return true;
-      },
-      error => {
-        console.error('Error saving!');
-        return throwError(error);
-      }
-   );
-
-  }
-  get idEmpresaNoValido(){
-    return 0
-  }
-  get rucNoValido(){
-    return 0
-  }
-  get razonNoValido(){
-    return 0
-  }
-  get nombreNoValido(){
-    return 0
-  }
-  get calleprincipalNoValido(){
-    return 0
-  }
-  get callesecundariaNoValido(){
-    return 0
-  }
-  get mzNoValido(){
-    return 0
-  }
-  get villaNoValido(){
-    return 0
-  }
-  get referenciaNoValido(){
-    return 0
-  }
-  get celularNoValido(){
-    return 0
-  }
-  get telefonooficinaNoValido(){
-    return 0
-  }
-  get paginawebNoValido(){
-    return 0
-  }
-  get correoelectronicoNoValido(){
-    return 0
-  }
-  get contraseniaNoValido(){
-    return 0
+    if(this.formEmpresa.invalid) {
+      return Object.values(this.formEmpresa.controls).forEach(control=>{
+        control.markAsTouched();
+      })
+    }
+  
+      console.log(this.formEmpresa.value);
+      this.httpClient.post('http://localhost:8000/api/empresas/', this.formEmpresa.value).subscribe(
+        resp => console.log(resp),
+        err => console.log(err)
+  
+      )
+    
+    
+    alert('USUARIO CREADO')
   }
   
+  campoEsValido( campo: string){
+    return this.formEmpresa.controls[campo].errors  && this.formEmpresa.controls[campo].touched;
+  }
+
   
 }
