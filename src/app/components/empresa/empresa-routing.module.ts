@@ -9,6 +9,7 @@ import { RegistroRepresentanteComponent } from './registro-representante/registr
 import { RegistroFullEmpresaComponent } from './registro-full-empresa/registro-full-empresa.component';
 import { RegistroFullRepresentanteComponent } from '../representante/registro-full-representante/registro-full-representante.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
+import { InformacionComponent } from './informacion/informacion.component';
 
   
 const routes: Routes = [
@@ -21,8 +22,10 @@ const routes: Routes = [
             
             { path: 'registroRepresentante', component: RegistroRepresentanteComponent},
             { path: 'perfilEmpresa', component: PerfilEmpresaComponent},
+            { path: 'informacionEmpresa', component: InformacionComponent},
           ]
         },
+        
         { path: 'registroEmpresa', component: RegistroEmpresaComponent},
         { path: 'registroFullEmpresa', component: RegistroFullEmpresaComponent},
         { path: 'registroFullRepresentante', component: RegistroRepresentanteComponent},

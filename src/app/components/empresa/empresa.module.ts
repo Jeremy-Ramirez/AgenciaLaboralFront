@@ -20,6 +20,7 @@ import { RegistroFullRepresentanteComponent } from '../representante/registro-fu
 import { RouterModule } from '@angular/router';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
+import { InformacionComponent } from './informacion/informacion.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.componen
     RegistroFullEmpresaComponent,
     PerfilEmpresaComponent,
     MenuLateralComponent,
+    InformacionComponent,
     
 
   ],
