@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
+import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
     MenuLateralComponent,
     PerfilAspiranteComponent,
     SugerenciasComentariosComponent,
-
+    AspiranteProfesionalComponent,
   ],
   imports: [
     CommonModule,

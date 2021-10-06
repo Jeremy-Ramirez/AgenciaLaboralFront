@@ -6,6 +6,9 @@ import { SesionAdministradorComponent } from './sesion-administrador/sesion-admi
 import { AspirantesNuevosComponent } from './aspirantes-nuevos/aspirantes-nuevos.component';
 import { RevisarEmpresasComponent } from './revisar-empresas/revisar-empresas.component';
 import { RevisarSugerenciasComponent } from './revisar-sugerencias/revisar-sugerencias.component';
+import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+
+
 const routes: Routes = [
     {
       path: '',
@@ -16,6 +19,7 @@ const routes: Routes = [
           children:[
             { path: 'aspirantesAceptados', component: AspirantesAceptadosComponent},
             { path: 'aspirantesNuevos', component: AspirantesNuevosComponent},
+            { path: 'perfilAspirante', component: VistaPerfilAspiranteComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
             { path: 'sugerencias', component: RevisarSugerenciasComponent},
           ]

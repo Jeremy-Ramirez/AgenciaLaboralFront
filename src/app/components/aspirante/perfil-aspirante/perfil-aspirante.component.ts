@@ -15,10 +15,12 @@ export class PerfilAspiranteComponent implements OnInit {
     this.getAspirantes();
     this.getUsuarios();
     this.getAspirantes()
+    this.getArchivos()
   }
 
   aspirantes:any[]=[];
   usuarios:any[]=[];
+  archivos:any[]=[];
 
   miFormulario: FormGroup= this.fb.group({
     
@@ -45,6 +47,13 @@ export class PerfilAspiranteComponent implements OnInit {
     this.http.get('http://127.0.0.1:8000/api/usuarios/').subscribe((resp:any)=>{
       this.usuarios=resp;
       console.log(this.usuarios)
+    })
+  }
+
+  getArchivos(){
+    this.http.get('http://127.0.0.1:8000/api/archivosaspirante/').subscribe((resp:any)=>{
+      this.archivos=resp;
+      console.log(this.archivos)
     })
   }
 

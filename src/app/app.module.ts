@@ -55,7 +55,8 @@ import { MatListModule } from '@angular/material/list';
     MainComponent,
     RegisterComponent,
     SolicitudesComponent,
-    AspiranteProfesionalComponent,
+
+
 
 
 

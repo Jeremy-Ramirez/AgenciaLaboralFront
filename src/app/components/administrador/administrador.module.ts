@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AdministradorRoutingModule } from './administrador-routing.module';
 import { RouterModule } from '@angular/router';
+import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
 
 
 
@@ -32,7 +33,7 @@ import { RouterModule } from '@angular/router';
     AspirantesNuevosComponent,
     RevisarSugerenciasComponent,
     RevisarEmpresasComponent,
-
+    VistaPerfilAspiranteComponent,
   ],
   imports: [
     CommonModule,

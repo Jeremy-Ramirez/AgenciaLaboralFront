@@ -11,6 +11,9 @@
         <br>
         <div *ngFor="let user of usuarios">
             Usuario: {{user.nombreusuario}}
+            <button type="button" routerLink="/administrador/sesionAdministrador/perfilAspirante"class="btn btn-primary float-end"  >
+                Ver Perfil
+            </button>
         </div>
     </section>
 </div>
