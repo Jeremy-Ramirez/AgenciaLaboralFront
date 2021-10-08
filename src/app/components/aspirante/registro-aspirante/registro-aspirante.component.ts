@@ -41,7 +41,7 @@ export class RegistroAspiranteComponent implements OnInit {
 
   login(){
     console.log(this.miFormulario.value);
-    this.http.post('http://127.0.0.1:8000/api/login', this.miFormulario.getRawValue(),{withCredentials: true}).subscribe(
+    this.http.post('http://127.0.0.1:8000/api/loginusuario/', this.miFormulario.getRawValue(),{withCredentials: true}).subscribe(
       (res: any)=>{
         console.log("IDDDDDDDD",res.idusuario)
         //setTimeout(function(){ 

@@ -28,7 +28,7 @@ export class MenuLateralComponent {
   }
 
   logout(): void {
-    this.http.post('http://localhost:8000/api/logout/', {}, {withCredentials: true})
+    this.http.post('http://localhost:8000/api/logoutempresa/', {}, {withCredentials: true})
       .subscribe(() => this.authenticated = false);
   }
 
