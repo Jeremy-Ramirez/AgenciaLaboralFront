@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-sesion-aspirante',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sesion-aspirante.component.css']
 })
 export class SesionAspiranteComponent implements OnInit {
-
-  constructor() { }
+  id='';
+  constructor(private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+      }
+    )
   }
+
 
 }

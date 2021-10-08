@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -9,9 +10,19 @@ import { HttpClient } from '@angular/common/http';
 export class PerfilAspiranteComponent implements OnInit {
   //aspirantes:any[]=[];
   file:any;
-  constructor(private http:HttpClient,private fb: FormBuilder) { }
+  id='';
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
+
+    this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+        console.log("ID",this.id)
+      }
+    )
+
     this.getAspirantes();
     this.getUsuarios();
     this.getAspirantes()

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-vista-perfil-aspirante',
@@ -16,10 +17,16 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   usuarios:any[]=[];
   categoria:any[]=[];
   profesiones:any[]=[];
-  constructor(private http:HttpClient,private fb: FormBuilder) { }
+  id='';
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
   
 
   ngOnInit(): void {
+    this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+      }
+    )
     this.getAspirantes();
     this.getUsuarios();
     this.getCategoria()
@@ -68,7 +75,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     categoriaDocumento_idcategoriadocumento: ["", [Validators.required]],
     archivo:["",[Validators.required]],
     fechacreacion:["",[Validators.required]],
-    aspirante_idaspirante:3,
+    aspirante_idaspirante:1,
     usuario_idusuario:1,
 
   })

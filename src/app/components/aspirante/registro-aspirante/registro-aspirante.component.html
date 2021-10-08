@@ -2,17 +2,17 @@
     <button type="button" routerLink="/register" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    <form>
+    <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
         <!-- Username -->
         <label for="name">Correo electrónico:</label>
-        <input type="name">
+        <input type="name" formControlName="correo">
         <!-- Password -->
         <label for="username">Contraseña:</label>
         <p><a href="#">Olvidaste tu contraseña?</a>    
-        <input type="password">
+        <input type="password" formControlName="contrasenia">
         <div id="lower">
             <!-- Submit Button -->
-            <input type="submit" value="Login">
+            <input type="submit" value="Login " (click)="login()">
             <input type="submit" routerLink="/aspirante/registroFullAspirante" value="Register">
         </div>
     </form>       

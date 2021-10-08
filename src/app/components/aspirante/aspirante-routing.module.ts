@@ -17,13 +17,13 @@ const routes: Routes = [
       children: [
 
         
-        { path: 'sesionAspirante', component: SesionAspiranteComponent,
+        { path: 'sesionAspirante/:id', component: SesionAspiranteComponent,
           children:[
-            { path: 'aspiranteProfesional', component: AspiranteProfesionalComponent},
-            { path: 'ofertaEmpleo', component: OfertaEmpleoComponent },
-            { path: 'registroFullAspirante', component: RegistroFullAspiranteComponent },
-            { path: 'perfilAspirante', component: PerfilAspiranteComponent },
-            { path: 'sugerencias', component: SugerenciasComentariosComponent },
+            { path: 'aspiranteProfesional/:id', component: AspiranteProfesionalComponent},
+            { path: 'ofertaEmpleo/:id', component: OfertaEmpleoComponent },
+            { path: 'registroFullAspirante/:id', component: RegistroFullAspiranteComponent },
+            { path: 'perfilAspirante/:id', component: PerfilAspiranteComponent },
+            { path: 'sugerencias/:id', component: SugerenciasComentariosComponent },
           ]
         },
         { path: 'registroAspirante', component: RegistroAspiranteComponent },
