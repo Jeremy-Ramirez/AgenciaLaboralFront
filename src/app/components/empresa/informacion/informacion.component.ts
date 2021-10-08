@@ -12,6 +12,8 @@ import {SectorService} from '../../../servicios/sector.service'
 import {EmpresaService} from '../../../servicios/empresa.service'
 import {throwError} from 'rxjs';
 
+import {Emitters} from '../emitters/emitters';
+
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
@@ -78,7 +80,15 @@ export class InformacionComponent implements OnInit {
       console.log(resp)
 
     });
-    
+    this.httpClient.get('http://localhost:8000/api/user/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        Emitters.authEmitter.emit(false);
+      }
+    );
   }
 
   formEmpresa: FormGroup = this.form.group({
