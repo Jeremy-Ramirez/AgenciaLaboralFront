@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-aspirante-profesional',
@@ -14,8 +15,9 @@ export class AspiranteProfesionalComponent implements OnInit {
   file: any;
 
   profesiones:any[]=[];
+  id: any;
 
-  constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient) { }
+  constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) { }
 
 
  
@@ -30,13 +32,18 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechanacimiento:["",[Validators.required]],
     posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:1,
+    usuario_idusuario:"",
   })
 
 
 
  
   ngOnInit(): void {
+    this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+      }
+    )
    
     this._profesiones.getProfesiones().subscribe((resp:any)=>{
       this.profesiones=resp;
@@ -64,7 +71,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('videopresentacion',this.file)
     formData.append('posibilidadviajar',this.miFormulario.controls['posibilidadviajar'].value)
     formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
-    formData.append('usuario_idusuario',this.miFormulario.controls['usuario_idusuario'].value)
+    formData.append('usuario_idusuario',this.id)
 
     console.log(this.miFormulario.value);
     this.http.post('http://127.0.0.1:8000/api/aspirantes/', formData).subscribe(
@@ -72,6 +79,8 @@ export class AspiranteProfesionalComponent implements OnInit {
       err => console.log(err)
 
     )
+    alert('DATOS PROFESIONALES GUARDADOS');
+    this.miFormulario.reset();
     
   
   }

@@ -81,6 +81,7 @@ export class InformacionComponent implements OnInit {
       console.log(resp)
 
     });
+<<<<<<< HEAD
     this._empresaService.loginEmpresa().subscribe((resp:any)=>{
       Emitters.authEmitter.emit(true);
       this.ruc_cedula=resp.ruc_cedula
@@ -88,6 +89,12 @@ export class InformacionComponent implements OnInit {
       this.tipodocumentos=resp.tipodocumento_idtipodocumento.descripcion
       this.idempresa=resp.idempresa
       console.log(resp)  
+=======
+    this.httpClient.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        
+        Emitters.authEmitter.emit(true);
+>>>>>>> b727e90ced10512aed16a7b7bba1ed95b1e22413
       },
       err => {
         Emitters.authEmitter.emit(false);

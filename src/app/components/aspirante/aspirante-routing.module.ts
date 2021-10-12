@@ -9,6 +9,7 @@ import { RegistroAspiranteComponent } from './registro-aspirante/registro-aspira
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 
 
 const routes: Routes = [
@@ -17,11 +18,10 @@ const routes: Routes = [
       children: [
 
         
-        { path: 'sesionAspirante/:id', component: SesionAspiranteComponent,
+        { path: 'sesionAspirante', component: SesionAspiranteComponent,
           children:[
             { path: 'aspiranteProfesional/:id', component: AspiranteProfesionalComponent},
             { path: 'ofertaEmpleo/:id', component: OfertaEmpleoComponent },
-            { path: 'registroFullAspirante/:id', component: RegistroFullAspiranteComponent },
             { path: 'perfilAspirante/:id', component: PerfilAspiranteComponent },
             { path: 'sugerencias/:id', component: SugerenciasComentariosComponent },
           ]

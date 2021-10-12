@@ -51,12 +51,18 @@ export class SugerenciasComentariosComponent implements OnInit {
     formData.append('titulo',this.miFormulario.controls['titulo'].value)
     formData.append('descripcion',this.miFormulario.controls['descripcion'].value)
     formData.append('imagen',this.file)
-    formData.append('usuario_idusuario',this.miFormulario.controls['usuario_idusuario'].value)
+    formData.append('usuario_idusuario',this.id)
     
     this.http.post('http://127.0.0.1:8000/api/sugerencias/', formData,options).subscribe(
       resp => console.log(resp),
       err => console.log(err)
     )
+    alert('SUGERENCIA ENVIADA')
+    
+    this.miFormulario.reset();
+    
+    
+
   }
 
   ngOnInit(): void {

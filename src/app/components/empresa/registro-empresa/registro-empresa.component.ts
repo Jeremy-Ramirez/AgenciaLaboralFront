@@ -26,6 +26,9 @@ export class RegistroEmpresaComponent implements OnInit {
   submit(): void {
     this.http.post('http://localhost:8000/api/loginempresa/', this.form.getRawValue(), {
       withCredentials: true
-    }).subscribe(() => this.router.navigate(['/empresa/sesionEmpresa']));
+    }).subscribe((res: any)=>{
+      this.router.navigate(['/empresa/sesionEmpresa'])
+      console.log(res.id)
+    });
   }
 }
