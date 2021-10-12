@@ -21,7 +21,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     
     nombreusuario: ["", [Validators.required]],
-    contrasenia:["", [Validators.required]],
+    password:["", [Validators.required]],
     tipodocumento_idtipodocumento: ["", Validators.required],
     nodocumento:["",[Validators.required, Validators.minLength(10)]],
     nombre: ["", [Validators.required]],

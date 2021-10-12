@@ -32,7 +32,7 @@ export class RegistroAspiranteComponent implements OnInit {
   ngOnInit(): void {
     this.miFormulario = this.fb.group({
       correo: ["", Validators.required],
-      contrasenia:["", [Validators.required]],
+      password:["", [Validators.required]],
       
   
     })

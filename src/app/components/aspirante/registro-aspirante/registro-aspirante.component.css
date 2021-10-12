@@ -52,7 +52,7 @@ label {
     font-size: 14px;
 }
  
-p a {
+p a{
     font-size: 11px;
     color: #aaa;
     float: right;
@@ -67,7 +67,7 @@ p a:hover {
     color: #555;
 }
  
-input {
+input{
     font-family: sans-serif;
     font-size: 12px;
     outline: none;
