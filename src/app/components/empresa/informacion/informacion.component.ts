@@ -21,8 +21,8 @@ import {Emitters} from '../emitters/emitters';
 })
 
 export class InformacionComponent implements OnInit {
-  tipopersonas="info de esta empresa"; 
-  tipodocumentos= "de acuerdo al id sacamos esta info";
+  tipopersonas=""; 
+  tipodocumentos= "";
   tipoempresas:any[]=[];
   ramaactividads:any[]=[];
   actividadeconomicas:any[]=[];
@@ -31,7 +31,8 @@ export class InformacionComponent implements OnInit {
   sectores: any[]=[];
   empresas: any []=[];
   new_empresa: any []=[];
-  ruc_cedula='el token de la empresa lo proporciona';
+  ruc_cedula='';
+  idempresa = '';
   constructor(
     private _tipodocumentoService: TipodocumentoService,
     private _tipopersonaService: TipopersonaService,
@@ -80,15 +81,17 @@ export class InformacionComponent implements OnInit {
       console.log(resp)
 
     });
-    this.httpClient.get('http://localhost:8000/api/user/', {withCredentials: true}).subscribe(
-      (res: any) => {
-        
-        Emitters.authEmitter.emit(true);
+    this._empresaService.loginEmpresa().subscribe((resp:any)=>{
+      Emitters.authEmitter.emit(true);
+      this.ruc_cedula=resp.ruc_cedula
+      this.tipopersonas=resp.tipopersona_idtipopersona.descripcion
+      this.tipodocumentos=resp.tipodocumento_idtipodocumento.descripcion
+      this.idempresa=resp.idempresa
+      console.log(resp)  
       },
       err => {
         Emitters.authEmitter.emit(false);
-      }
-    );
+      });
   }
 
   formEmpresa: FormGroup = this.form.group({
@@ -120,7 +123,7 @@ export class InformacionComponent implements OnInit {
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.put('http://localhost:8000/api/empresas/', this.formEmpresa.value).subscribe(
+      this.httpClient.put('http://localhost:8000/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   

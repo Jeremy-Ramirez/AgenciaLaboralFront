@@ -18,4 +18,9 @@ export class EmpresaService {
     return this.httpClient.post('http://127.0.0.1:8000/api/empresas/', JSON.stringify(empresa));
   }
 
+  loginEmpresa() {    
+    return this.httpClient.get('http://localhost:8000/api/userempresa/', {withCredentials: true});
+  }
+  
+  
 }
