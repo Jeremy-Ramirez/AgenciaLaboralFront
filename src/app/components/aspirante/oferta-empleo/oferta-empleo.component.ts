@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild ,ElementRef} from '@angular/core';
 import {AspirantessolicitadosService} from '../../../servicios/aspirantessolicitados.service'
 
+import {SolicitudService} from '../../../servicios/solicitud.service'
 @Component({
   selector: 'app-oferta-empleo',
   templateUrl: './oferta-empleo.component.html',
@@ -8,12 +9,12 @@ import {AspirantessolicitadosService} from '../../../servicios/aspirantessolicit
 })
 export class OfertaEmpleoComponent implements OnInit {
   aspirantessolicitados:any[]=[]; 
-  //obtener el token del usuario
-  idAspirante = 1;
+  idAspirante = '';
   @ViewChild('empleos') aspirantessolicitadosHt: ElementRef;
   inner:string='';
   constructor(
     private _aspirantessolicitadosService: AspirantessolicitadosService,
+    private _solicitudesService: SolicitudService
     ) { 
       
   }
@@ -21,11 +22,19 @@ export class OfertaEmpleoComponent implements OnInit {
   ngOnInit() {
     this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
       this.aspirantessolicitados=resp
-      this.addhtml()
-      console.log(resp)
-
+      this._solicitudesService.loginUsuario().subscribe((resp:any)=>{
+        this.byid(resp);
+      });
+      
     });
-  
+   
+     
+    this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
+      this.aspirantessolicitados=resp
+      this.addhtml()
+      
+    });
+    
     
   }
   addhtml(){
@@ -52,6 +61,16 @@ export class OfertaEmpleoComponent implements OnInit {
 
 	  this.aspirantessolicitadosHt.nativeElement.innerHTML=this.inner;
 	  
+  }
+
+  byid(resp){
+  
+  for(let i=0;i<this.aspirantessolicitados.length;i++){
+    if(this.aspirantessolicitados[i].aspirante_idaspirante.usuario_idusuario.idusuario==resp.idusuario){
+      this.idAspirante =this.aspirantessolicitados[i].aspirante_idaspirante.idaspirante
+    }
+        
+    } 
   }
   
 }
