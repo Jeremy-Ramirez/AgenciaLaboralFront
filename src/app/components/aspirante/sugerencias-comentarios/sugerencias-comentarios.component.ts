@@ -57,6 +57,12 @@ export class SugerenciasComentariosComponent implements OnInit {
       resp => console.log(resp),
       err => console.log(err)
     )
+    alert('SUGERENCIA ENVIADA')
+    
+    this.miFormulario.reset();
+    
+    
+
   }
 
   ngOnInit(): void {

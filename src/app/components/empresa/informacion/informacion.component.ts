@@ -80,7 +80,7 @@ export class InformacionComponent implements OnInit {
       console.log(resp)
 
     });
-    this.httpClient.get('http://localhost:8000/api/user/', {withCredentials: true}).subscribe(
+    this.httpClient.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
       (res: any) => {
         
         Emitters.authEmitter.emit(true);

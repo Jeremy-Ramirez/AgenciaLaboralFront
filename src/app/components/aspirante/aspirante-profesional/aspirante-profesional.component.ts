@@ -79,6 +79,8 @@ export class AspiranteProfesionalComponent implements OnInit {
       err => console.log(err)
 
     )
+    alert('DATOS PROFESIONALES GUARDADOS');
+    this.miFormulario.reset();
     
   
   }

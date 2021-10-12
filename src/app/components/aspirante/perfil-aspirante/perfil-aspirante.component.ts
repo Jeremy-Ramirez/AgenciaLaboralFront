@@ -51,7 +51,7 @@ export class PerfilAspiranteComponent implements OnInit {
     fechanacimiento:["",[Validators.required]],
     posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:1,
+    usuario_idusuario:this.id,
   })
 
   getAspirantes(){

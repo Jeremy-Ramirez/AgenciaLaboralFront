@@ -12,7 +12,8 @@
         <li><a mat-list-item routerLink="/aspirante/sesionAspirante/aspiranteProfesional/{{id}}">Datos Profesionales</a></li>
         <li><a mat-list-item routerLink="/aspirante/sesionAspirante/sugerencias/{{id}}">Enviar Sugerencias</a></li>
         <li class="active"><a mat-list-item routerLink="/aspirante/sesionAspirante/ofertaEmpleo/{{id}}">Ofertas de empleo</a></li>
-        <li><a mat-list-item href="#section3">Configuración</a></li>
+        <li><a mat-list-item >Configuración</a></li>
+        <li><a mat-list-item (click)="logout()" routerLink="/">Salir</a></li>
       </ul><br>
     </mat-nav-list>
   </mat-sidenav>
