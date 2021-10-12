@@ -12,8 +12,9 @@ export class SesionEmpresaComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8000/api/user/', {withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
       (res: any) => {
+        console.log(res)
         Emitters.authEmitter.emit(true);
       },
       err => {

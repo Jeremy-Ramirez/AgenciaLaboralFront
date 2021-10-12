@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -11,17 +12,23 @@ export class PerfilAspiranteComponent implements OnInit {
   //aspirantes:any[]=[];
   file:any;
   id='';
+  message = '';
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
-
-    this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-        console.log("ID",this.id)
+    this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idusuario}`;
+        this.id=res.idusuario
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
       }
-    )
+    );
+
+    
 
     this.getAspirantes();
     this.getUsuarios();
