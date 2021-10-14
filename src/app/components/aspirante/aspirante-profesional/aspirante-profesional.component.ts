@@ -74,7 +74,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('usuario_idusuario',this.id)
 
     console.log(this.miFormulario.value);
-    this.http.post('http://127.0.0.1:8000/api/aspirantes/', formData).subscribe(
+    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
