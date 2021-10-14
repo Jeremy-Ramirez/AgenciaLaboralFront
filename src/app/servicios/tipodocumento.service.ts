@@ -11,6 +11,6 @@ export class TipodocumentoService {
   }
   
   getTipodocumentos(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/tipodocumento/')
+    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipodocumento/')
   }
 }

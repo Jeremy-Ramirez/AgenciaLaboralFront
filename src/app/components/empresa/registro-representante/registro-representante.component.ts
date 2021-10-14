@@ -54,7 +54,7 @@ export class RegistroRepresentanteComponent implements OnInit {
 
 
   getTipodocumento(){
-    this.http.get('http://127.0.0.1:8000/api/tipodocumento/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
     })
