@@ -17,7 +17,7 @@ export class AspirantesAceptadosComponent implements OnInit {
 
 
   getUsuarios(){
-    this.http.get('http://127.0.0.1:8000/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc
       console.log(this.usuarios)
 
