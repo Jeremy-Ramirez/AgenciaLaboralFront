@@ -89,13 +89,13 @@ export class RegistroFullEmpresaComponent implements OnInit {
   }
 
   formEmpresa: FormGroup = this.form.group({
-    tipodocumentos: ["", Validators.required],
-    actividadeconomicas: ["", Validators.required],
-    ramaactividads: ["", Validators.required],
-    sectores: ["", Validators.required],
-    provincias: ["", Validators.required],
-    tipoempresas: ["", Validators.required],
-    tipopersonas: ["", Validators.required],
+    tipodocumento_idtipodocumento: ["", [Validators.required]],
+    actividadeconomica_idactividadeconomica: ["",[Validators.required]],
+    ramaactividad_idramaactividad: ["",[Validators.required]],
+    sector_idsector: ["",[Validators.required]],
+    provincia_idprovincia: ["",[Validators.required]],
+    tipoempresa_idtipoempresa: ["",[Validators.required]],
+    tipopersona_idtipopersona: ["",[Validators.required]],
     ruc_cedula:["", [Validators.required, Validators.minLength(10)]],
     razonsocial:["",[Validators.required]],
     nombrecomercial: ["", [Validators.required]],
@@ -105,7 +105,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     villa: ["", [Validators.required]],
     referencia: ["", [Validators.required]],
     paginaweb: ["", [Validators.required]],
-    ciudades: ["", Validators.required],
+    ciudad_idciudad: ["",[Validators.required]],
     correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
     celular:["",[Validators.required,Validators.minLength(10)]],
     telefonooficina:["",[Validators.required,Validators.minLength(10)]],
@@ -128,6 +128,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     
     
     alert('USUARIO CREADO')
+    window.location.href='/empresa/registroEmpresa';
   }
   
   campoEsValido( campo: string){

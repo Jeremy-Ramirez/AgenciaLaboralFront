@@ -33,11 +33,11 @@ export class RegistroRepresentanteComponent implements OnInit {
     telefono: null,
     direccion: null,
     estadocuenta: null,
-    genero_idgenero:1,
+    genero_idgenero:null,
     rol_idrol: 1,
-    estadocivil_idestadocivil: 1,
-    provincia_idprovincia:1,
-    ciudad_idciudad:1,
+    estadocivil_idestadocivil: null,
+    provincia_idprovincia:null,
+    ciudad_idciudad:null,
     //confirmacion:["", [Validators.required]],
 
   })

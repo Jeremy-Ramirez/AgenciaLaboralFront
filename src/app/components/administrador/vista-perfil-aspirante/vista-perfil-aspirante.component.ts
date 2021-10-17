@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./vista-perfil-aspirante.component.css']
 })
 export class VistaPerfilAspiranteComponent implements OnInit {
-
+  @Input() idAspirante: any;
   //aspirantes:any[]=[];
   file:any;
   documento: any;
@@ -18,7 +18,10 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   categoria:any[]=[];
   profesiones:any[]=[];
   id='';
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) {
+    //this.idAspirante=3;
+    console.log("hereda",this.idAspirante)
+   }
   
 
   ngOnInit(): void {
@@ -121,6 +124,8 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     
   
   }
+
+ 
 
 
   

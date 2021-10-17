@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,21 +10,35 @@ import { ActivatedRoute } from '@angular/router';
 export class AspirantesAceptadosComponent implements OnInit {
 
   usuarios: any[]=[];
+  
+  idAspirante: any;
 
   constructor( private http: HttpClient, private rutaActiva: ActivatedRoute) {
     this.getUsuarios();
+    console.log("ASP", this.idAspirante)
   }
 
 
   getUsuarios(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
-      this.usuarios=doc
-      console.log(this.usuarios)
-
-    })
+    
   }
 
   ngOnInit(): void {
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+      this.usuarios=doc
+      
+      console.log(this.usuarios)
 
+    })
+
+  }
+  mostrar(id: any){
+    console.log("NUEVOID",id)
+    this.idAspirante=id,
+    setTimeout(function(){ 
+      document.getElementById("").innerHTML=`<app-vista-perfil-aspirante [idAspirante]="${id}"></app-vista-perfil-aspirante>
+    `
+     }, 3000);
+    
   }
 }

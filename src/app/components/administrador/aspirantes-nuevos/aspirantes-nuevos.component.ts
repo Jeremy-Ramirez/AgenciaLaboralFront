@@ -47,5 +47,6 @@ export class AspirantesNuevosComponent implements OnInit {
   ngOnInit(): void {
 
   }
+ 
 
 }

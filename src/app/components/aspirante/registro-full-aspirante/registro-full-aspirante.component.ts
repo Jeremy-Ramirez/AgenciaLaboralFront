@@ -165,7 +165,7 @@ get generoNoValido(){
     
     
     alert('USUARIO CREADO')
-    window.location.href='/aspirante/registroAspirante/';
+    window.location.href='/aspirante/registroAspirante';
 
   }
 

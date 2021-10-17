@@ -11,10 +11,19 @@
         <br>
         <div *ngFor="let user of usuarios">
             Usuario: {{user.nombreusuario}}
-            <button type="button" routerLink="/administrador/sesionAdministrador/perfilAspirante"class="btn btn-primary float-end"  >
+            <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
+            <!-- <button type="button" (click)="mostrar(user.idusuario)" routerLink="/administrador/sesionAdministrador/perfilAspirante" class="btn btn-primary float-end"  >
+                
                 Ver Perfil
-            </button>
+            </button> -->
+            <!-- <div *ngIf="asp==true">
+                <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
+
+            </div> -->
         </div>
+
+
+
     </section>
 </div>
 
