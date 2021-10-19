@@ -20,10 +20,10 @@ const routes: Routes = [
         
         { path: 'sesionAspirante', component: SesionAspiranteComponent,
           children:[
-            { path: 'aspiranteProfesional/:id', component: AspiranteProfesionalComponent},
-            { path: 'ofertaEmpleo/:id', component: OfertaEmpleoComponent },
-            { path: 'perfilAspirante/:id', component: PerfilAspiranteComponent },
-            { path: 'sugerencias/:id', component: SugerenciasComentariosComponent },
+            { path: 'aspiranteProfesional', component: AspiranteProfesionalComponent},
+            { path: 'ofertaEmpleo', component: OfertaEmpleoComponent },
+            { path: 'perfilAspirante', component: PerfilAspiranteComponent },
+            { path: 'sugerencias', component: SugerenciasComentariosComponent },
           ]
         },
         { path: 'registroAspirante', component: RegistroAspiranteComponent },

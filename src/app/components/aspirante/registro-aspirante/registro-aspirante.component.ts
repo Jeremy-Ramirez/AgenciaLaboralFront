@@ -73,7 +73,7 @@ export class RegistroAspiranteComponent implements OnInit {
         this.id=this.getDecodedAccessToken(res.jwt).id;
         ///${this.id}
           //this.getUsuarioActual()
-        this.router.navigate( [`/aspirante/sesionAspirante`]);
+        this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
         //localStorage.setItem('auth_token', res.token);
 
         

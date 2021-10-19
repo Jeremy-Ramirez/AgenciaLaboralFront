@@ -13,6 +13,7 @@ export class PerfilAspiranteComponent implements OnInit {
   file:any;
   id='';
   message = '';
+  usuarioActual: any;
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class PerfilAspiranteComponent implements OnInit {
       (res: any) => {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
+        this.usuarioActual=res;
         Emitters.authEmitter.emit(true);
       },
       err => {

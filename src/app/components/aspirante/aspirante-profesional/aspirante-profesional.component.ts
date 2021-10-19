@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 
 @Component({
   selector: 'app-aspirante-profesional',
@@ -16,7 +17,7 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   profesiones:any[]=[];
   id: any;
-
+  message = '';
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) { }
 
 
@@ -32,18 +33,30 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechanacimiento:["",[Validators.required]],
     posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:"",
+    usuario_idusuario:null,
   })
 
 
 
  
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idusuario}`;
+        this.id=res.idusuario
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
    
     this._profesiones.getProfesiones().subscribe((resp:any)=>{
       this.profesiones=resp;
@@ -51,6 +64,9 @@ export class AspiranteProfesionalComponent implements OnInit {
     })
 
   }
+
+  
+
   handleFileInput(event: Event){
 
     this.file=(<HTMLInputElement>event.target).files[0];

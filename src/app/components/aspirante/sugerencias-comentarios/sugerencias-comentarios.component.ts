@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 
 @Component({
   selector: 'app-sugerencias-comentarios',
@@ -14,6 +15,28 @@ export class SugerenciasComentariosComponent implements OnInit {
   correo:any='';
   id:'';
   file: any;
+  message = '';
+
+
+  ngOnInit(): void {
+    /*this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+      }
+    )*/
+
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idusuario}`;
+        this.id=res.idusuario
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
+  }
 
   miFormulario: FormGroup = this.fb.group({
     titulo: ["", Validators.required],
@@ -65,13 +88,7 @@ export class SugerenciasComentariosComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-      }
-    )
-  }
+  
 
 }
 
