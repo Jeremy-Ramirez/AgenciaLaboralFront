@@ -9,7 +9,8 @@ import {SolicitudService} from '../../../servicios/solicitud.service'
 })
 export class OfertaEmpleoComponent implements OnInit {
   aspirantessolicitados:any[]=[]; 
-  idAspirante = '';
+  aspirantessolicitados2:any[]=[]; 
+  idAspirante ='';
   @ViewChild('empleos') aspirantessolicitadosHt: ElementRef;
   inner:string='';
   constructor(
@@ -22,32 +23,28 @@ export class OfertaEmpleoComponent implements OnInit {
   ngOnInit() {
     this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
       this.aspirantessolicitados=resp
-      this._solicitudesService.loginUsuario().subscribe((resp:any)=>{
-        this.byid(resp);
+      this.aspirantessolicitados2=resp
+      this._solicitudesService.loginUsuario().subscribe((resp2:any)=>{
+        this.byid(resp2);
+        this.addhtml()
       });
-      
-    });
-   
-     
-    this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
-      this.aspirantessolicitados=resp
-      this.addhtml()
       
     });
     
     
   }
   addhtml(){
-	  for(let i=0;i<this.aspirantessolicitados.length;i++){
-      if(this.aspirantessolicitados[i].aspirante_idaspirante.idaspirante==this.idAspirante){
+	  for(let i=0;i<this.aspirantessolicitados2.length;i++){
+      if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante){
+        
         this.inner+=`
         <div class="empleo" >
-        <h2 ><a >${this.aspirantessolicitados[i].solicitud_idsolicitud.profesion}</a></h2>                
+        <h2 ><a >${this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion}</a></h2>                
         <p>Descripcion, Ciudad, Provincia</p>
         <div class="card" style="width:400px">
         <div class="card-body"> 
-            <p class="card-text">${this.aspirantessolicitados[i].solicitud_idsolicitud.descripcioncargo}</p>
-            <p class="card-text">${this.aspirantessolicitados[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial}</p>
+            <p class="card-text">${this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo}</p>
+            <p class="card-text">${this.aspirantessolicitados2[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial}</p>
             <button type="button">Aceptar</button>            
             <button type="button">Eliminar</button>
         </div>
@@ -63,11 +60,12 @@ export class OfertaEmpleoComponent implements OnInit {
 	  
   }
 
-  byid(resp){
+  byid(resp2){
   
   for(let i=0;i<this.aspirantessolicitados.length;i++){
-    if(this.aspirantessolicitados[i].aspirante_idaspirante.usuario_idusuario.idusuario==resp.idusuario){
+    if(this.aspirantessolicitados[i].aspirante_idaspirante.usuario_idusuario.idusuario==resp2.idusuario){
       this.idAspirante =this.aspirantessolicitados[i].aspirante_idaspirante.idaspirante
+      
     }
         
     } 

@@ -22,7 +22,7 @@ import {Emitters} from '../emitters/emitters';
 
 export class InformacionComponent implements OnInit {
   tipopersonaDesc ='';
-  tipodocumentoDesc = '';
+  tipodocumentoDesc ='';
   tipopersonas:any[]=[];
   tipodocumentos:any[]=[];
   tipoempresas:any[]=[];
@@ -51,16 +51,7 @@ export class InformacionComponent implements OnInit {
   }
   
   ngOnInit() {
-    this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
-      this.tipodocumentos=resp
-      console.log(resp)
-
-    });
-    this._tipopersonaService.getTipopersonas().subscribe((resp:any)=>{
-      this.tipopersonas=resp
-      console.log(resp)
-
-    });
+    
     this._tipoempresaService.getTipoempresas().subscribe((resp:any)=>{
       this.tipoempresas=resp
       console.log(resp)
@@ -95,18 +86,31 @@ export class InformacionComponent implements OnInit {
       Emitters.authEmitter.emit(true);
       this.ruc_cedula=resp.ruc_cedula      
       this.idempresa=resp.idempresa
-      for(let i=0;i<this.tipopersonas.length;i++){
-        if(this.tipopersonas[i].idtipopersona==resp.tipopersona_idtipopersona){
-          this.tipopersonaDesc= this.tipopersonas[i].idtipopersona.descripcion;
-
+      this._tipodocumentoService.getTipodocumentos().subscribe((resp1:any)=>{
+        this.tipodocumentos=resp1
+        console.log(resp1)
+        for(let i=0;i<this.tipodocumentos.length;i++){
+          if(this.tipodocumentos[i].idtipodocumento==resp.tipodocumento_idtipodocumento){
+            this.tipodocumentoDesc= this.tipodocumentos[i].descripcion;
+          }
         }
-      }
-      for(let i=0;i<this.tipodocumentos.length;i++){
-        if(this.tipodocumentos[i].idtipodocumento==resp.tipodocumento_idtipodocumento){
-          this.tipodocumentoDesc= this.tipodocumentos[i].idtipodocumento.descripcion;
-
+        console.log(this.tipodocumentoDesc)
+  
+      });
+      this._tipopersonaService.getTipopersonas().subscribe((resp2:any)=>{
+        this.tipopersonas=resp2
+        console.log(resp2)
+        for(let i=0;i<this.tipopersonas.length;i++){
+          if(this.tipopersonas[i].idtipopersona==resp.tipopersona_idtipopersona){
+            this.tipopersonaDesc= this.tipopersonas[i].descripcion;
+          }
         }
-      }
+        console.log(this.tipopersonaDesc)
+  
+      });
+      
+      
+      
       console.log(resp)  
       },
       err => {
@@ -115,11 +119,11 @@ export class InformacionComponent implements OnInit {
   }
 
   formEmpresa: FormGroup = this.form.group({
-    actividadeconomicas: ["", Validators.required],
-    ramaactividads: ["", Validators.required],
-    sectores: ["", Validators.required],
-    provincias: ["", Validators.required],
-    tipoempresas: ["", Validators.required],
+    actividadeconomicas: ["", [Validators.required]],
+    ramaactividads: ["", [Validators.required]],
+    sectores: ["", [Validators.required]],
+    provincias: ["", [Validators.required]],
+    tipoempresas: ["", [Validators.required]],
     razonsocial:["",[Validators.required]],
     nombrecomercial: ["", [Validators.required]],
     calleprincipal: ["", [Validators.required]],
