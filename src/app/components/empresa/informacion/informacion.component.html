@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="crear()">
+        <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="guardar()">
         
      
             <div class="row">
@@ -10,7 +10,7 @@
                 <label>Tipo de Documento:</label>
                 </div>
                 <div class="col-sm-9">                    
-                    <p>{{tipodocumentos}}</p>                
+                    <p>{{tipodocumentoDesc}}</p>                
                 </div>
             </div>
             <div class="row">
@@ -27,7 +27,7 @@
                 <label >Tipo de Persona</label>
                 </div>
                 <div class="col-sm-9">
-                    <p>{{tipopersonas}}</p>
+                    <p>{{tipopersonaDesc}}</p>
                 </div>
             </div>
             <div class="row">

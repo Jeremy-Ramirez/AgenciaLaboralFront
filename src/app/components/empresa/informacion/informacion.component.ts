@@ -21,8 +21,10 @@ import {Emitters} from '../emitters/emitters';
 })
 
 export class InformacionComponent implements OnInit {
-  tipopersonas=""; 
-  tipodocumentos= "";
+  tipopersonaDesc ='';
+  tipodocumentoDesc = '';
+  tipopersonas:any[]=[];
+  tipodocumentos:any[]=[];
   tipoempresas:any[]=[];
   ramaactividads:any[]=[];
   actividadeconomicas:any[]=[];
@@ -30,7 +32,6 @@ export class InformacionComponent implements OnInit {
   provincias: any[]=[];
   sectores: any[]=[];
   empresas: any []=[];
-  new_empresa: any []=[];
   ruc_cedula='';
   idempresa = '';
   constructor(
@@ -50,7 +51,16 @@ export class InformacionComponent implements OnInit {
   }
   
   ngOnInit() {
-  
+    this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
+      this.tipodocumentos=resp
+      console.log(resp)
+
+    });
+    this._tipopersonaService.getTipopersonas().subscribe((resp:any)=>{
+      this.tipopersonas=resp
+      console.log(resp)
+
+    });
     this._tipoempresaService.getTipoempresas().subscribe((resp:any)=>{
       this.tipoempresas=resp
       console.log(resp)
@@ -83,10 +93,20 @@ export class InformacionComponent implements OnInit {
     });
     this._empresaService.loginEmpresa().subscribe((resp:any)=>{
       Emitters.authEmitter.emit(true);
-      this.ruc_cedula=resp.ruc_cedula
-      this.tipopersonas=resp.tipopersona_idtipopersona.descripcion
-      this.tipodocumentos=resp.tipodocumento_idtipodocumento.descripcion
+      this.ruc_cedula=resp.ruc_cedula      
       this.idempresa=resp.idempresa
+      for(let i=0;i<this.tipopersonas.length;i++){
+        if(this.tipopersonas[i].idtipopersona==resp.tipopersona_idtipopersona){
+          this.tipopersonaDesc= this.tipopersonas[i].idtipopersona.descripcion;
+
+        }
+      }
+      for(let i=0;i<this.tipodocumentos.length;i++){
+        if(this.tipodocumentos[i].idtipodocumento==resp.tipodocumento_idtipodocumento){
+          this.tipodocumentoDesc= this.tipodocumentos[i].idtipodocumento.descripcion;
+
+        }
+      }
       console.log(resp)  
       },
       err => {
@@ -115,7 +135,7 @@ export class InformacionComponent implements OnInit {
     contrasenia:["", [Validators.required]],
   })
 
-  crear(){
+  guardar(){
     if(this.formEmpresa.invalid) {
       return Object.values(this.formEmpresa.controls).forEach(control=>{
         control.markAsTouched();
