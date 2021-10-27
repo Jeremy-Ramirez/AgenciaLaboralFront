@@ -10,9 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class AspirantesAceptadosComponent implements OnInit {
 
   usuarios: any[]=[];
+  aspirantes: any[]=[];
   
   idAspirante: any;
-
+  
   constructor( private http: HttpClient, private rutaActiva: ActivatedRoute) {
     this.getUsuarios();
     console.log("ASP", this.idAspirante)
@@ -26,6 +27,13 @@ export class AspirantesAceptadosComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc
+      
+      console.log(this.usuarios)
+
+    })
+
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((doc:any)=>{
+      this.aspirantes=doc
       
       console.log(this.usuarios)
 

@@ -10,16 +10,20 @@
         <br>
         <br>
         <div *ngFor="let user of usuarios">
-            Usuario: {{user.nombreusuario}}
-            <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
-            <!-- <button type="button" (click)="mostrar(user.idusuario)" routerLink="/administrador/sesionAdministrador/perfilAspirante" class="btn btn-primary float-end"  >
-                
-                Ver Perfil
-            </button> -->
-            <!-- <div *ngIf="asp==true">
+            <div class="aspiranteIndividual" *ngIf="user.rol_idrol==2">
+                <br>
+                Usuario: {{user.nombreusuario}}
                 <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
+                <!-- <button type="button" (click)="mostrar(user.idusuario)" routerLink="/administrador/sesionAdministrador/perfilAspirante" class="btn btn-primary float-end"  >
+                    
+                    Ver Perfil
+                </button> -->
+                <!-- <div *ngIf="asp==true">
+                    <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
 
-            </div> -->
+                </div> -->
+            </div>
+            <br>
         </div>
 
 

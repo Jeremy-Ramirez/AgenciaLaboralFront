@@ -27,7 +27,7 @@ export class RegistroEmpresaComponent implements OnInit {
     this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginempresa/', this.form.getRawValue(), {
       withCredentials: true
     }).subscribe((res: any)=>{
-      this.router.navigate(['/empresa/sesionEmpresa'])
+      this.router.navigate(['/empresa/sesionEmpresa/perfilEmpresa'])
       console.log(res.id)
     });
   }

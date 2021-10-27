@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -39,6 +39,7 @@ import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

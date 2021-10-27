@@ -12,6 +12,7 @@ export class AspirantesNuevosComponent implements OnInit {
   
   aspirantesNuevos: any[]=[];
   representantes: any[]=[];
+  usuarios: any[]=[];
 
   constructor( private http: HttpClient, private rutaActiva: ActivatedRoute) {
     this.getRepresentantes()
@@ -28,7 +29,9 @@ export class AspirantesNuevosComponent implements OnInit {
 
   getAspirantesNuevos(){
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
-      doc.forEach(user => {
+      this.usuarios =doc
+      console.log(this.usuarios)
+      /*doc.forEach(user => {
         this.representantes.forEach(rep=>{
           console.log("usuario",user.idusuario)
           console.log("representante",rep.usuario_idusuario)
@@ -37,9 +40,12 @@ export class AspirantesNuevosComponent implements OnInit {
             console.log(this.aspirantesNuevos)
           }
         })
-      });{
+      });*/
 
-      }
+
+
+
+
 
     })
   }
