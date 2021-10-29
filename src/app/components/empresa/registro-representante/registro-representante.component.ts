@@ -20,6 +20,8 @@ export class RegistroRepresentanteComponent implements OnInit {
   seleccionado:string;
   seleccionuser:string;
   numUsuario: number=0;
+  hide: boolean = true;
+
   
 
   miFormulario: FormGroup = this.fb.group({
@@ -115,6 +117,10 @@ export class RegistroRepresentanteComponent implements OnInit {
     )
 
     //this.getUsuarios();
+  }
+
+  show() {
+    this.hide = !this.hide;
   }
 
 

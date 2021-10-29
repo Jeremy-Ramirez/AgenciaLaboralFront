@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistroFullAspiranteComponent implements OnInit {
 
+  hide: boolean = true;
+
   
   generos:any[]=[];
   
@@ -55,7 +57,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
   }
 
 get tipoDocumentoNoValido(){
-  return this.miFormulario.get('tipoDocumento').invalid && this.miFormulario.get('tipoDocumento').touched
+  return this.miFormulario.get('tipodocumento_idtipodocumento').invalid && this.miFormulario.get('tipodocumento_idtipodocumento').touched
 }
 get usuarioNoValido(){
   return this.miFormulario.get('nombreusuario').invalid && this.miFormulario.get('nombreusuario').touched
@@ -99,9 +101,10 @@ get correoNoValido(){
 }
 
 
-get contraseñaNoValido(){
+get contraseniaNoValido(){
   return this.miFormulario.get('contrasenia').invalid && this.miFormulario.get('contrasenia').touched
 }
+
 
 get confirmacionNoValido(){
   return this.miFormulario.get('confirmacion').invalid && this.miFormulario.get('confirmacion').touched
@@ -169,14 +172,23 @@ get generoNoValido(){
 
   }
 
+  mostrarPassword(){
+   
+    
+    const tipo = <HTMLInputElement>document.getElementById('password');
+    //console.log(tipo.type)
 
+    if(tipo.type == 'password'){
+      tipo.type= 'text';
+    }else{
+      tipo.type='password';
+    }
 
+  }
 
-
-
-
-
-
+  show() {
+    this.hide = !this.hide;
+  }
 
 
 }
