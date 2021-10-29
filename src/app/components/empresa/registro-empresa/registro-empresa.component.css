@@ -72,7 +72,7 @@ input {
   outline: none;
 }
 
-input[type=email],
+input[type=email], input[type=text],
 input[type=password] {
   color: #777;
   padding-left: 10px;
@@ -139,3 +139,10 @@ button {
   cursor: pointer;
 }
 
+.field-icon {
+  float: right;
+  margin-right: 35px;
+  margin-top: -42px;
+  position: relative;
+  z-index: 2;
+}

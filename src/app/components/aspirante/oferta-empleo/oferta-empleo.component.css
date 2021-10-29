@@ -1,13 +1,13 @@
 /* enable absolute positioning */
 .inner-addon { 
-    position: relative; 
+  position: relative; 
 }
 
 /* style icon */
 .inner-addon .glyphicon {
-  position: absolute;
-  padding: 10px;
-  pointer-events: none;
+position: absolute;
+padding: 10px;
+pointer-events: none;
 }
 
 /* align icon */
@@ -20,12 +20,21 @@
 
 
 .empleo {
-    border: 30px;
-    padding: 20px;
-    background-color: rgb(221, 239, 250);
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+  border: 30px;
+  padding: 20px;
+  background-color: rgb(207, 228, 241);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.empleo:first-child {
+margin: 10px0;
+}
+
+.card-text{
+border: 30px;
+padding: 20px;
+background-color: rgrgb(19, 100, 151)
 }
