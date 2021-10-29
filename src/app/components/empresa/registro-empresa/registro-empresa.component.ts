@@ -31,14 +31,14 @@ export class RegistroEmpresaComponent implements OnInit {
   }
 
   getRepresentante(){
-    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc;
     console.log(this.usuarios)
     })
   }
 
   getEmpresa(){
-    this.http.get('http://localhost:8000/api/empresas/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/').subscribe((doc:any)=>{
       this.empresas=doc;
     console.log(this.empresas)
     })
@@ -48,7 +48,7 @@ export class RegistroEmpresaComponent implements OnInit {
       console.log(emp.correo)
       console.log(this.form.getRawValue().correo)
       if(emp.correo==this.form.getRawValue().correo){
-        this.http.post('http://localhost:8000/api/loginempresa/', this.form.getRawValue(), {
+        this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginempresa/', this.form.getRawValue(), {
           withCredentials: true
         }).subscribe((res: any)=>{
           console.log(res.jwt)
@@ -66,7 +66,7 @@ export class RegistroEmpresaComponent implements OnInit {
       console.log("rep",rep.correo)
       console.log("inicio",this.form.getRawValue().correo)
       if(rep.correo==this.form.getRawValue().correo){
-        this.http.post('http://localhost:8000/api/loginusuario/', this.form.getRawValue(), {
+        this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
         }).subscribe((res: any)=>{
           console.log(res.jwt)
