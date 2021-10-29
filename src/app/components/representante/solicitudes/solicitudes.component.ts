@@ -45,7 +45,7 @@ export class SolicitudesComponent implements OnInit {
     
   }
   
-  formEmpresa: FormGroup = this.form.group({
+  formSolicitud: FormGroup = this.form.group({
     profesion: ["", [Validators.required]],
     aniosexperiencia: ["",[Validators.required]],
     rangoedad: ["",[Validators.required]],
@@ -69,14 +69,14 @@ export class SolicitudesComponent implements OnInit {
     idiomas: ["",[Validators.required]]
   })
   crear(){
-    if(this.formEmpresa.invalid) {
-      return Object.values(this.formEmpresa.controls).forEach(control=>{
+    if(this.formSolicitud.invalid) {
+      return Object.values(this.formSolicitud.controls).forEach(control=>{
         control.markAsTouched();
       })
     }
   
-      console.log(this.formEmpresa.value);
-      this.httpClient.post('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/', this.formEmpresa.value).subscribe(
+      console.log(this.formSolicitud.value);
+      this.httpClient.post('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/', this.formSolicitud.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
@@ -84,10 +84,9 @@ export class SolicitudesComponent implements OnInit {
     
     
     alert('SOLICITUD CREADA')
-    window.location.href='/representante/sesionRepresentante/solicitudesRepresentante';
   }
   
   campoEsValido( campo: string){
-    return this.formEmpresa.controls[campo].errors  && this.formEmpresa.controls[campo].touched;
+    return this.formSolicitud.controls[campo].errors  && this.formSolicitud.controls[campo].touched;
   }
 }
