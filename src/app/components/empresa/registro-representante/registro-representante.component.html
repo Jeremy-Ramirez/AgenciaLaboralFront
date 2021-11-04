@@ -29,9 +29,11 @@
                     <input type="text"
                            class="form-control"
                            formControlName ="nodocumento" 
-                           placeholder="">
+                           placeholder=""
+                           (change)="validadorDeCedula()" 
+                           >
                     <span class="form-text text-danger"
-                        *ngIf="campoEsValido('nodocumento')">
+                        *ngIf="!validador">
                         
                         Campo Requerido
                     </span>
@@ -75,7 +77,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="correo"
-                           placeholder="">
+                           placeholder="correo">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('correo')">
                         
@@ -88,10 +90,10 @@
                 <label class="col-sm-3 col-form-label">Contraseña </label>
                 <div class="col-sm-9">
                     <input type="password"
-                        [type]="hide ? 'password' : 'text'"
-                        class="form-control"
-                        formControlName="contrasenia"
-                        placeholder="">
+                    [type]="hide ? 'password' : 'text'"
+                           class="form-control"
+                           formControlName="contrasenia"
+                           placeholder="contrasenia">
                     <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 
                     <span class="form-text text-danger"
@@ -122,14 +124,15 @@
 
             <div class="row">
                 <div class="col">
-                    <button type="submit"
-                            (click)="createUsuario()"
-                            class="btn btn-primary float-end" 
+                    <button type="submit" class="btn btn-primary float-end" (click)="createUsuario()"
+            [disabled]="miFormulario.invalid "
+            >
+                Registrar Representante
+            </button>
+                    
                             
-                            >
-                            
-                        Guardar
-                    </button>
+                        
+                    
                 </div>
             </div>
             <!-- routerLink="['/registroRepresentante', id ]" -->
@@ -139,3 +142,4 @@
 
     </div>
 </div>
+
