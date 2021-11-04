@@ -105,6 +105,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     }, 3000);
     
     alert('USUARIO CREADO')
+    this.miFormulario.reset();
     
   }
 
