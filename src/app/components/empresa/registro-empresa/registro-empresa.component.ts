@@ -66,7 +66,8 @@ export class RegistroEmpresaComponent implements OnInit {
       console.log("rep",rep.correo)
       console.log("inicio",this.form.getRawValue().correo)
       if(rep.correo==this.form.getRawValue().correo){
-        this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginusuario/', this.form.getRawValue(), {
+        if(rep.rol_idrol==1){
+          this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
         }).subscribe((res: any)=>{
           console.log(res.jwt)
@@ -75,6 +76,8 @@ export class RegistroEmpresaComponent implements OnInit {
           this.router.navigate(['/representante/sesionRepresentante'])
           console.log(res.id)
         },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));
+        }
+        
       }
     }
   }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 
 @Component({
   selector: 'app-sugerencias-comentarios',
@@ -14,7 +15,8 @@ export class SugerenciasComentariosComponent implements OnInit {
   correo:any='';
   id:'';
   file: any;
-
+  message = '';
+  usuarioActual: any;
   miFormulario: FormGroup = this.fb.group({
     titulo: ["", Validators.required],
     descripcion: ["", Validators.required],
@@ -57,14 +59,28 @@ export class SugerenciasComentariosComponent implements OnInit {
       resp => console.log(resp),
       err => console.log(err)
     )
+    alert('SE HA ENVIADO SU SUGERENCIA');
   }
 
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idusuario}`;
+        this.id=res.idusuario
+        this.usuarioActual=res;
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
   }
 
 }
