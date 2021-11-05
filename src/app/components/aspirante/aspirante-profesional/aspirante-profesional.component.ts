@@ -136,7 +136,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     if(asp.usuario_idusuario==this.id){
 
       console.log(asp.idaspirante);
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
+    this.http.put('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

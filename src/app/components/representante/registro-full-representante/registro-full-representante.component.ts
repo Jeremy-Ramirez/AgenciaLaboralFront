@@ -26,6 +26,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   seleccionado:string;
   seleccionuser:string;
+  nombredoc:any;
 
   
 
@@ -51,11 +52,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute) {
     //this.getUsuarios();
-    this.getGenero();
-    this.getTipodocumento();
-    this.getProvincias();
-    this.getCiudades();
-    this.getEstadoCivil();
+    
   }
   
   campoEsValido( campo: string){
@@ -137,12 +134,37 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     const user = this.miFormulario.value;
     console.log(user);
   }
+
+  obtenerNumero(){
+    for( let doc of this.tipoDocumento){
+      console.log(doc.idtipodocumento)
+      if(doc.idtipodocumento == this.usuarioActual.tipodocumento_idtipodocumento)
+        this.nombredoc=  doc.descripcion;
+    }
+  }
+
+
+
+
   ngOnInit(): void {
     /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
     )*/
+
+    this.getGenero();
+    this.getTipodocumento();
+    this.getProvincias();
+    this.getCiudades();
+    this.getEstadoCivil();
+
+    setTimeout(()=>{ 
+      this.obtenerNumero()
+
+
+    
+    }, 100);
 
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
