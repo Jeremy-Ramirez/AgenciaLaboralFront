@@ -147,7 +147,7 @@
         </div>
 
 
-        <div class="mb-3 row">
+        <!--div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
             <div class="col-sm-9">
                 <input type="text"
@@ -161,7 +161,117 @@
                         Campo obligatorio
                     </span>
             </div>
+        </div-->
+
+   <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Disponibilidad para viajar</label>
+    <div class="col-sm-9">
+     
+    
+    <input type="radio" value="si" formControlName="posibilidadviajar"> Si
+    <input type="radio" value="no" formControlName="posibilidadviajar"> No
+
+
+
+
+
+
+
+        <span class="form-text text-danger"
+                        *ngIf="campoEsValido('posibilidadviajar')">
+                        
+                        Campo obligatorio
+                    </span> 
+                    
+        
+    </div>
         </div>
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Posibilidad cambio de residencia</label>
+            <div class="col-sm-9">
+             
+            
+            <input type="radio" value="si" formControlName="posibilidadcambioresidencia"> Si
+            <input type="radio" value="no" formControlName="posibilidadcambioresidencia"> No
+        
+        
+        
+        
+        
+        
+        
+                <span class="form-text text-danger"
+                                *ngIf="campoEsValido('posibilidadcambioresidencia')">
+                                
+                                Campo obligatorio
+                            </span> 
+                            
+                
+            </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Nivel de Estudios</label>
+                    <div class="col-sm-9">
+                        
+                        <select name="doc" id="doc" formControlName="nivelestudios_idnivelestudios">
+                             <option *ngFor="let n of niveles" value="{{n.idnivelestudios}}" value="{{n.idnivelestudios}}">
+                                {{n.descripcion}}
+                            </option> 
+                        </select>
+        
+
+                        <span class="form-text text-danger"
+                        *ngIf="campoEsValido('nivelestudios_idnivelestudios')">
+                        
+                        Campo obligatorio
+                    </span>
+                       
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Estado estudios</label>
+                    <div class="col-sm-9">
+                     
+                    
+                        <input type="radio" value="Cursando" formControlName="estadoestudios">Cursando
+                     <input type="radio" value="Completado" formControlName="estadoestudios">Completado
+                       
+                     <span class="form-text text-danger"
+                     *ngIf="campoEsValido('estadoestudios')">
+                     
+                     Campo obligatorio
+                 </span>              
+                        
+                    </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Idiomas</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       formControlName ="idiomas" 
+                                       placeholder="Ingrese los idiomas que sabe " >
+                
+                                       <span class="form-text text-danger"
+                                       *ngIf="campoEsValido('idiomas')">
+                                       
+                                       Campo requerido
+                                       
+                                   </span> 
+                            </div>
+                        </div>
+
+
+
+
+
 
 
         <div class="mb-3 row">
@@ -201,4 +311,3 @@
 
     
 </div>
-

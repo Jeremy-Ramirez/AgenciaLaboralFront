@@ -18,6 +18,7 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrecta=true;
   profesiones:any[]=[];
   aspirantes:any[]=[];
+  niveles:any[]=[];
   id: any;
   message = '';
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) { }
@@ -34,7 +35,11 @@ export class AspiranteProfesionalComponent implements OnInit {
     aniosexperiencia:["",[Validators.required]],
     fechanacimiento:["",[Validators.required, ]],
     posibilidadviajar:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
+    posibilidadcambioresidencia:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
+    estadoestudios:["",[Validators.required, ]],
     profesiones_idprofesiones:["",[Validators.required]],
+    idiomas:["",[Validators.required]],
+    nivelestudios_idnivelestudios:["",[Validators.required, ]],
     usuario_idusuario:null,
   })
 
@@ -73,6 +78,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     })
 
     this.getAspirantes();
+    this.getNivelesEstudios();
 
   }
 
@@ -80,6 +86,15 @@ export class AspiranteProfesionalComponent implements OnInit {
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((doc:any)=>{
       this.aspirantes=doc;
     console.log("getaspirantes",this.aspirantes)
+    })
+  }
+
+
+  
+  getNivelesEstudios(){
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/nivelestudios/').subscribe((nivel:any)=>{
+    this.niveles=nivel;
+    console.log(this.niveles)
     })
   }
 
@@ -101,16 +116,20 @@ export class AspiranteProfesionalComponent implements OnInit {
  guardar(){
 
   let formData= new FormData();
-  formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
-  formData.append('experiencialaboral',this.miFormulario.controls['experiencialaboral'].value)
-  formData.append('campolaboral',this.miFormulario.controls['campolaboral'].value)
-  formData.append('experticia',this.miFormulario.controls['experticia'].value)
-  formData.append('aniosexperiencia',this.miFormulario.controls['aniosexperiencia'].value)
-  formData.append('fechanacimiento',this.miFormulario.controls['fechanacimiento'].value)
-  formData.append('videopresentacion',this.file)
-  formData.append('posibilidadviajar',this.miFormulario.controls['posibilidadviajar'].value)
-  formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
-  formData.append('usuario_idusuario',this.id)
+    formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
+    formData.append('experiencialaboral',this.miFormulario.controls['experiencialaboral'].value)
+    formData.append('campolaboral',this.miFormulario.controls['campolaboral'].value)
+    formData.append('experticia',this.miFormulario.controls['experticia'].value)
+    formData.append('aniosexperiencia',this.miFormulario.controls['aniosexperiencia'].value)
+    formData.append('fechanacimiento',this.miFormulario.controls['fechanacimiento'].value)
+    formData.append('videopresentacion',this.file)
+    formData.append('posibilidadviajar',this.miFormulario.controls['posibilidadviajar'].value)
+    formData.append('posibilidadcambioresidencia',this.miFormulario.controls['posibilidadcambioresidencia'].value)
+    formData.append('estadoestudios',this.miFormulario.controls['estadoestudios'].value)
+    formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
+    formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
+    formData.append('nivelestudios_idnivelestudios',this.miFormulario.controls['nivelestudios_idnivelestudios'].value)
+    formData.append('usuario_idusuario',this.id)
 
 
   for(let asp of this.aspirantes){
