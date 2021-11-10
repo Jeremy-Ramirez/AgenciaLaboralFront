@@ -151,7 +151,7 @@ get generoNoValido(){
   }
 
   getUsuarios(){
-    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc;
     console.log("getusuarios",this.usuarios)
     })
@@ -189,21 +189,23 @@ get generoNoValido(){
 
 
       formData.append("usuario_idusuario",idFinal)
-      this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
+      this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
       )
+      setTimeout(() => {
+        alert('USUARIO CREADO')
+        window.location.href='/aspirante/registroAspirante';
+      }, 3000);
+
         },3000)
   
       
       }, 3000);
 
       
-    setTimeout(() => {
-      alert('USUARIO CREADO')
-      window.location.href='/aspirante/registroAspirante';
-    }, 6000);
+    
 
   }
 
