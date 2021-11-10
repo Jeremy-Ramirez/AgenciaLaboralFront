@@ -85,26 +85,26 @@ export class OfertaEmpleoComponent implements OnInit {
     
   }
   aceptar(idOferta) {
-    console.log(idOferta)
+    console.log("numOferta " +  idOferta)
     console.log("enviado")
-    if(this.formEmpresa.invalid) {
+    /*if(this.formEmpresa.invalid) {
       return Object.values(this.formEmpresa.controls).forEach(control=>{
         control.markAsTouched();
       })
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.put('http://agencialaboralproyecto.pythonanywhere.com/api/aspirantessolicitados/'+this.idAspiranteSolicitados, this.formEmpresa.value).subscribe(
+      this.httpClient.put('http://localhost:8000/api/aspirantessolicitados/'+this.idAspiranteSolicitados, this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
-      )
-    /*alert('OFERTA ACEPTADA')*/    
+      )*/
+    alert('OFERTA ACEPTADA')    
   }
   rechazar(idOferta) {
     console.log("rechazado")
-    console.log(idOferta)
-    /*alert('OFERTA RECHAZADA')*/
+    console.log("numOferta " + idOferta)
+    alert('OFERTA RECHAZADA')
   }
  
 }
