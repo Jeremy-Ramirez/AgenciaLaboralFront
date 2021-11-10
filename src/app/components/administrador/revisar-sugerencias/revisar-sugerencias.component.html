@@ -13,3 +13,20 @@
         
     </div>
 </div>
+
+<div>
+    <div class="aspiranteIndividual" *ngFor="let sugerencia of sugerenciasEmpresa">
+        <div *ngFor="let empresa of empresas">
+            <div *ngIf="empresa.idusuario==sugerencia.usuario_idusuario">
+                Nombres: {{empresa.nombrecomercial}} 
+            </div>
+        </div>
+        Descripción: {{sugerencia.descripcion}}
+        <div *ngIf="sugerencia.imagen != null">
+            <div >
+                <img class="imgsug" src="https://agencialaboralproyecto.pythonanywhere.com{{sugerencia.imagen}}">      
+            </div>
+        </div>
+        
+    </div>
+</div>

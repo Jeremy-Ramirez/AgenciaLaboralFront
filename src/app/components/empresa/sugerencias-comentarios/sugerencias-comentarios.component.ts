@@ -10,18 +10,38 @@ import { Emitters } from '../emitters/emitters';
   styleUrls: ['./sugerencias-comentarios.component.css']
 })
 export class SugerenciasComentariosComponent implements OnInit {
-
+  imagenValida: boolean=true;
   sugerencias:any[]=[];
   correo:any='';
   id:'';
   file: any;
   message = '';
-  imagenValida: boolean=true;
-  usuarioActual: any;
+
+
+  ngOnInit(): void {
+    /*this.rutaActiva.params.subscribe(
+      (params:  Params) => {
+        this.id = params.id;
+      }
+    )*/
+
+    this.http.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idempresa}`;
+        this.id=res.idempresa
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
+  }
+
   miFormulario: FormGroup = this.fb.group({
     titulo: ["", Validators.required],
     descripcion: ["", Validators.required],
-    usuario_idusuario: 1,
+    empresa_idempresa: 1,
     imagen: ["", [Validators.pattern("^.*\.(jpg|jpeg|png|jfif)$")]],
     
 
@@ -64,36 +84,21 @@ export class SugerenciasComentariosComponent implements OnInit {
     if(this.file!=null){
       formData.append('imagen',this.file)
     }
-    formData.append('usuario_idusuario',this.id)
+    formData.append('empresa_idempresa',this.id)
     
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/sugerencias/', formData,options).subscribe(
+    this.http.post('http://localhost:8000/api/sugerenciasEmpresa/', formData,options).subscribe(
       resp => console.log(resp),
       err => console.log(err)
     )
-    alert('SE HA ENVIADO SU SUGERENCIA');
+    alert('SUGERENCIA ENVIADA')
+    
     this.miFormulario.reset();
+    
+    
+
   }
 
-  ngOnInit(): void {
-    /*this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-      }
-    )*/
-
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
-      (res: any) => {
-        this.message = `Hi ${res.idusuario}`;
-        this.id=res.idusuario
-        this.usuarioActual=res;
-        Emitters.authEmitter.emit(true);
-      },
-      err => {
-        this.message = 'You are not logged in';
-        Emitters.authEmitter.emit(false);
-      }
-    );
-  }
+  
 
 }
 

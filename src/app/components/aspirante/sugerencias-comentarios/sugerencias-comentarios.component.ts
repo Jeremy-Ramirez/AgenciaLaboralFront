@@ -43,7 +43,7 @@ export class SugerenciasComentariosComponent implements OnInit {
     titulo: ["", Validators.required],
     descripcion: ["", Validators.required],
     usuario_idusuario: 1,
-    imagen: ["", [Validators.required, Validators.pattern("^.*\.(jpg|jpeg|png)$")]],
+    imagen: ["", [Validators.pattern("^.*\.(jpg|jpeg|png|jfif)$")]],
     
 
   })
@@ -61,7 +61,7 @@ export class SugerenciasComentariosComponent implements OnInit {
 
     if((<HTMLInputElement>event.target).files[0].size>2000000){
       this.imagenValida=false;
-      alert('El archivo supera los 6Mb.');
+      //alert('El archivo supera los 6Mb.');
     }else{
       this.imagenValida=true;
       this.file=(<HTMLInputElement>event.target).files[0];
@@ -82,7 +82,9 @@ export class SugerenciasComentariosComponent implements OnInit {
     let formData = new FormData();
     formData.append('titulo',this.miFormulario.controls['titulo'].value)
     formData.append('descripcion',this.miFormulario.controls['descripcion'].value)
-    formData.append('imagen',this.file)
+    if(this.file!=null){
+      formData.append('imagen',this.file)
+    }
     formData.append('usuario_idusuario',this.id)
     
     this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/sugerencias/', formData,options).subscribe(
