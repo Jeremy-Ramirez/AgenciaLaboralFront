@@ -138,14 +138,14 @@ export class SolicitudesComponent implements OnInit {
 
 
   getProfesiones(){
-    this.http.get('http://localhost:8000/api/profesiones/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/').subscribe((doc:any)=>{
       this.profesiones=doc;
     console.log("getprofesiones",this.profesiones)
     })
   }
 
   getNivelesEstudios(){
-    this.http.get('http://localhost:8000/api/nivelestudios/').subscribe((nivel:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/nivelestudios/').subscribe((nivel:any)=>{
     this.niveles=nivel;
     console.log(this.niveles)
     })
