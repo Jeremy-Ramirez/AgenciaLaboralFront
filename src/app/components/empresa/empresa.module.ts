@@ -21,6 +21,8 @@ import { RouterModule } from '@angular/router';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { InformacionComponent } from './informacion/informacion.component';
+import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
+import { EditPassComponent } from './edit-pass/edit-pass.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { InformacionComponent } from './informacion/informacion.component';
     PerfilEmpresaComponent,
     MenuLateralComponent,
     InformacionComponent,
+    SugerenciasComentariosComponent,
+    EditPassComponent,
     
 
   ],

@@ -243,7 +243,7 @@ export class InformacionComponent implements OnInit {
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.put('http://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
@@ -251,6 +251,8 @@ export class InformacionComponent implements OnInit {
     
     
     alert('Se han guardado los cambios')
+    
+    window.location.reload()
   }
 
   campoEsValido( campo: string){

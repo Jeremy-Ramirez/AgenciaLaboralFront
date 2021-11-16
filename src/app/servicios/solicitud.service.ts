@@ -13,8 +13,4 @@ export class SolicitudService {
   getSolicitudes(){
     return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/')
   }
-
-  loginUsuario() {    
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true});
-  }
 }
