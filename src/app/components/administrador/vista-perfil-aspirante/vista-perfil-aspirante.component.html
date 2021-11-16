@@ -108,6 +108,17 @@
                 placeholder=""
                 (change)="handleFileInput($event)"
                 >
+
+                <span class="form-text text-danger"
+                *ngIf="campoEsValido('archivo')">
+                
+                El archivo debe ser un pdf o word
+                </span>
+                <span class="form-text text-danger"
+                    *ngIf="!archivoValido">
+                    
+                    El archivo supera los 6Mb.
+                </span>
         </div>
     </div>
     <div class="mb-3 row">
@@ -129,7 +140,8 @@
     <button type="submit"
                             
             (click)="subirArchivo()"
-            class="btn btn-primary float-end" 
+            class="btn btn-primary float-end"
+            [disabled]="miFormulario.invalid || !archivoValido" 
                             
             >
                             

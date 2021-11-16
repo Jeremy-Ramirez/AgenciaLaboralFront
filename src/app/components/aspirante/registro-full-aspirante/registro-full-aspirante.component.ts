@@ -21,6 +21,14 @@ export class RegistroFullAspiranteComponent implements OnInit {
   seleccionado:string;
   seleccionuser:string;
 
+
+  public correov= false;
+  public cedulaunica=false;
+
+  usuarios2: any[]=[];
+
+  correos: any[]=[];
+
   miFormulario: FormGroup = this.fb.group({
     
     nombreusuario: ["", [Validators.required]],
@@ -151,16 +159,16 @@ get generoNoValido(){
   }
 
   getUsuarios(){
-    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc;
     console.log("getusuarios",this.usuarios)
     })
   }
 
-  
+
   guardar(){
 
-    
+    let valorc=this.miFormulario.controls['correo'].value;
     if(this.miFormulario.invalid) {
       return Object.values(this.miFormulario.controls).forEach(control=>{
         control.markAsTouched();
@@ -168,13 +176,13 @@ get generoNoValido(){
     }
   
       console.log(this.miFormulario.value);
+
+      
+
+
       this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/', this.miFormulario.value).subscribe(
-        resp => console.log(resp),
-        err => console.log(err)
-  
-      )
-    
-    
+        (resp:any)=>{
+        
       setTimeout(()=>{ 
         this.getUsuarios();
         setTimeout(()=>{
@@ -184,42 +192,54 @@ get generoNoValido(){
       console.log(idFinal)
       let formData = new FormData();
 
-
-   
-
-
       formData.append("usuario_idusuario",idFinal)
-      this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
+      this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
         resp => console.log(resp),
         err => console.log(err)
-  
       )
+
+      setTimeout(() => {
+        alert('USUARIO CREADO')
+        window.location.href='/aspirante/registroAspirante';
+      }, 3000);
+
+      
         },3000)
   
       
       }, 3000);
+        } ,
+        (err:any)=>{
+          
+          
+          if(err.error.correo=='Usuario with this correo already exists.'){
+            this.correov=true;
+          }
+          else{
+            console.log(err)
+            this.cedulaunica=true;
+          }
+            
+          
+          
+          
+
+
+
+
+        } 
+  
+      )
+      
+
 
       
-    setTimeout(() => {
-      alert('USUARIO CREADO')
-      window.location.href='/aspirante/registroAspirante';
-    }, 6000);
-
-  }
-
-  mostrarPassword(){
-   
     
-    const tipo = <HTMLInputElement>document.getElementById('password');
-    //console.log(tipo.type)
-
-    if(tipo.type == 'password'){
-      tipo.type= 'text';
-    }else{
-      tipo.type='password';
-    }
+    
+   
 
   }
+
 
   show() {
     this.hide = !this.hide;

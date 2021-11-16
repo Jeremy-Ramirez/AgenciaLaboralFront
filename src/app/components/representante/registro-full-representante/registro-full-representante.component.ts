@@ -164,7 +164,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
 
     
-    }, 100);
+    }, 3000);
 
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
