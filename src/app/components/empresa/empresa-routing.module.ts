@@ -31,8 +31,7 @@ const routes: Routes = [
         
         { path: 'registroEmpresa', component: RegistroEmpresaComponent},
         { path: 'registroFullEmpresa', component: RegistroFullEmpresaComponent},
-        { path: 'registroFullRepresentante', component: RegistroRepresentanteComponent},
-        { path: '**', redirectTo: 'sesionEmpresa' }
+        { path: '**', redirectTo: 'sesionEmpresa/perfilEmpresa' }
       ]
     }
   ];
