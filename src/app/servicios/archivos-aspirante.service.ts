@@ -33,6 +33,17 @@ export class ArchivosAspiranteService {
 
   }
 
+  public deleteArchivosAspirante(archivo: any): Observable<any>{
+    return this.http.delete(this.API_archivosAspirante+archivo)
+    .pipe(
+      tap(()=>{
+        console.log("Enttró a tap")
+        this._refresh$.next();
+      })
+    );
+
+  }
+
 
 
   
