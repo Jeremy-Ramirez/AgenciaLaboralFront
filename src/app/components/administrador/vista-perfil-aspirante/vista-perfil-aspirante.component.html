@@ -51,7 +51,7 @@
             <div *ngFor="let ar of archivos">
                 <div *ngIf="a.idaspirante==ar.aspirante_idaspirante">
                     <a href="https://agencialaboralproyecto.pythonanywhere.com{{ar.archivo}}" download="A.pdf"> {{ar.nombredocumento}}</a>
-                    
+                    <mat-icon class="field-icon" (click)="eliminarArchivo(ar.idarchivosaspirante)">delete</mat-icon>
                     
                     </div>
                     </div>
