@@ -47,7 +47,7 @@ export class EditPassComponent implements OnInit {
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.put('http://localhost:8000/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
