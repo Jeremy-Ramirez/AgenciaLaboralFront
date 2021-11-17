@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Emitters } from '../clases/emitters';
+import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
+import {ProvinciaService} from '../../../servicios/provincia.service'
+import { GeneroService } from '../../../servicios/genero.service';
+import { CiudadService } from '../../../servicios/ciudad.service';
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -14,10 +18,22 @@ export class PerfilAspiranteComponent implements OnInit {
   id='';
   message = '';
   usuarioActual: any;
+  tipodocumentodesc ='';
+  tipoDocumentos:any[]=[];
+  provincias:any[]=[];
+  provinciadesc= '';
+  generos:any[]=[];
+  generodesc='';
+  ciudades: any[]=[];
+  ciudadesdesc='';
+
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
+    private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
+    private _generoService:GeneroService, private _ciudadService:CiudadService
+    ) { }
 
   ngOnInit(): void {
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
@@ -26,6 +42,52 @@ export class PerfilAspiranteComponent implements OnInit {
         this.id=res.idusuario
         this.usuarioActual=res;
         Emitters.authEmitter.emit(true);
+
+        this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
+          this.tipoDocumentos=resp;
+          console.log(this.tipoDocumentos);
+          for(let doc of this.tipoDocumentos){
+            if(doc.idtipodocumento ===res.tipodocumento_idtipodocumento ){
+              this.tipodocumentodesc=doc.descripcion
+            }
+          }
+        })
+
+        this._provinciaService.getProvincias().subscribe((resp:any)=>{
+          this.provincias= resp;
+          for(let pr of this.provincias){
+            if(pr.idprovincia=== res.provincia_idprovincia){
+              this.provinciadesc=pr.nombreprovincia
+            }
+          }
+        })
+
+        this._generoService.getGeneros().subscribe((resp:any)=>{
+          this.generos=resp;
+          for(let g of this.generos){
+            if(g.idgenero === res.genero_idgenero){
+              this.generodesc=g.genero
+            }
+          }
+
+        })
+
+        this._ciudadService.getCiudades().subscribe((resp:any)=>{
+          this.ciudades=resp;
+          for(let c of this.ciudades){
+            if(c.idciudad === res.ciudad_idciudad){
+              this.ciudadesdesc= c.nombreciudad
+            }
+          }
+        })
+
+
+
+
+
+
+
+
       },
       err => {
         this.message = 'You are not logged in';
@@ -35,6 +97,16 @@ export class PerfilAspiranteComponent implements OnInit {
 
     
 
+
+
+
+
+
+
+
+
+
+
     this.getAspirantes();
     this.getUsuarios();
     this.getAspirantes()
@@ -43,19 +115,7 @@ export class PerfilAspiranteComponent implements OnInit {
 
   
 
-  miFormulario: FormGroup= this.fb.group({
-    
-    numerohijos: ["", [Validators.required]],
-    experiencialaboral: ["", [Validators.required]],
-    campolaboral:["",[Validators.required]],
-    experticia:["",[Validators.required]],
-    videopresentacion:["",[Validators.required]],
-    aniosexperiencia:["",[Validators.required]],
-    fechanacimiento:["",[Validators.required]],
-    posibilidadviajar:["",[Validators.required]],
-    profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:this.id,
-  })
+ 
 
   getAspirantes(){
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((resp:any)=>{
