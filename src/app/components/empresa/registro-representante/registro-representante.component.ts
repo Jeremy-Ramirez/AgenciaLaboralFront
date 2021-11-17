@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 @Component({
   selector: 'app-registro-representante',
   templateUrl: './registro-representante.component.html',
@@ -24,6 +25,7 @@ export class RegistroRepresentanteComponent implements OnInit {
   seleccionuser:string;
   numUsuario: number=0;
   hide: boolean = true;
+  message = '';
 
   
 
@@ -92,7 +94,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     
     console.log(idFinal)
     let formData = new FormData();
-    formData.append("empresa_idempresa", "1");
+    formData.append("empresa_idempresa", this.id);
     formData.append("usuario_idusuario",idFinal)
     this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/representantes/', formData).subscribe(
       resp => console.log(resp),
@@ -114,11 +116,24 @@ export class RegistroRepresentanteComponent implements OnInit {
     console.log(user);
   }
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userempresa/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idempresa}`;
+        this.id=res.idempresa
+        console.log(this.id)
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
 
     //this.getUsuarios();
   }
