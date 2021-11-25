@@ -7,6 +7,9 @@ import { AspirantesNuevosComponent } from './aspirantes-nuevos/aspirantes-nuevos
 import { RevisarEmpresasComponent } from './revisar-empresas/revisar-empresas.component';
 import { RevisarSugerenciasComponent } from './revisar-sugerencias/revisar-sugerencias.component';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { RegistroAdministradorComponent } from './registro-administrador/registro-administrador.component';
+import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
+import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
 
 
@@ -20,6 +23,8 @@ const routes: Routes = [
           children:[
             { path: 'aspirantesAceptados', component: AspirantesAceptadosComponent},
             { path: 'aspirantesNuevos', component: AspirantesNuevosComponent},
+            { path: 'asignarAspirante', component: AsignarAspiranteComponent},
+            { path: 'perfilAdministrador', component: PerfilAdministradorComponent},
             { path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
             { path: 'revisarempresas', component: RevisarEmpresasComponent},
@@ -28,7 +33,8 @@ const routes: Routes = [
             { path: 'autorizarEmpresas', component: AutorizarComponent},
           ]
         },
-        { path: '**', redirectTo: 'sesionAdministrador' }
+        { path: 'registroAdministrador', component: RegistroAdministradorComponent },
+        { path: '**', redirectTo: 'sesionAdministrador/perfilAdministrador' }
       ]
     }
   ];
