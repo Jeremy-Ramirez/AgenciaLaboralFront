@@ -11,11 +11,8 @@ import { RegistroAdministradorComponent } from './registro-administrador/registr
 import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
-<<<<<<< Updated upstream
 import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
-=======
 import { SugerenciasComentariosComponent } from '../aspirante/sugerencias-comentarios/sugerencias-comentarios.component';
->>>>>>> Stashed changes
 
 
 const routes: Routes = [
