@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfesionesService {
 
-  constructor(private httpClient:HttpClient) {
-    this.getProfesiones();
+  private API_profesiones = "https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/";
 
-   }
+  constructor(private httpClient:HttpClient) {}
 
+  
 
-  getProfesiones(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/')
+  getProfesiones() : Observable<any>{
+    return this.httpClient.get(this.API_profesiones)
   }
+
+
+  
 }
+
+
+
+
+
+
