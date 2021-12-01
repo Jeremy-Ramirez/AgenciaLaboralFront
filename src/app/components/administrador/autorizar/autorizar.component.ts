@@ -52,16 +52,20 @@ export class AutorizarComponent implements OnInit {
       })
     }  
     //console.log(this.formEmpresa.value);
-    this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+idempresa, this.formEmpresa.value).subscribe(
+    if (confirm('Está seguro de autorizar esta empresa?')) {
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+idempresa, this.formEmpresa.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
     )
-    alert('EMPRESA AUTORIZADA')    
+      console.log('Thing was saved to the database.');
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
     window.location.reload()
 
   }
-  noautorizar(idempresa) {
+  noautorizar(idempresa2) {
     
     if(this.formEmpresa2.invalid) {
       return Object.values(this.formEmpresa2.controls).forEach(control=>{
@@ -69,14 +73,17 @@ export class AutorizarComponent implements OnInit {
       })
     }  
     //console.log(this.formEmpresa2.value);
-    this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/empresas/'+idempresa, this.formEmpresa2.value).subscribe(
+    
+    if (confirm('Está seguro de rechazar esta empresa?')) {
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/empresas/'+idempresa2, this.formEmpresa2.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
     )
-    alert('AUTORIZACIÓN NEGADA')
-    
-    window.location.reload()
+      console.log('Thing was saved to the database.');
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
   }
     
 }

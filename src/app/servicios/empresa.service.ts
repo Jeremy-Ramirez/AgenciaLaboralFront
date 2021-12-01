@@ -13,7 +13,9 @@ export class EmpresaService {
   getEmpresas(){
     return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/')
   }
-  
+  getEmpresasbyid(id){
+    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+id)
+  }
   create(empresa) {    
     return this.httpClient.post('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/', JSON.stringify(empresa));
   }
