@@ -1,0 +1,6 @@
+#botones{
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    margin-top: 50px;
+
+}
