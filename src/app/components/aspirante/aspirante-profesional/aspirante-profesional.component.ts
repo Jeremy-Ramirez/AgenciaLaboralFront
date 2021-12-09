@@ -36,8 +36,12 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrectaCierre=true;
   siguiente=false;
 
+  loading: boolean;
+
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
-    private formacionProfesionalService: FormacionProfesionalService, private router: Router) { }
+    private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
+      this.loading=false;
+     }
 
 
  
@@ -201,7 +205,10 @@ export class AspiranteProfesionalComponent implements OnInit {
 
         console.log(asp.idaspirante);
         this.http.put('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
-          resp => console.log(resp),
+          resp => {
+            console.log(resp)
+            this.loading=true;
+          },
           err => console.log(err)
     
         )
@@ -335,6 +342,7 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
 
   finalizar(){
+    this.loading=false;
     alert('DATOS PROFESIONALES GUARDADOS');
     this.miFormulario.reset();
     this.miFormularioFormacion.reset();
