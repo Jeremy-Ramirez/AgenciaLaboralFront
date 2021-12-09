@@ -29,6 +29,8 @@ export class RegistroFullAspiranteComponent implements OnInit {
 
   correos: any[]=[];
 
+  loading: boolean;
+
   miFormulario: FormGroup = this.fb.group({
     
     nombreusuario: ["", [Validators.required]],
@@ -54,7 +56,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
   })
 
   constructor(private http:HttpClient,private fb: FormBuilder) { 
-
+    this.loading=false;
     this.getGenero();
     //this.getTipodocumento();
     this.getProvincias();
@@ -182,7 +184,7 @@ get generoNoValido(){
 
       this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/', this.miFormulario.value).subscribe(
         (resp:any)=>{
-        
+          this.loading=true;
       setTimeout(()=>{ 
         this.getUsuarios();
         setTimeout(()=>{
@@ -200,6 +202,7 @@ get generoNoValido(){
 
       setTimeout(() => {
         alert('USUARIO CREADO')
+        this.loading=false;
         window.location.href='/aspirante/registroAspirante';
       }, 3000);
 
