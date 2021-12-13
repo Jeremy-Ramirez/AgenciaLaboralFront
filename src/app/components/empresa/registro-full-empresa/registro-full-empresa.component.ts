@@ -125,7 +125,8 @@ export class RegistroFullEmpresaComponent implements OnInit {
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
     celular:["",[Validators.required]],
     telefonooficina:["",[Validators.required]],
-    contrasenia:["", [Validators.required]],
+    contrasenia:["", [Validators.required]],    
+    estado_idestado: 1 
   })
 
   crear(){
