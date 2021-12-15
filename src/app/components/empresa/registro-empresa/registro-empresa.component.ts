@@ -17,6 +17,9 @@ export class RegistroEmpresaComponent implements OnInit {
   empresas:any[]=[];
   hide: boolean = true;
   comprobadorEmpresa = false;
+  usuarioActual:any;
+
+  
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -77,10 +80,11 @@ export class RegistroEmpresaComponent implements OnInit {
           this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
           }).subscribe((res: any)=>{
+          this.usuarioActual=res;
           //console.log(res.jwt)
           //console.log(this.getDecodedAccessToken(res.jwt));
           this.id=this.getDecodedAccessToken(res.jwt).id;
-          this.router.navigate(['/representante/sesionRepresentante'])
+          this.router.navigate(['/representante/sesionRepresentante/perfilRepresentante'])
           //console.log(res.id)
           },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));  
         }
