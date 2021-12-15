@@ -75,7 +75,7 @@ export class AutorizarComponent implements OnInit {
     //console.log(this.formEmpresa2.value);
     
     if (confirm('Está seguro de rechazar esta empresa?')) {
-      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/empresas/'+idempresa2, this.formEmpresa2.value).subscribe(
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+idempresa2, this.formEmpresa2.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
@@ -84,6 +84,7 @@ export class AutorizarComponent implements OnInit {
     } else {
       console.log('Thing was not saved to the database.');
     }
+    window.location.reload()
   }
     
 }
