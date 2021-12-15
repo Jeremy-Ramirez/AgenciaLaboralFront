@@ -1,6 +1,7 @@
 <br>
 <br>
 
+
 <div class="contenedor">
      
 
@@ -14,191 +15,190 @@
 <!-- </div>
 </div> -->
 
-
 <h1>Datos Personales</h1>
-
 <form autocomplete="off" class='formulario' >
 
 
 
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Usuario</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{usuarioActual.nombreusuario}}"
-        
-            >
-          
-           
-        </div>
-    </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Usuario</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.nombreusuario}}"
+                
+                    >
+                  
+                   
+                </div>
+            </div>
 
 
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Tipo de Documento</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{tipodocumentodesc}}"
-        
-            >
-          
-           
-        </div>
-    </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Tipo de Documento</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{tipodocumentodesc}}"
+                
+                    >
+                  
+                   
+                </div>
+            </div>
 
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Número de documento</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{usuarioActual.nodocumento}}"
-            
-            >
-          
-           
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Nombres</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{usuarioActual.nombre}}"
-            >
-          
-           
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Apellidos</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{usuarioActual.apellido}}"
-            
-            >
-          
-           
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Correo</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            value="{{usuarioActual.correo}}"
-            
-            
-            >
-          
-           
-        </div>
-    </div>
-
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Telefono</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-           
-            value={{usuarioActual.telefono}}
-            
-            >
-          
-           
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Dirección</label>
-        <div class="col-sm-9">
-            <input 
-            class="form-control"
-          
-            
-            value={{usuarioActual.direccion}}
-            
-            >
-          
-           
-        </div>
-    </div>
-
-
-
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Provincia</label>
-        <div class="col-sm-9">
-           
-            <select   >
-                <option value='{{provinciadesc}}'disabled selected >{{provinciadesc}}</option>
-                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                    {{p.nombreprovincia}}
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Número de documento</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.nodocumento}}"
                     
-                </option>
-            </select>
-           
-        </div>
-    </div>
+                    >
+                  
+                   
+                </div>
+            </div>
 
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Ciudad</label>
-        <div class="col-sm-9">
-           
-            <select   >
-                <option value='{{ciudadesdesc}}'disabled selected >{{ciudadesdesc}}</option>
-                <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
-                    {{c.nombreciudad}}
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Nombres</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.nombre}}"
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Apellidos</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.apellido}}"
                     
-                </option>
-            </select>
-           
-        </div>
-    </div>
+                    >
+                  
+                   
+                </div>
+            </div>
 
-
-
-
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Genero</label>
-        <div class="col-sm-9">
-           
-            <select   >
-                <option value='{{generodesc}}'disabled selected >{{generodesc}}</option>
-                <option *ngFor="let g of generos"  value="{{g.idgenero}}">
-                    {{g.genero}}
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Correo</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.correo}}"
                     
-                </option>
-            </select>
-           
-        </div>
-    </div>
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Telefono</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                   
+                    value={{usuarioActual.telefono}}
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Dirección</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    
+                    value={{usuarioActual.direccion}}
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Provincia</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{provinciadesc}}'disabled selected >{{provinciadesc}}</option>
+                        <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                            {{p.nombreprovincia}}
+                            
+                        </option>
+                    </select>
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Ciudad</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{ciudadesdesc}}'disabled selected >{{ciudadesdesc}}</option>
+                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                            {{c.nombreciudad}}
+                            
+                        </option>
+                    </select>
+                   
+                </div>
+            </div>
+
+
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Genero</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{generodesc}}'disabled selected >{{generodesc}}</option>
+                        <option *ngFor="let g of generos"  value="{{g.idgenero}}">
+                            {{g.genero}}
+                            
+                        </option>
+                    </select>
+                   
+                </div>
+            </div>
 
 
 </form>
+    
+
 
 
 
 <h1>Datos Profesionales</h1>
 
 <div class="contenedorInformacion" *ngFor="let a of aspirantes" >
-    <!-- <div *ngFor="let u of usuarios"> -->
     <div *ngIf="a.usuario_idusuario==usuarioActual.idusuario">
-        <div *ngIf="a.numerohijos != null">
+        <div *ngIf="a.numerohijos!= null">
             <p>Número de hijos: {{a.numerohijos}}</p>
             <p>Salario Mínimo Aceptado: {{a.salarioMinimoAceptado}}</p>
             <p>descripcion Perfil Profesional: {{a.descripcionPerfilProfesional}}</p>
@@ -228,7 +228,6 @@
         </div>
     
 </div>
-<!-- </div> -->
+
         
-</div>
-</div>
+

@@ -7,6 +7,7 @@ import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 import { GeneroService } from '../../../servicios/genero.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -41,6 +42,7 @@ export class PerfilAspiranteComponent implements OnInit {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
         this.usuarioActual=res;
+        console.log(this.usuarioActual)
         Emitters.authEmitter.emit(true);
 
         this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
@@ -83,11 +85,6 @@ export class PerfilAspiranteComponent implements OnInit {
 
 
 
-
-
-
-
-
       },
       err => {
         this.message = 'You are not logged in';
@@ -97,25 +94,12 @@ export class PerfilAspiranteComponent implements OnInit {
 
     
 
-
-
-
-
-
-
-
-
-
-
     this.getAspirantes();
     this.getUsuarios();
-    this.getAspirantes()
-    this.getArchivos()
+    this.getAspirantes();
+    this.getArchivos();
   }
 
-  
-
- 
 
   getAspirantes(){
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((resp:any)=>{

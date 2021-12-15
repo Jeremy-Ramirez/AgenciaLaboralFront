@@ -1,8 +1,7 @@
 
-<app-loading *ngIf="loading"></app-loading>
-
+<app-loading *ngIf="loading"></app-loading>    
 <div id="container" *ngIf="!siguiente">
-     
+ 
 
 
     <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
@@ -350,9 +349,12 @@
     <div class="mb-3 row" style="margin-left: 50px;">
         <div class="col-sm-9">
             <div *ngFor="let formaciones of listaFormaciones">
-
+                <!-- {{formaciones.centroeducativo}}
+                {{idAspirante}} -->
                 <div *ngIf="formaciones.aspirante_idaspirante == idAspirante">
+                    <!-- {{formaciones.centroeducativo}} -->
                     <div *ngFor="let niv of niveles">
+                        <!-- {{niv.descripcion}} -->
                         <div *ngIf="niv.idnivelestudios== formaciones.nivelestudios_idnivelestudios ">
                             <h3>{{niv.descripcion}}</h3>
                         </div>
@@ -363,10 +365,15 @@
                     <h4>{{formaciones.fechainicio}}</h4>
                     <h4>{{formaciones.fechacierre}}</h4>
                     <h4>{{formaciones.areaestudios}}</h4>
+                
+                <mat-icon class="field-icon" (click)="eliminarFormacion(formaciones.idformacionprofesional)">delete</mat-icon>
 
                 </div>
 
+
+
             </div>
+            
             
         </div>
     </div>

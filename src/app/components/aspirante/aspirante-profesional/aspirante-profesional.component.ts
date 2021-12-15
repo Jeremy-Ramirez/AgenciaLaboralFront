@@ -35,13 +35,14 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrectaInicio=true;
   fechaCorrectaCierre=true;
   siguiente=false;
-
   loading: boolean;
 
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
     private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
-      this.loading=false;
-     }
+      this.loading=true;
+  }
+  
+    
 
 
  
@@ -58,6 +59,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     profesiones_idprofesiones:["",[Validators.required]],
     idiomas:["",[Validators.required]],
     usuario_idusuario:null,
+    estadoaspirantes_idestadoaspirantes:2,
 
     
     /*nivelestudios_idnivelestudios: ["", [Validators.required]],
@@ -85,6 +87,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechainicio:["",[Validators.required]],
     fechacierre:["",[Validators.required]],
     aspirante_idaspirante:null,
+    
   })
 
   campoEsValido2(campo: string){
@@ -95,14 +98,16 @@ export class AspiranteProfesionalComponent implements OnInit {
 
  
   ngOnInit(): void {
+    this.getFormacionProfesional();
+    this.getAspirantes();
+    this.getNivelesEstudios();
+    
     /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
     )*/
-    this.suscription = this.formacionProfesionalService.refresh$.subscribe(()=>{
-      this.getFormacionProfesional();
-    })
+    
 
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -130,9 +135,11 @@ export class AspiranteProfesionalComponent implements OnInit {
       console.log(this.profesiones)
     })
 
-    this.getAspirantes();
-    this.getNivelesEstudios();
-    this.getFormacionProfesional();
+    this.suscription = this.formacionProfesionalService.refresh$.subscribe(()=>{
+      this.getFormacionProfesional();
+    })
+
+    
 
   }
 
@@ -160,7 +167,7 @@ export class AspiranteProfesionalComponent implements OnInit {
   getFormacionProfesional(){
     this.formacionProfesionalService.getFormacionProfesional().subscribe(listaFormaciones=>{
       this.listaFormaciones=listaFormaciones;
-      console.log(this.listaFormaciones)
+      console.log("FORMACION DEL USUARIO",this.listaFormaciones)
     })
   }
 
@@ -198,6 +205,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
     formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
     formData.append('usuario_idusuario',this.id)
+    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
 
 
     for(let asp of this.aspirantes){
@@ -205,10 +213,7 @@ export class AspiranteProfesionalComponent implements OnInit {
 
         console.log(asp.idaspirante);
         this.http.put('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
-          resp => {
-            console.log(resp)
-            this.loading=true;
-          },
+          resp => console.log(resp),
           err => console.log(err)
     
         )
@@ -255,6 +260,22 @@ export class AspiranteProfesionalComponent implements OnInit {
     
     
   
+  }
+
+  eliminarFormacion(event: Event){
+    if(confirm("¿Seguro desea eliminar el archivo?")){
+      for(let doc of this.listaFormaciones){
+        if(doc.idformacionprofesional == event){
+          this.listaFormaciones.splice(this.listaFormaciones.findIndex(item=> item.idformacionprofesional === event),1)
+          this.formacionProfesionalService.deleteFormacionProfesional(
+            event).subscribe(data=>{
+              
+              alert('Información de estudios Borrada')
+              
+            });
+        }
+      }
+    }
   }
 
 
@@ -342,7 +363,6 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
 
   finalizar(){
-    this.loading=false;
     alert('DATOS PROFESIONALES GUARDADOS');
     this.miFormulario.reset();
     this.miFormularioFormacion.reset();
@@ -356,12 +376,12 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   validarFechainicio(){
     
-    let fechaNacimiento=this.miFormularioFormacion.controls['fechainicio'].value
+    let fechaNacimiento=this.miFormulario.controls['fechanacimiento'].value
     console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]  
     
 
-    if(fechaActual<=this.miFormularioFormacion.controls['fechainicio'].value){
+    if(fechaNacimiento<this.miFormularioFormacion.controls['fechainicio'].value){
       this.fechaCorrectaInicio=true;
       
       console.log("entra")
