@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class AspiranteProfesionalComponent implements OnInit {
 
 
-  file: any;
+  file: any='';
   videoValido: boolean=true;
   fechaCorrecta=true;
   profesiones:any[]=[];
@@ -37,9 +37,23 @@ export class AspiranteProfesionalComponent implements OnInit {
   siguiente=false;
   loading: boolean;
 
+
+
+  Profesiones:any;
+  DescripcionProf:any;
+  Salario:any;
+  Video:any;
+  AniosExperiencia:any;
+  FechaNacimiento:any;
+  NumeroHijos:any;
+  PViajar:any;
+  PCambiar:any;
+  Idiomas:any;
+
+
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
     private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
-      this.loading=true;
+      this.loading=false;
   }
   
     
@@ -102,12 +116,22 @@ export class AspiranteProfesionalComponent implements OnInit {
     this.getAspirantes();
     this.getNivelesEstudios();
     
-    /*this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-      }
-    )*/
-    
+    this.NumeroHijos=this.miFormulario.get('numerohijos');
+    this.Salario=this.miFormulario.get('salarioMinimoAceptado');
+    this.DescripcionProf=this.miFormulario.get('descripcionPerfilProfesional');
+    this.Video=this.miFormulario.get('videopresentacion');
+    this.AniosExperiencia=this.miFormulario.get('aniosexperiencia');
+    this.FechaNacimiento=this.miFormulario.get('fechanacimiento');
+    this.PViajar=this.miFormulario.get('posibilidadviajar');
+    this.PCambiar=this.miFormulario.get('posibilidadcambioresidencia');
+    this.Profesiones=this.miFormulario.get('profesiones_idprofesiones');
+    this.Idiomas=this.miFormulario.get('idiomas');
+
+
+
+
+
+
 
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -193,7 +217,7 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   guardar(){
 
-    let formData= new FormData();
+    /*let formData= new FormData();
     formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
     formData.append('salarioMinimoAceptado',this.miFormulario.controls['salarioMinimoAceptado'].value)
     formData.append('descripcionPerfilProfesional',this.miFormulario.controls['descripcionPerfilProfesional'].value)
@@ -206,8 +230,9 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
     formData.append('usuario_idusuario',this.id)
     formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+*/
 
-
+/*
     for(let asp of this.aspirantes){
       if(asp.usuario_idusuario==this.id){
 
@@ -219,12 +244,12 @@ export class AspiranteProfesionalComponent implements OnInit {
         )
       }
 
-    }
+    }*/
 
     /*for(let formacion of this.listaFormaciones){
       this.guardarFormación(formacion)
     }*/
-    this.siguientePagina()
+    this.siguientePagina();
 
     
     
@@ -363,10 +388,81 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
 
   finalizar(){
-    alert('DATOS PROFESIONALES GUARDADOS');
+   /* alert('DATOS PROFESIONALES GUARDADOS');
     this.miFormulario.reset();
     this.miFormularioFormacion.reset();
-    this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+    this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);*/
+
+    let formData= new FormData();
+    formData.append('numerohijos',this.NumeroHijos.value)
+    formData.append('salarioMinimoAceptado',this.Salario.value)
+    formData.append('descripcionPerfilProfesional',this.DescripcionProf.value)
+    formData.append('aniosexperiencia',this.AniosExperiencia.value)
+    formData.append('fechanacimiento',this.FechaNacimiento.value)
+    formData.append('videopresentacion',this.file)
+    formData.append('posibilidadviajar',this.PViajar.value)
+    formData.append('posibilidadcambioresidencia',this.PCambiar.value)
+    formData.append('profesiones_idprofesiones',this.Profesiones.value)
+    formData.append('idiomas',this.Idiomas.value)
+    formData.append('usuario_idusuario',this.id)
+    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+
+
+
+    for(let asp of this.aspirantes){
+      if(asp.usuario_idusuario==this.id){
+
+        console.log(asp.idaspirante);
+          //verifica si el form esta lleno o no
+
+        if(
+        
+        this.Salario.value != '' || 
+        this.NumeroHijos.value !='' || 
+        this.DescripcionProf.value != '' ||
+        this.AniosExperiencia.value !=''||
+        this.FechaNacimiento.value!='' ||
+        this.file != null ||
+        this.PViajar.value != '' || 
+        this.PCambiar.value!= '' || 
+        this.Profesiones.value!= '' || 
+        this.Idiomas.value != '' 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ){
+          this.http.patch('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
+            resp => {
+              console.log(resp)
+            
+              alert('DATOS PROFESIONALES GUARDADOS');
+              this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+            
+            
+            },
+            err => {
+              console.log(err);
+              
+            }
+      
+          )
+        }else{
+          
+          alert('DATOS PROFESIONALES GUARDADOS');
+          this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+        }
+        
+      }
+
+    }
+
+
   }
 
 
