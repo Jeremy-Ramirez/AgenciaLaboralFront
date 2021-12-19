@@ -30,6 +30,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingComponent } from './loading/loading.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     
@@ -62,6 +64,8 @@ import { LoadingComponent } from './loading/loading.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
+    MatCardModule,
+    MatGridListModule,
   ],
 
 })
