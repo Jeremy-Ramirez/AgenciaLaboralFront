@@ -24,6 +24,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   profesiones:any[]=[];
   archivos:any[]=[];
   id: any;
+  profesiondesc='';
   archivoValido:boolean =true;
   suscription: Subscription; 
 
@@ -40,7 +41,9 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     private rutaActiva: ActivatedRoute,
     private archivosAspiranteService: ArchivosAspiranteService,
     public dialogRef: MatDialogRef<VistaPerfilAspiranteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},) {
+    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},
+    
+    ) {
     //this.idAspirante=3;
     console.log("hereda",this.idAspirante)
     this.loading=false;
@@ -61,6 +64,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     )*/
     this.id=this.data.aspiranteIndividual.idusuario
     console.log("ID DE LA DATAAAAA",this.id)
+    this.getProfesiones();
     this.getAspirantes();
     this.getUsuarios();
     this.getCategoria();
@@ -82,6 +86,12 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     for(let asp of this.aspirantes){
       if(this.usuariosId.idusuario==asp.usuario_idusuario){
         this.aspiranteId=asp;
+        for(let profesion of this.profesiones){
+          if(asp.profesiones_idprofesiones==profesion.idprofesiones){
+            this.profesiondesc=profesion.profesion
+          }
+
+        }
         console.log("ASPIRANTEID")
         console.log("ASPIRANTEID", this.aspiranteId)
 
@@ -120,6 +130,12 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     this.archivosAspiranteService.getArchivosAspirante().subscribe(archivos=>{
       this.archivos=archivos;
       console.log(this.archivos)
+    })
+  }
+  getProfesiones(){
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/').subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log(this.profesiones)
     })
   }
 
