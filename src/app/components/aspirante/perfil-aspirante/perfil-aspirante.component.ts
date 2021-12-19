@@ -7,6 +7,7 @@ import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 import { GeneroService } from '../../../servicios/genero.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+import { ProfesionesService } from 'src/app/servicios/profesiones.service';
 
 @Component({
   selector: 'app-perfil-aspirante',
@@ -28,12 +29,16 @@ export class PerfilAspiranteComponent implements OnInit {
   ciudades: any[]=[];
   ciudadesdesc='';
 
+  profesiones:any[]=[];
+  profesiondesc='';
+
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
     private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
-    private _generoService:GeneroService, private _ciudadService:CiudadService, private router: Router
+    private _generoService:GeneroService, private _ciudadService:CiudadService, private router: Router,
+    private _profesionesService:ProfesionesService,
     ) { }
 
   ngOnInit(): void {
@@ -81,6 +86,24 @@ export class PerfilAspiranteComponent implements OnInit {
               this.ciudadesdesc= c.nombreciudad
             }
           }
+        })
+        this._profesionesService.getProfesiones().subscribe((resp: any)=>{
+          this.profesiones= resp;
+          for(let a of this.aspirantes){
+            if(res.idusuario==a.usuario_idusuario){
+              for(let profesion of this.profesiones){
+                if(profesion.idprofesiones === a.profesiones_idprofesiones){
+                  this.profesiondesc= profesion.profesion
+                }
+    
+              }
+            }
+          }
+
+
+
+          
+          
         })
 
 
