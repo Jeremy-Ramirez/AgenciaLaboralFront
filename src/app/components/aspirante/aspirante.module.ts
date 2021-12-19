@@ -27,6 +27,10 @@ import { LoadingComponent } from './loading/loading.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 
+
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
+
 @NgModule({
   declarations: [
     
@@ -54,6 +58,8 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule,
     MatTableModule,
     MatInputModule,
+    AutocompleteLibModule,
+
   ],
 
 })
