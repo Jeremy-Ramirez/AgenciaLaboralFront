@@ -1,11 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
-import {MatCardModule} from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { NuevoPaqueteComponent } from '../nuevo-paquete/nuevo-paquete.component';
 import { Subscription } from 'rxjs';

@@ -32,6 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingComponent } from './loading/loading.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
+import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
 @NgModule({
   declarations: [
     
@@ -48,6 +50,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     VistaPerfilEmpresasComponent,
     PerfilAdministradorComponent,
     LoadingComponent,
+    PaquetePagoComponent,
+    NuevoPaqueteComponent,
   ],
   imports: [
     CommonModule,
