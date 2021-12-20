@@ -133,6 +133,7 @@ Valor:any;
     this.getFormacionProfesional();
     this.getAspirantes();
     this.getNivelesEstudios();
+    this.getProfesiones();
     
     this.NumeroHijos=this.miFormulario.get('numerohijos');
     this.Salario=this.miFormulario.get('salarioMinimoAceptado');
@@ -517,4 +518,17 @@ Valor:any;
     }
 
   }
+
+
+  getProfesiones():void{
+
+    this.data$= this._profesiones.getProfesiones();
+    /* this._profesiones.getProfesiones().subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log('PROFESIONES:',this.profesiones)
+    })
+*/
+  }
+
+
 }
