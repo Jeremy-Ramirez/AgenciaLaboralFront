@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import { FormacionProfesionalService } from '../../../servicios/formacion-profesional.service';
-import { Subscription } from 'rxjs';
+import { Subscription ,Observable} from 'rxjs';
+import {map,startWith,debounceTime} from 'rxjs/operators';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class AspiranteProfesionalComponent implements OnInit {
 
 
-  file: any;
+  file: any='';
   videoValido: boolean=true;
   fechaCorrecta=true;
   profesiones:any[]=[];
@@ -35,14 +36,46 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrectaInicio=true;
   fechaCorrectaCierre=true;
   siguiente=false;
-
   loading: boolean;
+
+
+
+  Profesiones:any;
+  DescripcionProf:any;
+  Salario:any;
+  Video:any;
+  AniosExperiencia:any;
+  FechaNacimiento:any;
+  NumeroHijos:any;
+  PViajar:any;
+  PCambiar:any;
+  Idiomas:any;
+
+
+  
+public keyword="profesion";
+
+
+
+public data$ :Observable<any[]>;
+Valor:any;
+
+
 
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
     private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
       this.loading=false;
-     }
+  }
+  
+    
 
+  selectEvent(item) {
+    // do something with selected item
+    //console.log(item.idprofesiones)
+    //item.idprofesiones=this.miFormulario.get('profesiones_idprofesiones').value
+    this.Valor= item.idprofesiones;
+    console.log(this.Valor)
+  }
 
  
   miFormulario: FormGroup= this.fb.group({
@@ -58,6 +91,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     profesiones_idprofesiones:["",[Validators.required]],
     idiomas:["",[Validators.required]],
     usuario_idusuario:null,
+    estadoaspirantes_idestadoaspirantes:2,
 
     
     /*nivelestudios_idnivelestudios: ["", [Validators.required]],
@@ -85,6 +119,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechainicio:["",[Validators.required]],
     fechacierre:["",[Validators.required]],
     aspirante_idaspirante:null,
+    
   })
 
   campoEsValido2(campo: string){
@@ -95,14 +130,27 @@ export class AspiranteProfesionalComponent implements OnInit {
 
  
   ngOnInit(): void {
-    /*this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-      }
-    )*/
-    this.suscription = this.formacionProfesionalService.refresh$.subscribe(()=>{
-      this.getFormacionProfesional();
-    })
+    this.getFormacionProfesional();
+    this.getAspirantes();
+    this.getNivelesEstudios();
+    this.getProfesiones();
+    
+    this.NumeroHijos=this.miFormulario.get('numerohijos');
+    this.Salario=this.miFormulario.get('salarioMinimoAceptado');
+    this.DescripcionProf=this.miFormulario.get('descripcionPerfilProfesional');
+    this.Video=this.miFormulario.get('videopresentacion');
+    this.AniosExperiencia=this.miFormulario.get('aniosexperiencia');
+    this.FechaNacimiento=this.miFormulario.get('fechanacimiento');
+    this.PViajar=this.miFormulario.get('posibilidadviajar');
+    this.PCambiar=this.miFormulario.get('posibilidadcambioresidencia');
+    this.Profesiones=this.miFormulario.get('profesiones_idprofesiones');
+    this.Idiomas=this.miFormulario.get('idiomas');
+
+
+
+
+
+
 
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -130,9 +178,11 @@ export class AspiranteProfesionalComponent implements OnInit {
       console.log(this.profesiones)
     })
 
-    this.getAspirantes();
-    this.getNivelesEstudios();
-    this.getFormacionProfesional();
+    this.suscription = this.formacionProfesionalService.refresh$.subscribe(()=>{
+      this.getFormacionProfesional();
+    })
+
+    
 
   }
 
@@ -160,7 +210,7 @@ export class AspiranteProfesionalComponent implements OnInit {
   getFormacionProfesional(){
     this.formacionProfesionalService.getFormacionProfesional().subscribe(listaFormaciones=>{
       this.listaFormaciones=listaFormaciones;
-      console.log(this.listaFormaciones)
+      console.log("FORMACION DEL USUARIO",this.listaFormaciones)
     })
   }
 
@@ -186,7 +236,7 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   guardar(){
 
-    let formData= new FormData();
+    /*let formData= new FormData();
     formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
     formData.append('salarioMinimoAceptado',this.miFormulario.controls['salarioMinimoAceptado'].value)
     formData.append('descripcionPerfilProfesional',this.miFormulario.controls['descripcionPerfilProfesional'].value)
@@ -198,28 +248,27 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
     formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
     formData.append('usuario_idusuario',this.id)
+    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+*/
 
-
+/*
     for(let asp of this.aspirantes){
       if(asp.usuario_idusuario==this.id){
 
         console.log(asp.idaspirante);
         this.http.put('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
-          resp => {
-            console.log(resp)
-            this.loading=true;
-          },
+          resp => console.log(resp),
           err => console.log(err)
     
         )
       }
 
-    }
+    }*/
 
     /*for(let formacion of this.listaFormaciones){
       this.guardarFormación(formacion)
     }*/
-    this.siguientePagina()
+    this.siguientePagina();
 
     
     
@@ -245,8 +294,10 @@ export class AspiranteProfesionalComponent implements OnInit {
 
         this.formacionProfesionalService.postFormacionProfesional(
           this.miFormularioFormacion.value).subscribe(data=>{
+            this.loading=true;
             console.log("Datos del post",data)
             this.miFormularioFormacion.reset();
+            this.loading=false;
           });
         
       }
@@ -255,6 +306,22 @@ export class AspiranteProfesionalComponent implements OnInit {
     
     
   
+  }
+
+  eliminarFormacion(event: Event){
+    if(confirm("¿Seguro desea eliminar el archivo?")){
+      for(let doc of this.listaFormaciones){
+        if(doc.idformacionprofesional == event){
+          this.listaFormaciones.splice(this.listaFormaciones.findIndex(item=> item.idformacionprofesional === event),1)
+          this.formacionProfesionalService.deleteFormacionProfesional(
+            event).subscribe(data=>{
+              
+              alert('Información de estudios Borrada')
+              
+            });
+        }
+      }
+    }
   }
 
 
@@ -341,12 +408,71 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   }
 
+
+
+  guardarInfoProfesional(){
+
+    let formData= new FormData();
+    formData.append('numerohijos',this.NumeroHijos.value)
+    formData.append('salarioMinimoAceptado',this.Salario.value)
+    formData.append('descripcionPerfilProfesional',this.DescripcionProf.value)
+    formData.append('aniosexperiencia',this.AniosExperiencia.value)
+    formData.append('fechanacimiento',this.FechaNacimiento.value)
+    formData.append('videopresentacion',this.file)
+    formData.append('posibilidadviajar',this.PViajar.value)
+    formData.append('posibilidadcambioresidencia',this.PCambiar.value)
+    formData.append('profesiones_idprofesiones',this.Profesiones.value.idprofesiones)
+    formData.append('idiomas',this.Idiomas.value)
+    formData.append('usuario_idusuario',this.id)
+    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+
+    //formData.set('profesiones_idprofesiones','1');
+      console.log(this.NumeroHijos.value)
+      console.log(this.Profesiones.value.idprofesiones)
+
+    
+
+    for(let asp of this.aspirantes){
+      if(asp.usuario_idusuario==this.id){
+
+        console.log(asp.idaspirante);
+          //verifica si el form esta lleno o no
+
+       
+          this.http.patch('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
+            resp => {
+              this.loading=true;
+              console.log(resp)
+            
+              alert('DATOS PROFESIONALES GUARDADOS');
+              this.loading=false;
+              this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+            
+            
+            },
+            err => {
+              console.log(err);
+              
+            }
+      
+          )
+      
+      
+        
+      }
+
+    }
+
+  }
+
+
+
+
   finalizar(){
-    this.loading=false;
+   
     alert('DATOS PROFESIONALES GUARDADOS');
-    this.miFormulario.reset();
-    this.miFormularioFormacion.reset();
     this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+
   }
 
 
@@ -356,12 +482,12 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   validarFechainicio(){
     
-    let fechaNacimiento=this.miFormularioFormacion.controls['fechainicio'].value
+    let fechaNacimiento=this.miFormulario.controls['fechanacimiento'].value
     console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]  
     
 
-    if(fechaActual<=this.miFormularioFormacion.controls['fechainicio'].value){
+    if(fechaNacimiento<this.miFormularioFormacion.controls['fechainicio'].value){
       this.fechaCorrectaInicio=true;
       
       console.log("entra")
@@ -392,4 +518,17 @@ export class AspiranteProfesionalComponent implements OnInit {
     }
 
   }
+
+
+  getProfesiones():void{
+
+    this.data$= this._profesiones.getProfesiones();
+    /* this._profesiones.getProfesiones().subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log('PROFESIONES:',this.profesiones)
+    })
+*/
+  }
+
+
 }

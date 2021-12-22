@@ -9,7 +9,6 @@ import { RegistroAspiranteComponent } from './registro-aspirante/registro-aspira
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
-import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 
 
 const routes: Routes = [

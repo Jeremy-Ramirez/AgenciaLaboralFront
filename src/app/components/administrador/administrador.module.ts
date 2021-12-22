@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -28,8 +28,12 @@ import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perf
 import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { LoadingComponent } from './loading/loading.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
+import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
 @NgModule({
   declarations: [
     
@@ -45,6 +49,9 @@ import { MatInputModule } from '@angular/material/input';
     AutorizarComponent,
     VistaPerfilEmpresasComponent,
     PerfilAdministradorComponent,
+    LoadingComponent,
+    PaquetePagoComponent,
+    NuevoPaqueteComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +66,10 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule,
     MatTableModule,
     MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    MatCardModule,
+    MatGridListModule,
   ],
 
 })

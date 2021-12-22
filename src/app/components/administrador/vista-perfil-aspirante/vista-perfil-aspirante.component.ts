@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ArchivosAspiranteService } from 'src/app/servicios/archivos-aspirante.service';
@@ -18,34 +19,58 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   aspirantes:any[]=[];
   usuarios:any[]=[];
   usuariosId:any;
+  aspiranteId:any;
   categoria:any[]=[];
   profesiones:any[]=[];
   archivos:any[]=[];
-  id='';
+  id: any;
+  profesiondesc='';
   archivoValido:boolean =true;
   suscription: Subscription; 
-  
 
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
-    private archivosAspiranteService: ArchivosAspiranteService) {
+  loading: boolean;
+  date = new Date();
+  dd = String(this.date.getDate()).padStart(2, '0');
+  mm = String(this.date.getMonth() + 1).padStart(2, '0'); //January is 0!
+  yyyy = this.date.getFullYear();
+
+
+  constructor(
+    private http:HttpClient,
+    private fb: FormBuilder,
+    private rutaActiva: ActivatedRoute,
+    private archivosAspiranteService: ArchivosAspiranteService,
+    public dialogRef: MatDialogRef<VistaPerfilAspiranteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},
+    
+    ) {
     //this.idAspirante=3;
     console.log("hereda",this.idAspirante)
+    this.loading=false;
 
 
    }
+
+  cancelar() {
+    this.dialogRef.close();
+  }
   
 
-   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+  ngOnInit(): void {
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+    this.id=this.data.aspiranteIndividual.idusuario
+    console.log("ID DE LA DATAAAAA",this.id)
+    this.getProfesiones();
     this.getAspirantes();
     this.getUsuarios();
     this.getCategoria();
     this.getUsuariosId();
     this.getArchivos();
+    this.getAspiranteporId();
 
     this.suscription = this.archivosAspiranteService.refresh$.subscribe(()=>{
       this.getArchivos();
@@ -54,6 +79,25 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   ngOnDestroy():void{
     this.suscription.unsubscribe();
     console.log('Observable cerrado');
+  }
+
+
+  getAspiranteporId(){
+    for(let asp of this.aspirantes){
+      if(this.usuariosId.idusuario==asp.usuario_idusuario){
+        this.aspiranteId=asp;
+        for(let profesion of this.profesiones){
+          if(asp.profesiones_idprofesiones==profesion.idprofesiones){
+            this.profesiondesc=profesion.profesion
+          }
+
+        }
+        console.log("ASPIRANTEID")
+        console.log("ASPIRANTEID", this.aspiranteId)
+
+      }
+
+    }
   }
 
 
@@ -78,6 +122,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/'+ this.id).subscribe((resp:any)=>{
       this.usuariosId=resp;
       console.log(this.usuariosId)
+      this.getAspiranteporId();
     })
   }
 
@@ -85,6 +130,12 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     this.archivosAspiranteService.getArchivosAspirante().subscribe(archivos=>{
       this.archivos=archivos;
       console.log(this.archivos)
+    })
+  }
+  getProfesiones(){
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/').subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log(this.profesiones)
     })
   }
 
@@ -112,7 +163,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     nombredocumento: ["", [Validators.required]],
     categoriaDocumento_idcategoriadocumento: ["", [Validators.required]],
     archivo:["",[Validators.required, Validators.pattern("^.*\.(pdf|docx)$")]],
-    fechacreacion:["",[Validators.required]],
+    fechacreacion:[""],
     aspirante_idaspirante:1,
     usuario_idusuario:1,
 
@@ -149,53 +200,59 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
 
  subirArchivo(){
 
-  for (let asp of this.aspirantes){
-    if(asp.usuario_idusuario==this.id){
+    for (let asp of this.aspirantes){
+      if(asp.usuario_idusuario==this.id){
 
-      let formData= new FormData();
-      formData.append('nombredocumento',this.miFormulario.controls['nombredocumento'].value)
-      formData.append('categoriaDocumento_idcategoriadocumento',this.miFormulario.controls['categoriaDocumento_idcategoriadocumento'].value)
-      formData.append('fechacreacion',this.miFormulario.controls['fechacreacion'].value)
-      formData.append('aspirante_idaspirante',asp.idaspirante)
-      formData.append('usuario_idusuario',this.id)
-      formData.append('archivo',this.file)
-  
-  
-      console.log(this.miFormulario.value);
-      this.archivosAspiranteService.postArchivosAspirante(
-        formData).subscribe(data=>{
-          console.log("Datos del post",data)
-          alert('Archivo Guardado')
-          this.miFormulario.reset();
-        });
-    }
-  }
-
-
-
-
-  
-  
-
-}
-
- 
-
-eliminarArchivo(event: Event){
-  if(confirm("¿Seguro desea eliminar el archivo?")){
-    for(let doc of this.archivos){
-      if(doc.idarchivosaspirante == event){
-        this.archivos.splice(this.archivos.findIndex(item=> item.idarchivosaspirante === event),1)
-        this.archivosAspiranteService.deleteArchivosAspirante(
-          event).subscribe(data=>{
-            
-            alert('Archivo Borrado')
-            
+        let formData= new FormData();
+        formData.append('nombredocumento',this.miFormulario.controls['nombredocumento'].value)
+        formData.append('categoriaDocumento_idcategoriadocumento',this.miFormulario.controls['categoriaDocumento_idcategoriadocumento'].value)
+        formData.append('fechacreacion', this.yyyy + '-' + this.mm + '-' + this.dd)
+        formData.append('aspirante_idaspirante',asp.idaspirante)
+        formData.append('usuario_idusuario',this.id)
+        formData.append('archivo',this.file)
+    
+    
+        console.log(this.miFormulario.value);
+        this.loading=true;
+        this.archivosAspiranteService.postArchivosAspirante(
+          formData).subscribe(data=>{
+            //this.loading=true;
+            console.log("Datos del post",data)
+            this.loading=false;
+            alert('Archivo Guardado')
+            this.miFormulario.reset();
           });
       }
     }
+
+    
+    
+  
   }
-}
+
+  eliminarArchivo(event: Event){
+    if(confirm("¿Seguro desea eliminar el archivo?")){
+      for(let doc of this.archivos){
+        if(doc.idarchivosaspirante == event){
+          this.archivos.splice(this.archivos.findIndex(item=> item.idarchivosaspirante === event),1)
+          this.archivosAspiranteService.deleteArchivosAspirante(
+            event).subscribe(data=>{
+              
+              alert('Archivo Borrado')
+              
+            });
+        }
+      }
+    }
+  }
+
+
+
+  
+
+ 
+
+
   
 
 

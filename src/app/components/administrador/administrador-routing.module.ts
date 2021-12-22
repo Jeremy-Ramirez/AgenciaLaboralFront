@@ -13,6 +13,7 @@ import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante
 import { AutorizarComponent } from './autorizar/autorizar.component';
 import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
 import { SugerenciasComentariosComponent } from '../aspirante/sugerencias-comentarios/sugerencias-comentarios.component';
+import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
 
 
 const routes: Routes = [
@@ -27,12 +28,15 @@ const routes: Routes = [
             { path: 'aspirantesNuevos', component: AspirantesNuevosComponent},
             { path: 'asignarAspirante', component: AsignarAspiranteComponent},
             { path: 'perfilAdministrador', component: PerfilAdministradorComponent},
-            { path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
+            //{ path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
+            { path: 'perfilAspirante', component: VistaPerfilAspiranteComponent},
             { path: 'perfilEmpresa/:id', component: VistaPerfilEmpresasComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
             { path: 'revisarempresas', component: RevisarEmpresasComponent},
             { path: 'sugerencias', component: RevisarSugerenciasComponent},
             { path: 'autorizarEmpresas', component: AutorizarComponent},
+            { path: 'paquetePago', component: PaquetePagoComponent},
+            //{ path: 'nuevoPaquete', component: NuevoPaqueteComponent},
           ]
         },
         { path: 'registroAdministrador', component: RegistroAdministradorComponent },

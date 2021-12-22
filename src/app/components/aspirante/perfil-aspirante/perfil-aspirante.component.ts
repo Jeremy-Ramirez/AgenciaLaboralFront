@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 import { GeneroService } from '../../../servicios/genero.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+import { ProfesionesService } from 'src/app/servicios/profesiones.service';
+
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -27,12 +29,16 @@ export class PerfilAspiranteComponent implements OnInit {
   ciudades: any[]=[];
   ciudadesdesc='';
 
+  profesiones:any[]=[];
+  profesiondesc='';
+
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
     private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
-    private _generoService:GeneroService, private _ciudadService:CiudadService
+    private _generoService:GeneroService, private _ciudadService:CiudadService, private router: Router,
+    private _profesionesService:ProfesionesService,
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +47,7 @@ export class PerfilAspiranteComponent implements OnInit {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
         this.usuarioActual=res;
+        console.log(this.usuarioActual)
         Emitters.authEmitter.emit(true);
 
         this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
@@ -80,11 +87,24 @@ export class PerfilAspiranteComponent implements OnInit {
             }
           }
         })
+        this._profesionesService.getProfesiones().subscribe((resp: any)=>{
+          this.profesiones= resp;
+          for(let a of this.aspirantes){
+            if(res.idusuario==a.usuario_idusuario){
+              for(let profesion of this.profesiones){
+                if(profesion.idprofesiones === a.profesiones_idprofesiones){
+                  this.profesiondesc= profesion.profesion
+                }
+    
+              }
+            }
+          }
 
 
 
-
-
+          
+          
+        })
 
 
 
@@ -97,25 +117,12 @@ export class PerfilAspiranteComponent implements OnInit {
 
     
 
-
-
-
-
-
-
-
-
-
-
     this.getAspirantes();
     this.getUsuarios();
-    this.getAspirantes()
-    this.getArchivos()
+    this.getAspirantes();
+    this.getArchivos();
   }
 
-  
-
- 
 
   getAspirantes(){
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((resp:any)=>{
@@ -151,6 +158,8 @@ export class PerfilAspiranteComponent implements OnInit {
     })
   }*/
 
-  
+  editarProfesional(){
+    this.router.navigate( [`/aspirante/sesionAspirante/aspiranteProfesional`]);
+  }
 
 }

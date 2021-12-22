@@ -24,6 +24,12 @@ import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.co
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 import { LoadingComponent } from './loading/loading.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+
+
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +56,10 @@ import { LoadingComponent } from './loading/loading.component';
     MatListModule,
     AspiranteRoutingModule,
     RouterModule,
+    MatTableModule,
+    MatInputModule,
+    AutocompleteLibModule,
+
   ],
 
 })

@@ -193,7 +193,7 @@ get generoNoValido(){
       
       console.log(idFinal)
       let formData = new FormData();
-
+      formData.append("estadoaspirantes_idestadoaspirantes",'2')
       formData.append("usuario_idusuario",idFinal)
       this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
         resp => console.log(resp),
