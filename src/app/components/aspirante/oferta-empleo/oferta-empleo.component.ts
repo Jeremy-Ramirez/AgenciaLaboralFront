@@ -11,7 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class OfertaEmpleoComponent implements OnInit {
   aspirantessolicitados:any[]=[]; 
-  aspirantessolicitados2:any[]=[]; 
   idUsuariologeado ='';
   idAspirante ='';
   idAspiranteSolicitados ='';
@@ -21,6 +20,8 @@ export class OfertaEmpleoComponent implements OnInit {
   listaRepresentantes:any[]=[];
   listaEmpresas:any[]=[];
   listaProfesiones:any[]=[];
+  listaCiudades:any[]=[];
+  listaProvincias:any[]=[];
   listaNivel:any[]=[];
   constructor(
     private _aspirantessolicitadosService: AspirantessolicitadosService,
@@ -35,7 +36,6 @@ export class OfertaEmpleoComponent implements OnInit {
    
     this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
       this.aspirantessolicitados=resp
-      this.aspirantessolicitados2=resp
 
       this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/').subscribe((respSolicitudes:any)=>{
         this.listaSolicitudes=respSolicitudes;
@@ -55,10 +55,15 @@ export class OfertaEmpleoComponent implements OnInit {
       this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/nivelestudios/').subscribe((respNivel:any)=>{
         this.listaNivel=respNivel;
       })
+      this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/ciudades/').subscribe((respCiudades:any)=>{
+        this.listaCiudades=respCiudades;
+      })
+      this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/provincias/').subscribe((respProvincias:any)=>{
+        this.listaProvincias=respProvincias;
+      })
       this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe((resp2:any)=>{
         this.idUsuariologeado= resp2.idusuario;
         this.addhtml();
-        //this.addhtml2()
       })
       
     });
@@ -72,36 +77,6 @@ export class OfertaEmpleoComponent implements OnInit {
     estado_idestado: 3
   })
   
-  yanosirve(){
-    console.log(this.aspirantessolicitados2[2])
-    for(let i=0;i<this.aspirantessolicitados2.length;i++){
-      if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante
-        && this.aspirantessolicitados2[i].estado_idestado.estado =="activo"){
-        var oferta = new OfertaView();
-        oferta.id = i;
-        oferta.cargo= this.aspirantessolicitados2[i].solicitud_idsolicitud.cargo
-        oferta.profesion =this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion
-        oferta.descripcioncargo =this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo
-        oferta.nivelestudios = this.aspirantessolicitados2[i].solicitud_idsolicitud.nivelestudios_idnivelestudios.descripcion
-        oferta.jornada = this.aspirantessolicitados2[i].solicitud_idsolicitud.jornada
-        oferta.licencia = this.aspirantessolicitados2[i].solicitud_idsolicitud.licencia
-        oferta.idiomas = this.aspirantessolicitados2[i].solicitud_idsolicitud.idiomas
-        oferta.discapacidad = this.aspirantessolicitados2[i].solicitud_idsolicitud.discapacidad
-        oferta.posibilidadviajar = this.aspirantessolicitados2[i].solicitud_idsolicitud.posibilidadviajar        
-        oferta.posibilidadcambioresidencia = this.aspirantessolicitados2[i].solicitud_idsolicitud.posibilidadcambioresidencia
-        oferta.nombreEmpresa = this.aspirantessolicitados2[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial
-        oferta.fechainicio = this.aspirantessolicitados2[i].solicitud_idsolicitud.fechainicio
-        oferta.fechacierre = this.aspirantessolicitados2[i].solicitud_idsolicitud.fechacierre
-        
-
-
-
-        this.ofertasEmpleo.push(oferta);
-      }
-      
-    }
-  }
-
   addhtml(){
   var cont = 1; 
   for(let i=0;i<this.aspirantessolicitados.length;i++){
@@ -129,6 +104,23 @@ export class OfertaEmpleoComponent implements OnInit {
                   oferta.nivelestudios = this.listaNivel[n].descripcion
                 }
               } 
+              
+              for(let c=0;c<this.listaCiudades.length;c++){
+                if(this.listaCiudades[c].idciudad==this.listaSolicitudes[x].ciudad_idciudad){
+                  oferta.ciudad = this.listaCiudades[c].nombreciudad
+                 
+                }
+              } 
+              for(let c=0;c<this.listaProvincias.length;c++){
+                if(this.listaProvincias[c].idprovincia==this.listaSolicitudes[x].provincia_idprovincia){
+                  oferta.provincia = this.listaProvincias[c].nombreprovincia
+                  console.log(oferta.provincia)
+                }
+              } 
+              oferta.aniosexperiencia = this.listaSolicitudes[x].aniosexperiencia
+              oferta.rangoedad = this.listaSolicitudes[x].rangoedad
+              oferta.experticia = this.listaSolicitudes[x].experticia
+              oferta.sueldo = this.listaSolicitudes[x].sueldo
               
               oferta.jornada = this.listaSolicitudes[x].jornada
               oferta.licencia = this.listaSolicitudes[x].licencia

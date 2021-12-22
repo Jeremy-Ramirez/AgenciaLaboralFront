@@ -23,6 +23,7 @@ import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.componen
 import { InformacionComponent } from './informacion/informacion.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 import { EditPassComponent } from './edit-pass/edit-pass.component';
+import { SolicitudEmpresaComponent } from './solicitud-empresa/solicitud-empresa.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { EditPassComponent } from './edit-pass/edit-pass.component';
     InformacionComponent,
     SugerenciasComentariosComponent,
     EditPassComponent,
-    
+    SolicitudEmpresaComponent,
 
   ],
   imports: [
