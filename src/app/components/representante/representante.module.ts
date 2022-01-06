@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     MatInputModule,
     MatDialogModule,
     FormsModule,
+    AutocompleteLibModule,
     
   ],
 })
