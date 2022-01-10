@@ -1,45 +1,46 @@
-<div class="col-sm-9">
-  <h4><small>OFERTAS DE EMPLEO</small></h4>
-  <div class="inner-addon right-addon">
-      <i class="glyphicon glyphicon-search"></i>
-      <input type="text" class="form-control" placeholder="Search" />
-  </div>
-  
-  <h4><small>OFERTAS DE EMPLEO</small></h4>
-  <div  *ngFor= "let i of ofertasEmpleo" >
-    <div class="card" *ngIf="i.estado===1" >        
-     
-      <div class="card-body"  > 
-          <h2 class="card-title">Cargo: {{i.cargo}}</h2>
-          <h3>{{i.profesion}}</h3> 
-          <p></p>
-          <ul>
-            <li >Descripción: {{i.descripcioncargo}}</li>
+<div class="contenedor">
+  <div class="col-sm-9">
+    <h2 class="ofertas-empleo">OFERTAS DE EMPLEO</h2>
+    <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"> </i>
+        <input type="text" class="form-control" placeholder="Buscar vacantes de empleo" />
+    </div>
+    
+    <div  *ngFor= "let i of ofertasEmpleo" >
+      <div class="card" *ngIf="i.estado===1" >        
+       
+        <div class="card-body"  > 
+            <h2 class="card-title">Cargo: {{i.cargo}}</h2>
+            <h3>{{i.profesion}}</h3> 
             <p></p>
-            <li >Años de experiencia: {{i.aniosexperiencia}} años</li>
-            <li >Rando de edad: {{i.rangoedad}}</li>
-            <li >Experticia: {{i.experticia}}</li>              
-            <li >Educacion minima: {{i.nivelestudios}}</li>
-            <li >Sueldo: {{i.sueldo}} USD</li>
-            <li >Ciudad: {{i.ciudad}}</li>
-            <li >Provincia: {{i.provincia}}</li>
-            <li >Jornada:  {{i.jornada}} </li>
-            <li >Licencia: {{i.licencia}}</li>
-            <li >Idiomas: {{i.idiomas}}</li>
-            <li >Personas con discapacidad: {{i.discapacidad}}</li>
-            <li >Disponibilidad de viajar: {{i.posibilidadviajar}} </li>              
-            <li >Disponibilidad de cambio de residencia: {{i.posibilidadcambioresidencia}} </li>
-          </ul>
-          <p class="card-text">Empresa: {{i.nombreEmpresa}}</p>
-          <ul>
-            <li>Fecha de inicio {{i.fechainicio}}</li>
-            <li>Fecha de cierre {{i.fechacierre}}</li>
-          </ul>
+            <ul>
+              <li >Descripción: {{i.descripcioncargo}}</li>
+              <p></p>
+              <li >Años de experiencia: {{i.aniosexperiencia}} años</li>
+              <li >Rando de edad: {{i.rangoedad}}</li>
+              <li >Experticia: {{i.experticia}}</li>              
+              <li >Educacion minima: {{i.nivelestudios}}</li>
+              <li >Sueldo: {{i.sueldo}} USD</li>
+              <li >Ciudad: {{i.ciudad}}</li>
+              <li >Provincia: {{i.provincia}}</li>
+              <li >Jornada:  {{i.jornada}} </li>
+              <li >Licencia: {{i.licencia}}</li>
+              <li >Idiomas: {{i.idiomas}}</li>
+              <li >Personas con discapacidad: {{i.discapacidad}}</li>
+              <li >Disponibilidad de viajar: {{i.posibilidadviajar}} </li>              
+              <li >Disponibilidad de cambio de residencia: {{i.posibilidadcambioresidencia}} </li>
+            </ul>
+            <p class="card-text">Empresa: {{i.nombreEmpresa}}</p>
+            <ul>
+              <li>Fecha de inicio {{i.fechainicio}}</li>
+              <li>Fecha de cierre {{i.fechacierre}}</li>
+            </ul>
 
-          <button class="button" (click)="aceptar(i.id)" >Aceptar</button>
-          <button class="button2" (click)="rechazar(i.id)">Rechazar</button>
-      </div>
+            <button class="button" (click)="aceptar(i.id)" >Aceptar</button>
+            <button class="button2" (click)="rechazar(i.id)">Rechazar</button>
+        </div>
+    </div>
+    </div>
+    
   </div>
-  </div>
-  
 </div>
