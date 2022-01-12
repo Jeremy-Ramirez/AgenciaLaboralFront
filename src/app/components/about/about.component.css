@@ -19,7 +19,7 @@ img{
 
 #about{
     display: block;
-    background: url('static/img/business-leader-interviewing-job-candidate-scaled.jpg');
+    background: url('/static/img/business-leader-interviewing-job-candidate-scaled.jpg');
     background-size: cover;
     position: relative;
 
