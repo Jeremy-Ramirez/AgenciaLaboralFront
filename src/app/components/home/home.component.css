@@ -1,7 +1,7 @@
 .banner{
     height: 100vh;
     /*background-image: url('src/img/banner.png');*/
-    background-image: url('src/assets/img/banner.jpg');
+    background-image: url('/static/img/banner.jpg');
     background-size: cover;
     position: relative;
     background-attachment: fixed;
