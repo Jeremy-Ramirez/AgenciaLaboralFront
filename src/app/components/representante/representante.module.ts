@@ -32,6 +32,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LoadingComponent } from './loading/loading.component';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { FootComponent } from './foot/foot.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-pe
     SolicitudComponent,
     VistaPerfilAspiranteComponent,
     LoadingComponent,
+    FootComponent,
 
 
   ],

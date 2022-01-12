@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { FootComponent } from './foot/foot.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     SugerenciasComentariosComponent,
     AspiranteProfesionalComponent,
     LoadingComponent,
+    FootComponent,
   ],
   imports: [
     CommonModule,

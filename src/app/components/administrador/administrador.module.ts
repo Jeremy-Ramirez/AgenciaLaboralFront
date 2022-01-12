@@ -35,6 +35,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
 import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
 import { EditarPaqueteComponent } from './editar-paquete/editar-paquete.component';
+import { FootComponent } from './foot/foot.component';
 @NgModule({
   declarations: [
     
@@ -54,6 +55,7 @@ import { EditarPaqueteComponent } from './editar-paquete/editar-paquete.componen
     PaquetePagoComponent,
     NuevoPaqueteComponent,
     EditarPaqueteComponent,
+    FootComponent,
   ],
   imports: [
     CommonModule,
