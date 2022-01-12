@@ -30,6 +30,8 @@ import { SolicitudesContratacionComponent } from './solicitudes-contratacion/sol
 import { MatDialogModule } from '@angular/material/dialog';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { LoadingComponent } from './loading/loading.component';
+import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     FiltroComponent,
     SolicitudesContratacionComponent,
     SolicitudComponent,
+    VistaPerfilAspiranteComponent,
+    LoadingComponent,
 
 
   ],
