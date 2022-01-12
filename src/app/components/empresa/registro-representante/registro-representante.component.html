@@ -1,9 +1,14 @@
-<div class="row">
-    <div class="col">
+<div class="row container">
+    <div class="col container2">
+
+        <div id="containerTitulo">
+            <img id="titulo" src="static/img/Iconos agencia laboral-81.png" alt="Agregar Representante">
+        </div>
 
         <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
             
-            <!-- Campo de producto -->
+            <div id="datos">
+                <!-- Campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Tipo de Documento</label>
                 <div class="col-sm-9">
@@ -24,6 +29,25 @@
 
             <!-- Campo de producto -->
             <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Tipo de Persona</label>
+                <div class="col-sm-9">
+                    
+                    <select name="doc" id="doc" formControlName="tipopersona_idtipopersona">
+                        <option *ngFor="let tipo of tipoPersona" value="{{tipo.idtipopersona}}">
+                            {{tipo.descripcion}}
+                        </option>
+                    </select>
+
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('tipopersona_idtipopersona')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">No de Documento</label>
                 <div class="col-sm-9">
                     <input type="text"
@@ -35,8 +59,11 @@
                     <span class="form-text text-danger"
                         *ngIf="!validador">
                         
-                        Campo Requerido
+                        Escriba un número de documento válido
                     </span>
+                    <small *ngIf="campoEsValido('nodocumento')" class="text-danger">
+                        Campo Obligatorio
+                    </small>
                 </div>
             </div>
 
@@ -117,18 +144,20 @@
                     </span>
                 </div>
             </div> -->
+            </div>
 
             
             
 
 
             <div class="row">
-                <div class="col">
+                <div class="col buttonContainer">
                     <button type="submit" class="btn btn-primary float-end" (click)="createUsuario()"
-            [disabled]="miFormulario.invalid "
-            >
-                Registrar Representante
-            </button>
+                            
+                    [disabled]="miFormulario.invalid "
+                    >
+                        Registrar Representante
+                    </button>
                     
                             
                         

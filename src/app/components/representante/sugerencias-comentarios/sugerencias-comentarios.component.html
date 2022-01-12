@@ -5,7 +5,9 @@
 
             <!-- Campo de existencias -->
             <div class="mb-3 row">
-                <h1>Sugerencias y Comentarios</h1>
+                <!-- <h1>Sugerencias y Comentarios</h1> -->
+                <img id="titulo" src="static/img/Iconos agencia laboral-105.png" alt="">
+
             </div>
 
             <div class="mb-3 row">
@@ -56,13 +58,13 @@
                            *ngIf="campoEsValido('imagen')">
                            
                            El archivo debe ser una imagen.
-                        </span>
-                        <span class="form-text text-danger"
+                       </span>
+                       <span class="form-text text-danger"
                            *ngIf="!imagenValida">
                            
                            El archivo supera los 6Mb.
                            
-                        </span>
+                       </span>
                 </div>
             </div>
 
@@ -73,6 +75,7 @@
                             class="btn btn-primary float-end" 
                             (click)="createSugerencia()"
                             [disabled]="miFormulario.invalid || !imagenValida"
+                            
                             >
                             
                         Guardar

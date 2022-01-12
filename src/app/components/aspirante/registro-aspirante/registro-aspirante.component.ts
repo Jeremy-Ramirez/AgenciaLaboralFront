@@ -33,7 +33,14 @@ export class RegistroAspiranteComponent implements OnInit {
       'Content-Type' : 'Application/json'
     })
   };
-  constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute, private router: Router){ }
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient, 
+    private rutaActiva: ActivatedRoute, 
+    private router: Router
+    ){
+
+    }
   
   
 
