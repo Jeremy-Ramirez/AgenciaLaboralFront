@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { AspirantesAceptadosComponent } from './aspirantes-aceptados/aspirantes-aceptados.component';
@@ -28,14 +29,19 @@ import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perf
 import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingComponent } from './loading/loading.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
-import { EditarPaqueteComponent } from './editar-paquete/editar-paquete.component';
+import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
 import { FootComponent } from './foot/foot.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
+
 @NgModule({
   declarations: [
     
@@ -54,7 +60,6 @@ import { FootComponent } from './foot/foot.component';
     LoadingComponent,
     PaquetePagoComponent,
     NuevoPaqueteComponent,
-    EditarPaqueteComponent,
     FootComponent,
   ],
   imports: [
@@ -74,6 +79,11 @@ import { FootComponent } from './foot/foot.component';
     MatDialogModule,
     MatCardModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
+    
   ],
 
 })

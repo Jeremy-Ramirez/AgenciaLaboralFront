@@ -14,7 +14,6 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/shared/main/main.component';
-import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {TipodocumentoService} from './servicios/tipodocumento.service';
@@ -38,7 +37,25 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
+
+/*INTENTO FILTRO DINAMICO*/ 
+
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EditarPaqueteComponent } from './components/administrador/editar-paquete/editar-paquete.component';
 import { MatDialogModule } from '@angular/material/dialog';
+//import { ListaSolicitudAspirantesService } from './servicios/lista-solicitud-aspirantes.service';
+//import { ContratacionComponent } from './components/representante/contratacion/contratacion.component';
+import { RegisterComponent } from './components/register/register.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -54,8 +71,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     MainComponent,
     RegisterComponent,
+    EditarPaqueteComponent,
     
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -73,7 +92,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    AutocompleteLibModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
+
+    
   ],
   providers: [TipodocumentoService,
     TipopersonaService,
@@ -84,7 +111,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ActividadeconomicaService,
     CiudadService,
     EmpresaService,
-    SectorService
+    SectorService, 
+    //ListaSolicitudAspirantesService,
   ],
   bootstrap: [AppComponent]
 })
