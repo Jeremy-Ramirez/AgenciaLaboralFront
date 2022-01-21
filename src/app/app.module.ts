@@ -56,6 +56,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
+    MatSelectModule,
 
     
   ],
