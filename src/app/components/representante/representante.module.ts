@@ -3,13 +3,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
-
-
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
@@ -29,10 +26,14 @@ import { MatInputModule } from '@angular/material/input';
 import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { MatIconModule } from '@angular/material/icon';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { LoadingComponent } from './loading/loading.component';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { LoadingComponent } from './loading/loading.component';
 import { FootComponent } from './foot/foot.component';
+
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { FootComponent } from './foot/foot.component';
     MatDialogModule,
     FormsModule,
     AutocompleteLibModule,
+    MatTabsModule,
+
     
   ],
 })

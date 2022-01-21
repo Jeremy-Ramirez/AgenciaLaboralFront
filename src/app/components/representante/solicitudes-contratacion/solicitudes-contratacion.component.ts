@@ -9,6 +9,7 @@ import { AspiranteService } from 'src/app/servicios/aspirante.service';
 import { SolicitudService } from 'src/app/servicios/solicitud.service';
 import { SolicitudComponent } from '../solicitud/solicitud.component';
 import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { AspirantessolicitadosService } from '../../../servicios/aspirantessolicitados.service';
 
 @Component({
   selector: 'app-solicitudes-contratacion',
@@ -23,17 +24,25 @@ export class SolicitudesContratacionComponent implements OnInit {
   usuarios: any[]=[];
   listaSolicitudes: any[]=[];
   listausuariosAspirantes2: any[]=[];
-  columnas: string[] = ['cargo', 'fechainicio','fechacierre','solicitudCompleta', 'aspirantesPorSolicitud', 'aceptar'];
+  //, 'solicitudCompleta', 'fechainicio','fechacierre'
+  columnas: string[] = ['cargo', 'aspirantesPorSolicitud', 'eliminar'];
   dataSource:any; 
 
-  columnas2: string[] = ['nombre', 'apellido','aceptar','rechazar'];
+  columnas2: string[] = ['nombre', 'apellido','perfil','aceptar','rechazar'];
   dataSource2:any; 
 
+  //,'aceptar'
+  columnas3: string[] = ['nombre', 'apellido','perfil','rechazar'];
+  dataSource3:any; 
+  //,'rechazar'
+  columnas4: string[] = ['nombre', 'apellido','perfil','aceptar'];
+  dataSource4:any; 
 
   idSolicitud:any;
   //@ViewChild(MatTable) tabla1!: MatTable<any>;
 
   suscription: Subscription; 
+  suscription2: Subscription; 
 
 
   aspirantessolicitados: any[]=[];
@@ -42,8 +51,27 @@ export class SolicitudesContratacionComponent implements OnInit {
   aspirantesLista: any[]=[];
   usuarios2: any[]=[];
   usuariosLista: any[]=[];
-
   solicitudActual: any;
+
+
+  aspirantessolicitados2: any[]=[];
+  aspirantesPorSolicitud2: any[]=[];
+  aspirantes3: any[]=[];
+  aspirantesLista2: any[]=[];
+  usuarios3: any[]=[];
+  usuariosLista2: any[]=[];
+  solicitudActual2: any;
+
+  aspirantessolicitados3: any[]=[];
+  aspirantesPorSolicitud3: any[]=[];
+  aspirantes4: any[]=[];
+  aspirantesLista3: any[]=[];
+  usuarios4: any[]=[];
+  usuariosLista3: any[]=[];
+  solicitudActual3: any;
+
+
+  solicitudEvaluada: any;
 
   constructor(
     private aspiranteService: AspiranteService, 
@@ -52,7 +80,7 @@ export class SolicitudesContratacionComponent implements OnInit {
     private rutaActiva: ActivatedRoute,
     private solicitudService: SolicitudService,
     private router: Router,
-    
+    private aspirantessolicitadosService: AspirantessolicitadosService,
     public dialog: MatDialog,
     ) {
       
@@ -202,6 +230,16 @@ export class SolicitudesContratacionComponent implements OnInit {
     this.dataSource2.filter = filtro.trim().toLowerCase();
   } 
 
+  filtrar3(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.dataSource3.filter = filtro.trim().toLowerCase();
+  } 
+
+  filtrar4(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.dataSource4.filter = filtro.trim().toLowerCase();
+  } 
+
   reloadComponent() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -269,10 +307,18 @@ export class SolicitudesContratacionComponent implements OnInit {
 
     })
 
+    this.suscription2 = this.aspirantessolicitadosService.refresh$.subscribe(()=>{
+      //this.reloadComponent();
+      this.funciones(this.solicitudEvaluada);
+    
+
+    })
+
   }
 
   ngOnDestroy():void{
     this.suscription.unsubscribe();
+    this.suscription2.unsubscribe();
     console.log('Observable cerrado');
   }
 
@@ -323,6 +369,12 @@ export class SolicitudesContratacionComponent implements OnInit {
 
   }
 
+  funciones(solicitud){
+    this.verAspirantes(solicitud), 
+    this.verAspirantesAceptados(solicitud)
+    this.verAspirantesRechazados(solicitud)
+  }
+
   
 
 
@@ -335,7 +387,7 @@ export class SolicitudesContratacionComponent implements OnInit {
       for(let aspsol of this.aspirantessolicitados){
         console.log("ASPSOL", aspsol.solicitud_idsolicitud)
         console.log("this.idsolicitud", solicitud.idsolicitud)
-        if(aspsol.solicitud_idsolicitud == solicitud.idsolicitud){
+        if(aspsol.solicitud_idsolicitud == solicitud.idsolicitud && aspsol.estadoaspiranteempresa_idestadoaspiranteempresa=="3"){
           //this.aspirantesPorSolicitud.indexOf(aspsol) === -1? this.aspirantesPorSolicitud.push(aspsol):
           console.log("está")
 
@@ -400,6 +452,250 @@ export class SolicitudesContratacionComponent implements OnInit {
       }
     })
   }
+
+
+
+  //Tabla de Aceptados
+
+  verAspirantesAceptados(solicitud){
+    this.solicitudEvaluada=solicitud
+    this.solicitudActual2=solicitud.cargo;
+    this.aspirantesPorSolicitud2=[];
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantessolicitados/').subscribe((doc:any)=>{
+      this.aspirantessolicitados2=doc;
+      console.log(this.aspirantessolicitados2)
+      for(let aspsol of this.aspirantessolicitados2){
+        console.log("ASPSOL", aspsol.solicitud_idsolicitud)
+        console.log("this.idsolicitud", solicitud.idsolicitud)
+        if(aspsol.solicitud_idsolicitud == solicitud.idsolicitud && aspsol.estadoaspiranteempresa_idestadoaspiranteempresa=="1"){
+          //this.aspirantesPorSolicitud.indexOf(aspsol) === -1? this.aspirantesPorSolicitud.push(aspsol):
+          console.log("está")
+
+          this.aspirantesPorSolicitud2.push(aspsol);
+        }
+
+      }
+      console.log("obtenerAspirantePorSolicitud", this.aspirantesPorSolicitud2)
+
+          setTimeout(()=>{
+            this.obtenerAspirantesAceptados()
+
+          }, 200);
+    })
+  }
+
+  obtenerAspirantesAceptados(){
+    this.aspirantesLista2=[];
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((doc:any)=>{
+      this.aspirantes3=doc;
+      console.log(this.aspirantes3)
+      for(let aspsol of this.aspirantesPorSolicitud2){
+        for(let aspirante of this.aspirantes3){
+          if(aspsol.aspirante_idaspirante == aspirante.idaspirante){
+            this.aspirantesLista2.indexOf(aspirante) === -1? this.aspirantesLista2.push(aspirante):
+
+            //this.aspirantesLista.push(aspirante);
+            console.log("hay")
+            
+          }
+        }
+      }
+
+      console.log("obteneraspirantes", this.aspirantesLista2)
+            setTimeout(()=>{
+              this.obtenerUsuariosAceptados()
+
+            }, 300);
+    })
+  }
+
+  obtenerUsuariosAceptados(){
+    this.usuariosLista2=[];
+    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+      this.usuarios3=doc;
+      console.log(this.usuarios3)
+      if(this.aspirantesLista2!=null){
+        for(let aspirante of this.aspirantesLista2){
+          for(let usuario of this.usuarios3){
+            if(aspirante.usuario_idusuario == usuario.idusuario){
+              this.usuariosLista2.indexOf(usuario) === -1? this.usuariosLista2.push(usuario):
+              console.log("This item already exists");
+              console.log(usuario.nombre)
+              //this.usuariosLista.push(usuario);
+              
+            }
+          }
+        }
+        console.log("usuariosLista2", this.usuariosLista2)
+        this.dataSource3 = new MatTableDataSource(this.usuariosLista2);
+
+      }
+    })
+  }
+
+  
+
+  acceptAspirantesSolicitados(usuario){
+    console.log("ACEPTASS")
+    let formData= new FormData();
+    formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '1')
+    for(let asp of this.aspirantes3){
+      //console.log(asp)
+          if(asp.usuario_idusuario==usuario.idusuario){
+            console.log(asp.usuario_idusuario)
+            console.log(usuario.idusuario)
+            for(let solActual of this.aspirantessolicitados){
+              //console.log(this.solicitudActual2.idsolicitud)
+              //console.log(solActual)
+                    if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                      console.log("PATCH",solActual)
+                      this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                        console.log("Datos del post",data)
+                        //this.ngOnInit()
+                        //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                        alert('ASPIRANTE ACEPTADO');
+                        //this.miFormulario.reset();
+                      });
+                    }
+              }
+            }
+          }
+    }
+
+
+    verAspirantesRechazados(solicitud){
+      this.solicitudEvaluada=solicitud
+      this.solicitudActual3=solicitud.cargo;
+      this.aspirantesPorSolicitud3=[];
+      this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantessolicitados/').subscribe((doc:any)=>{
+        this.aspirantessolicitados3=doc;
+        console.log(this.aspirantessolicitados3)
+        for(let aspsol of this.aspirantessolicitados3){
+          console.log("ASPSOL", aspsol.solicitud_idsolicitud)
+          console.log("this.idsolicitud", solicitud.idsolicitud)
+          if(aspsol.solicitud_idsolicitud == solicitud.idsolicitud && aspsol.estadoaspiranteempresa_idestadoaspiranteempresa=="2"){
+            //this.aspirantesPorSolicitud.indexOf(aspsol) === -1? this.aspirantesPorSolicitud.push(aspsol):
+            console.log("está")
+  
+            this.aspirantesPorSolicitud3.push(aspsol);
+          }
+  
+        }
+        console.log("obtenerAspirantePorSolicitud", this.aspirantesPorSolicitud3)
+  
+            setTimeout(()=>{
+              this.obtenerAspirantesRechazados()
+  
+            }, 200);
+      })
+    }
+  
+    obtenerAspirantesRechazados(){
+      this.aspirantesLista3=[];
+      this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((doc:any)=>{
+        this.aspirantes4=doc;
+        console.log(this.aspirantes4)
+        for(let aspsol of this.aspirantesPorSolicitud3){
+          for(let aspirante of this.aspirantes4){
+            if(aspsol.aspirante_idaspirante == aspirante.idaspirante){
+              this.aspirantesLista3.indexOf(aspirante) === -1? this.aspirantesLista3.push(aspirante):
+  
+              //this.aspirantesLista.push(aspirante);
+              console.log("hay")
+              
+            }
+          }
+        }
+  
+        console.log("obteneraspirantes", this.aspirantesLista3)
+              setTimeout(()=>{
+                this.obtenerUsuariosRechazados()
+  
+              }, 300);
+      })
+    }
+  
+    obtenerUsuariosRechazados(){
+      this.usuariosLista3=[];
+      this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+        this.usuarios4=doc;
+        console.log(this.usuarios4)
+        if(this.aspirantesLista3!=null){
+          for(let aspirante of this.aspirantesLista3){
+            for(let usuario of this.usuarios4){
+              if(aspirante.usuario_idusuario == usuario.idusuario){
+                this.usuariosLista3.indexOf(usuario) === -1? this.usuariosLista3.push(usuario):
+                console.log("This item already exists");
+                console.log(usuario.nombre)
+                //this.usuariosLista.push(usuario);
+                
+              }
+            }
+          }
+          console.log("usuariosLista2", this.usuariosLista3)
+          this.dataSource4 = new MatTableDataSource(this.usuariosLista3);
+  
+        }
+      })
+    }
+
+    rejecttAspirantesSolicitados(usuario){
+      console.log("ACEPTASS")
+      let formData= new FormData();
+      formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '2')
+      for(let asp of this.aspirantes3){
+        //console.log(asp)
+            if(asp.usuario_idusuario==usuario.idusuario){
+              console.log(asp.usuario_idusuario)
+              console.log(usuario.idusuario)
+              for(let solActual of this.aspirantessolicitados){
+                //console.log(this.solicitudActual2.idsolicitud)
+                //console.log(solActual)
+                      if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                        console.log("PATCH",solActual)
+                        this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                          console.log("Datos del post",data)
+                          //this.ngOnInit()
+                          //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                          alert('ASPIRANTE ACEPTADO');
+                          //this.miFormulario.reset();
+                        });
+                      }
+                }
+              }
+            }
+      }
+
+
+      pendienteAspirantesSolicitados(usuario){
+        console.log("ACEPTASS")
+        let formData= new FormData();
+        formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '3')
+        for(let asp of this.aspirantes3){
+          //console.log(asp)
+              if(asp.usuario_idusuario==usuario.idusuario){
+                console.log(asp.usuario_idusuario)
+                console.log(usuario.idusuario)
+                for(let solActual of this.aspirantessolicitados){
+                  //console.log(this.solicitudActual2.idsolicitud)
+                  //console.log(solActual)
+                        if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                          console.log("PATCH",solActual)
+                          this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                            console.log("Datos del post",data)
+                            //this.ngOnInit()
+                            //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                            alert('ASPIRANTE ACEPTADO');
+                            //this.miFormulario.reset();
+                          });
+                        }
+                  }
+                }
+              }
+        }
+
+    
+    
 
   
 
