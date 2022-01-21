@@ -13,6 +13,11 @@ import { NivelEstudiosService } from '../../../servicios/nivel-estudios.service'
 import { RegistroFullEmpresaComponent } from '../../empresa/registro-full-empresa/registro-full-empresa.component';
 import { Subscription,observable, Observable, pipe } from 'rxjs';
 
+
+
+import{MatDialog} from '@angular/material/dialog';
+import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
+
 @Component({
   selector: 'app-filtro',
   templateUrl: './filtro.component.html',
@@ -70,8 +75,26 @@ export class FiltroComponent implements OnInit {
     private _profesionService: ProfesionesService,
     private _generoService: GeneroService,
     private _nivelestudiosService: NivelEstudiosService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private dialogRef: MatDialog) { }
  
+
+
+
+    openDialog(dato:any){
+
+      let aspirante;
+      for(let asp of this.aspirantes){
+      if(dato.idusuario==asp.usuario_idusuario){
+        aspirante=asp;
+    
+      }
+
+    }
+      this.dialogRef.open(VistaPerfilAspiranteComponent,
+      {data:{ aspiranteIndividual: aspirante, usuarioIndividual: dato}});
+    }
+
 
 
     ngOnInit(): void {
