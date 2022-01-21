@@ -262,6 +262,8 @@ export class EditarPaqueteComponent implements OnInit {
       this.fechaCorrectaInicio=false;
 
     }
+    this.validarFechacierre()
+
 
   }
 
@@ -284,6 +286,7 @@ export class EditarPaqueteComponent implements OnInit {
       this.fechaCorrectaCierre=false;
 
     }
+    this.validarFechainicio()
 
   }
 
