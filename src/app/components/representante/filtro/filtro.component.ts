@@ -246,9 +246,7 @@ export class FiltroComponent implements OnInit {
     }
   
     selectEvent(item) {
-      // do something with selected item
-      //console.log(item.idprofesiones)
-      //item.idprofesiones=this.miFormulario.get('profesiones_idprofesiones').value
+   
       this.Valor= item.idprofesiones;
       console.log(this.Valor)
     }
