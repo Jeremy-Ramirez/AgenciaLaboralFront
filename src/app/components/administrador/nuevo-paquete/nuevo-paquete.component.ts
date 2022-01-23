@@ -155,8 +155,17 @@ export class NuevoPaqueteComponent implements OnInit {
   createPaquete(){
     console.log(this.miFormulario.value);
     this.miFormulario.get('usuario_idusuario').setValue(this.id);
-    this.miFormulario.get('fechacaducidad').setValue(this.convert(this.miFormulario.get('fechacaducidad').value));
-    this.miFormulario.get('fecharegistro').setValue(this.convert( this.miFormulario.get('fecharegistro').value));
+    //this.miFormulario.get('fechacaducidad').setValue(this.convert(this.miFormulario.get('fechacaducidad').value));
+    //this.miFormulario.get('fecharegistro').setValue(this.convert( this.miFormulario.get('fecharegistro').value));
+    let formData = new FormData();
+    formData.append("nombrepaquete", this.miFormulario.get('nombrepaquete').value)
+    formData.append("descripcion", this.miFormulario.get('descripcion').value)
+    formData.append("precio", this.miFormulario.get('precio').value)
+    formData.append("duracionpaquetes_idduracionpaquetes", this.miFormulario.get('duracionpaquetes_idduracionpaquetes').value)
+    formData.append("fecharegistro",this.convert( this.miFormulario.get('fecharegistro').value))
+    formData.append("fechacaducidad", this.convert(this.miFormulario.get('fechacaducidad').value))
+    formData.append("usuario_idusuario", this.miFormulario.get('usuario_idusuario').value)
+    formData.append("estado_idestado", this.miFormulario.get('estado_idestado').value)
 
     //console.log(this.miFormulario.get('duracion').value)
     //this.miFormulario.get('duracion').setValue(this.establecerDuracion());
@@ -164,7 +173,7 @@ export class NuevoPaqueteComponent implements OnInit {
     //let dur= this.miFormulario.get('duracion').value.split(' ')
     //console.log(dur[0])
     
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/paquetePago/', this.miFormulario.value).subscribe(
+    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/paquetePago/', formData).subscribe(
       resp => {
         console.log(resp)
         alert("Paquete creado")
