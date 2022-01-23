@@ -153,16 +153,7 @@ export class SolicitudesContratacionComponent implements OnInit {
     this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios =doc
       console.log("USUARIOS",this.usuarios)
-      /*doc.forEach(user => {
-        this.representantes.forEach(rep=>{
-          console.log("usuario",user.idusuario)
-          console.log("representante",rep.usuario_idusuario)
-          if(user.idusuario===rep.usuario_idusuario){
-            this.aspirantesNuevos.push(user)
-            console.log(this.aspirantesNuevos)
-          }
-        })
-      });*/
+      
 
 
 
@@ -184,12 +175,7 @@ export class SolicitudesContratacionComponent implements OnInit {
           
           
         //}
-          /*if(user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 1){
-            const index= this.listausuariosAspirantes.indexOf(user);
-            this.listausuariosAspirantes.indexOf(user) > -1 ? this.listausuariosAspirantes.splice(index,1):
-            console.log("Borrado prov");
-            console.log("usuarios que quedan",this.listausuariosAspirantes)
-          }*/
+          
         }
         if(rep.idrepresentanteempresa!=sol.representante_idrepresentante){
           const index= this.listaSolicitudes.indexOf(sol);
@@ -202,23 +188,7 @@ export class SolicitudesContratacionComponent implements OnInit {
   }
 
 
-  /*usuariosAspirantesAceptados(){
-    this.listaSolicitudes=[]
-    for( let user of this.usuarios){
-      for(let asp of this.aspirantes){
-        if(user.idusuario==asp.usuario_idusuario){
-          if (user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 2){
-            //this.listausuariosAspirantes.push(user)
-            this.listaSolicitudes.indexOf(user) === -1 ? this.listaSolicitudes.push(user):
-            console.log("This item already exists");
-            console.log("usuarios que quedan",this.listaSolicitudes)
-          
-          
-      }
-        }
-      }
-    } 
-  }*/
+  
 
   filtrar(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;
