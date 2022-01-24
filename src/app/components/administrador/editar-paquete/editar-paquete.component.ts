@@ -58,6 +58,7 @@ export class EditarPaqueteComponent implements OnInit {
   //botonGuardarduracionpaquetes: boolean= false;
   //botonGuardarfecharegistro: boolean= false;
   //botonGuardarfechacaducidad: boolean= false;
+
   selected=this.data.Paquete.duracionpaquetes_idduracionpaquetes;
   selectedDuration:any;
 
@@ -72,7 +73,11 @@ export class EditarPaqueteComponent implements OnInit {
     estado_idestado:1,
     //confirmacion:["", [Validators.required]],
 
-  })
+  });
+  //this.NombrePaquete=this.miFormulario.get('numerohijos');
+
+
+
   fechaCorrectaInicio: boolean=true;
   fechaCorrectaCierre: boolean=true;
 
@@ -437,6 +442,9 @@ export class EditarPaqueteComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+   
+
     /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;

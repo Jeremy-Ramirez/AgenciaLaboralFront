@@ -14,7 +14,9 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombrepaquete"
-                           placeholder="{{data.Paquete.nombrepaquete}}"
+                           placeholder=""
+                           value=""
+                           [(ngModel)]="data.Paquete.nombrepaquete"
                            >
                     <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombrepaquete')">
@@ -34,8 +36,11 @@
                     <textarea type="text"
                            class="form-control"
                            formControlName="descripcion"
-                           placeholder="{{data.Paquete.descripcion}}"
-                           style="width: 650px; height: 200px;"></textarea>
+                           placeholder=""
+                           style="width: 650px; height: 200px;"
+                           [(ngModel)]="data.Paquete.descripcion"
+
+                           ></textarea>
                     <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('descripcion')">
                         
@@ -53,8 +58,8 @@
                     <input type="text"
                            class="form-control"
                            formControlName="precio"
-                           placeholder="{{data.Paquete.precio}}"
-                           
+                           placeholder=""
+                           [(ngModel)]="data.Paquete.precio"
                            >
                            
                     <span class="form-text text-danger"
@@ -125,7 +130,7 @@
                 </div>
                 <div class="col-sm-9">
                     <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{formatofechainicio}}" 
+                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{formatofechainicio}}" [(ngModel)]="formatofechainicio"
                         (dateChange)="validarFechainicio()" >
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
