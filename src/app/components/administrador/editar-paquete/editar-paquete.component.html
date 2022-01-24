@@ -130,7 +130,7 @@
                 </div>
                 <div class="col-sm-9">
                     <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{formatofechainicio}}" [(ngModel)]="formatofechainicio"
+                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" [(ngModel)]="data.Paquete.fecharegistro"
                         (dateChange)="validarFechainicio()" >
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="col-sm-9">
                     <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad" placeholder="{{formatofechacaducidad}}" 
+                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad"  [(ngModel)]="data.Paquete.fechacaducidad"
                         (dateChange)="validarFechacierre()" >
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>

@@ -244,7 +244,7 @@ export class EditarPaqueteComponent implements OnInit {
     console.log(formatofechacaducidad)
     this.formatofechacaducidad=formatofechacaducidad[2]+"-"+formatofechacaducidad[1]+"-"+formatofechacaducidad[0];
 
-    let formatofechainicio = this.data.Paquete.fechacaducidad.split("-")
+    let formatofechainicio = this.data.Paquete.fecharegistro.split("-")
     this.formatofechainicio=formatofechainicio[2]+"-"+formatofechainicio[1]+"-"+formatofechainicio[0];
 
     console.log(formatofechainicio)
